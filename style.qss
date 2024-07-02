@@ -1,0 +1,88 @@
+/*= Style for mainwindow START
+  ==================================================== */
+	#MainWindow {
+		background-color: #fff;
+	}
+/*= END
+  ==================================================== */
+
+/*= Style for header widget START
+  ==================================================== */
+	#widget {
+		background-color: #f9fafd;
+	}
+/*= END
+  ==================================================== */
+
+/*= Style for menu with icon only START
+  ==================================================== */
+  	/* style for widget */
+	#icon_only_widget {
+		background-color: #0066a4;
+		width:50px;
+	}
+
+    /* style for QPushButton and QLabel */
+	#icon_only_widget QPushButton, QLabel {
+		height:50px;
+		width:50px;
+		border:none;
+		/* border-bottom: 1px solid #b0b0b0; */
+	}
+
+	#icon_only_widget QPushButton:hover {
+		background-color: #81042d;
+		border-bottom: 4px solid #000;
+	}
+
+	#icon_only_widget QPushButton:checked {
+		background-color: #81042d;
+	}
+
+	/* style for logo image */
+	#logo_label_1 {
+		padding: 5px
+	}
+/*= END
+  ==================================================== */
+
+/*= Style for menu with icon and text START
+  ==================================================== */
+	/* style for widget */
+	#full_menu_widget {
+		background-color: #0066a4;
+	}
+
+	/* style for QPushButton */
+	#full_menu_widget QPushButton {
+		border:none;
+		border-radius: 3px;
+		text-align: left;
+		
+		padding: 8px 8px 8px 15px;
+		color: #fff;
+	}
+
+	#full_menu_widget QPushButton:hover {
+		background-color: #81042d;
+		border-bottom: 4px solid #000;
+	}
+
+	#full_menu_widget QPushButton:checked {
+		background-color: #81042d;
+		border-bottom: 4px solid #000;
+	}
+/*= END
+  ==================================================== */
+
+
+/*= Style for menu with icon and text START
+  ==================================================== */
+	/* style for widget */
+	#status_bar_widget {
+		
+		border-bottom: 1px solid #000;
+	}
+/*= END
+  ==================================================== */
+

@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>icon/GITSIM.png</file>
+    <file>icon/dashboard-32.ico</file>
+    <file>icon/elevator-32.ico</file>
+    <file>icon/graph-32.ico</file>
+    <file>icon/menu-4-32.ico</file>
+    <file>icon/multiply-2-32.ico</file>
+    <file>icon/usb-4-32.ico</file>
+  </qresource>
+</RCC>
