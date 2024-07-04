@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="icon">
+    <file>../icon/icons8-folder-48.png</file>
+    <file>../icon/icons8-play-button-48.png</file>
+    <file>../icon/icons8-reset-64.png</file>
+    <file>../icon/icons8-stop-button-50.png</file>
     <file>../icon/home-4-32.ico</file>
     <file>../icon/dashboard-32.ico</file>
     <file>../icon/elevator-32.ico</file>

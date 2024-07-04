@@ -271,6 +271,9 @@
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
         <number>0</number>
@@ -868,7 +871,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <number>0</number>
                  </property>
                  <property name="text">
-                  <string>Encoder 1 (measurement)</string>
+                  <string>Encoder 1 measurement</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -885,41 +888,71 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <widget class="GaugeMeter" name="gauge_meter_1" native="true"/>
                </item>
                <item>
-                <widget class="QLabel" name="label_4">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>11</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Distance travelled </string>
-                 </property>
-                 <property name="margin">
-                  <number>14</number>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="Line" name="line_2">
-                 <property name="styleSheet">
-                  <string notr="true">color:#bb2e29;</string>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Shadow::Plain</enum>
-                 </property>
-                 <property name="lineWidth">
-                  <number>2</number>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Orientation::Horizontal</enum>
-                 </property>
-                </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_17">
+                 <item>
+                  <widget class="QPushButton" name="pushButton_14">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="resource.qrc">
+                     <normaloff>:/icon/icon/icons8-reset-64.png</normaloff>:/icon/icon/icons8-reset-64.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>25</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_4">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>11</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Distance travelled:</string>
+                   </property>
+                   <property name="margin">
+                    <number>14</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_19">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>11</pointsize>
+                     <italic>true</italic>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>0 m</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </item>
@@ -959,7 +992,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <number>0</number>
                  </property>
                  <property name="text">
-                  <string>Encoder 2 (measurement)</string>
+                  <string>Encoder 2 measurement</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -976,47 +1009,77 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <widget class="GaugeMeter" name="gauge_meter_3" native="true"/>
                </item>
                <item>
-                <widget class="QLabel" name="label_6">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="font">
-                  <font>
-                   <pointsize>11</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Distance travelled </string>
-                 </property>
-                 <property name="margin">
-                  <number>14</number>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="Line" name="line_4">
-                 <property name="styleSheet">
-                  <string notr="true">color:#bb2e29;</string>
-                 </property>
-                 <property name="frameShadow">
-                  <enum>QFrame::Shadow::Plain</enum>
-                 </property>
-                 <property name="lineWidth">
-                  <number>2</number>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Orientation::Horizontal</enum>
-                 </property>
-                </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_18">
+                 <item>
+                  <widget class="QPushButton" name="pushButton_15">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset resource="resource.qrc">
+                     <normaloff>:/icon/icon/icons8-reset-64.png</normaloff>:/icon/icon/icons8-reset-64.png</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>25</width>
+                     <height>25</height>
+                    </size>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_18">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>11</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Distance travelled:</string>
+                   </property>
+                   <property name="margin">
+                    <number>14</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_20">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>11</pointsize>
+                     <italic>true</italic>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>0 m</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </item>
             </layout>
            </item>
-           <item row="1" column="1">
+           <item row="2" column="1">
             <layout class="QVBoxLayout" name="verticalLayout_16">
              <item>
               <widget class="QLabel" name="data_encoder1_title_5">
@@ -1049,7 +1112,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 <number>0</number>
                </property>
                <property name="text">
-                <string>Data save</string>
+                <string>Data collection</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1059,6 +1122,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </property>
                <property name="textInteractionFlags">
                 <set>Qt::TextInteractionFlag::NoTextInteraction</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Choose the file name and the folder where you wish to save the data:</string>
+               </property>
+               <property name="wordWrap">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -1077,36 +1155,27 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit"/>
+                <widget class="QLineEdit" name="lineEdit">
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="placeholderText">
+                  <string>* &quot; / \ &lt; &gt; : | ?  are forbidden</string>
+                 </property>
+                </widget>
                </item>
               </layout>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_11">
-               <property name="font">
-                <font>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string> Start registration</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_12">
-               <property name="font">
-                <font>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string> Stop registration</string>
-               </property>
-              </widget>
-             </item>
-             <item>
               <widget class="QPushButton" name="pushButton_13">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="font">
                 <font>
                  <pointsize>11</pointsize>
@@ -1115,23 +1184,89 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <property name="text">
                 <string>Select folder</string>
                </property>
+               <property name="icon">
+                <iconset resource="resource.qrc">
+                 <normaloff>:/icon/icon/icons8-folder-48.png</normaloff>:/icon/icon/icons8-folder-48.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_11">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string> Start registration</string>
+               </property>
+               <property name="icon">
+                <iconset resource="resource.qrc">
+                 <normaloff>:/icon/icon/icons8-play-button-48.png</normaloff>:/icon/icon/icons8-play-button-48.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_12">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>11</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string> Stop registration</string>
+               </property>
+               <property name="icon">
+                <iconset resource="resource.qrc">
+                 <normaloff>:/icon/icon/icons8-stop-button-50.png</normaloff>:/icon/icon/icons8-stop-button-50.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
               </widget>
              </item>
             </layout>
            </item>
-           <item row="1" column="0">
+           <item row="2" column="0">
             <layout class="QVBoxLayout" name="verticalLayout_8">
              <property name="spacing">
-              <number>5</number>
+              <number>6</number>
              </property>
              <property name="topMargin">
-              <number>10</number>
+              <number>0</number>
              </property>
              <property name="rightMargin">
-              <number>2</number>
+              <number>0</number>
              </property>
              <property name="bottomMargin">
-              <number>2</number>
+              <number>0</number>
              </property>
              <item>
               <widget class="QLabel" name="data_encoder1_title_4">
@@ -1209,6 +1344,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    <property name="text">
                     <string>1</string>
                    </property>
+                   <property name="checked">
+                    <bool>false</bool>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -1233,6 +1371,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    <property name="text">
                     <string>Both</string>
                    </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
                   </widget>
                  </item>
                 </layout>
@@ -1249,7 +1390,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </font>
                  </property>
                  <property name="text">
-                  <string>Speed =</string>
+                  <string>Speed [km/h] =</string>
                  </property>
                 </widget>
                </item>
@@ -1261,7 +1402,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </font>
                  </property>
                  <property name="placeholderText">
-                  <string>m/s</string>
+                  <string>-500 ÷ 500</string>
                  </property>
                 </widget>
                </item>
@@ -1277,7 +1418,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </font>
                  </property>
                  <property name="text">
-                  <string>Acceleration =</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Acceleration [m/s&lt;span style=&quot; vertical-align:super;&quot;&gt;2&lt;/span&gt;] =&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
@@ -1289,7 +1430,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </font>
                  </property>
                  <property name="placeholderText">
-                  <string>m/s^2</string>
+                  <string>-10 ÷ 10</string>
                  </property>
                 </widget>
                </item>
@@ -1297,6 +1438,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </item>
              <item>
               <widget class="QPushButton" name="pushButton">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="font">
                 <font>
                  <pointsize>11</pointsize>
@@ -1309,6 +1456,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
                <property name="font">
                 <font>
                  <pointsize>11</pointsize>
@@ -1320,6 +1473,25 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </widget>
              </item>
             </layout>
+           </item>
+           <item row="1" column="0" colspan="2">
+            <widget class="Line" name="line_5">
+             <property name="styleSheet">
+              <string notr="true">color: #0066a4;</string>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Plain</enum>
+             </property>
+             <property name="lineWidth">
+              <number>2</number>
+             </property>
+             <property name="midLineWidth">
+              <number>1</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
