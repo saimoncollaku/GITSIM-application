@@ -22,6 +22,7 @@ if __name__ == "__main__":
     # Single resources modules
     serial_tab = SerialBox(window, serial_port)
     
+    
     # UI loop
     window.show()
 
