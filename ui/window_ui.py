@@ -146,7 +146,7 @@ class Ui_MainWindow(object):
 
         icon2 = QIcon()
 
-        icon2.addFile(u":/icon/icon/usb-4-32.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u":/icon/icon/home-4-32.ico", QSize(), QIcon.Normal, QIcon.Off)
 
         self.connection_button_1.setIcon(icon2)
 
@@ -822,7 +822,7 @@ class Ui_MainWindow(object):
 
 
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
 
@@ -852,7 +852,7 @@ class Ui_MainWindow(object):
 
         self.menu_button_2.setText(QCoreApplication.translate("MainWindow", u"Minimize", None))
 
-        self.connection_button_2.setText(QCoreApplication.translate("MainWindow", u"Connection", None))
+        self.connection_button_2.setText(QCoreApplication.translate("MainWindow", u"Home", None))
 
         self.measurement_button_2.setText(QCoreApplication.translate("MainWindow", u"Measurement", None))
 

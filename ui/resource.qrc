@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icon">
+    <file>../icon/home-4-32.ico</file>
     <file>../icon/dashboard-32.ico</file>
     <file>../icon/elevator-32.ico</file>
     <file>../icon/GITSIM.png</file>

@@ -137,7 +137,7 @@
          </property>
          <property name="icon">
           <iconset resource="resource.qrc">
-           <normaloff>:/icon/icon/usb-4-32.ico</normaloff>:/icon/icon/usb-4-32.ico</iconset>
+           <normaloff>:/icon/icon/home-4-32.ico</normaloff>:/icon/icon/home-4-32.ico</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -341,11 +341,11 @@
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="text">
-          <string>Connection</string>
+          <string>Home</string>
          </property>
          <property name="icon">
           <iconset resource="resource.qrc">
-           <normaloff>:/icon/icon/usb-4-32.ico</normaloff>:/icon/icon/usb-4-32.ico</iconset>
+           <normaloff>:/icon/icon/home-4-32.ico</normaloff>:/icon/icon/home-4-32.ico</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -585,7 +585,7 @@
           <cursorShape>ArrowCursor</cursorShape>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page">
           <layout class="QHBoxLayout" name="horizontalLayout_3">
