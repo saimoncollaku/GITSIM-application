@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QMainWindow
 from PySide6.QtCore import QTimer
 
 # Private libraries
-from window_ui import Ui_MainWindow
+from ui.window_ui import Ui_MainWindow
 
 class MainWindow(QMainWindow):
     def __init__(self):

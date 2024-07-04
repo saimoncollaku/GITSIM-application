@@ -52,4 +52,4 @@ class PySide6Ui:
         return form_class, base_class
 
 
-PySide6Ui("window.ui").toPy("window_ui.py")
+PySide6Ui("ui\\window.ui").toPy("ui\\window_ui.py")
