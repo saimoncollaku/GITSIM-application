@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icon">
+    <file>../icon/wired-flat-45-clock-time.gif</file>
     <file>../icon/icons8-folder-48.png</file>
     <file>../icon/icons8-play-button-48.png</file>
     <file>../icon/icons8-reset-64.png</file>

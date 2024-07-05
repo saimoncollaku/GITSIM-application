@@ -1,10 +1,32 @@
 
 # Public libraries
-from PySide6.QtWidgets import QMainWindow
+from PySide6.QtWidgets import QMainWindow, QPushButton
 from PySide6.QtCore import QTimer
+from PySide6.QtGui import QMovie
+
 
 # Private libraries
 from ui.window_ui import Ui_MainWindow
+
+def setup_gif_button(button: QPushButton, gif_path):
+    movie = QMovie(gif_path)
+    button.movie = movie  # Store the movie as an attribute of the button
+    
+    button.setCheckable(True)
+    button.toggled.connect(button.on_toggle)
+
+def toggle_gif(button: QPushButton, checked):
+    if checked:
+        button.movie.start()
+        button.setIcon(button.movie.currentPixmap())
+        button.movie.updated.connect(button.update_icon)
+    else:
+        button.movie.stop()
+        button.setIcon(button.movie.currentPixmap())
+        button.movie.updated.disconnect(button.update_icon)
+
+def update_button_icon(button: QPushButton):
+    button.setIcon(button.movie.currentPixmap())
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -22,26 +44,10 @@ class MainWindow(QMainWindow):
         self.ui.connection_button_1.setChecked(True)
         self.timer.timeout.connect(self.clear_temporary_message)
         self.set_temporary_message("Welcome to GITSIM!")
+        self.setup_tab_changes()
         
-        # Set slots to change the pages - Page 0
-        self.ui.connection_button_1.clicked.connect(self.set_connection_tab)
-        self.ui.connection_button_2.clicked.connect(self.set_connection_tab)
         
-        # Set slots to change the pages - Page 1
-        self.ui.measurement_button_1.clicked.connect(self.set_measurement_tab)
-        self.ui.measurement_button_2.clicked.connect(self.set_measurement_tab)
-        
-        # Set slots to change the pages - Page 2
-        self.ui.curve_button_1.clicked.connect(self.set_curve_tab)
-        self.ui.curve_button_2.clicked.connect(self.set_curve_tab)
-        
-        # Set slots to change the pages - Page 3
-        self.ui.error1_button_1.clicked.connect(self.set_error1_tab)
-        self.ui.error1_button_2.clicked.connect(self.set_error1_tab)
-        
-        # Set slots to change the pages - Page 4
-        self.ui.error2_button_1.clicked.connect(self.set_error2_tab)
-        self.ui.error2_button_2.clicked.connect(self.set_error2_tab)
+    ###############################################################
 
     def set_temporary_message(self, message:str, duration:int=3000):
         self.ui.temporary_message_label.setText(message)
@@ -52,6 +58,24 @@ class MainWindow(QMainWindow):
         self.ui.temporary_message_label.clear()
         self.ui.temporary_message_label.setStyleSheet("")
         self.timer.stop()
+        
+    def setup_tab_changes(self):
+        # Set slots to change the pages - Page 0
+        self.ui.connection_button_1.clicked.connect(self.set_connection_tab)
+        self.ui.connection_button_2.clicked.connect(self.set_connection_tab)
+        # Set slots to change the pages - Page 1
+        self.ui.measurement_button_1.clicked.connect(self.set_measurement_tab)
+        self.ui.measurement_button_2.clicked.connect(self.set_measurement_tab)
+        # Set slots to change the pages - Page 2
+        self.ui.curve_button_1.clicked.connect(self.set_curve_tab)
+        self.ui.curve_button_2.clicked.connect(self.set_curve_tab)
+        # Set slots to change the pages - Page 3
+        self.ui.error1_button_1.clicked.connect(self.set_error1_tab)
+        self.ui.error1_button_2.clicked.connect(self.set_error1_tab)
+        # Set slots to change the pages - Page 4
+        self.ui.error2_button_1.clicked.connect(self.set_error2_tab)
+        self.ui.error2_button_2.clicked.connect(self.set_error2_tab)
+        
         
     def set_permanent_message(self, message:str):
         self.ui.permanent_message_label.setText(message)

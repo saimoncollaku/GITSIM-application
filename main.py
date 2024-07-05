@@ -4,8 +4,8 @@ from PySide6.QtWidgets import QApplication
 from PySide6.QtSerialPort import QSerialPort
 
 # Private libraries
-from classes.mainwindow_class import MainWindow
-from classes.serialbox_class import SerialBox
+from classes.mainwindow.mainwindow_class import MainWindow
+from classes.home.serialbox_class import SerialBox
     
 if __name__ == "__main__":
     

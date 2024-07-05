@@ -3,7 +3,7 @@ from PySide6 import QtWidgets, QtCore
 from PySide6.QtSerialPort import QSerialPortInfo, QSerialPort
 import struct
 
-from classes.mainwindow_class import MainWindow
+from classes.mainwindow.mainwindow_class import MainWindow
 
 class SerialBox:
     def __init__(self, main_window: MainWindow, serial_port: QSerialPort):

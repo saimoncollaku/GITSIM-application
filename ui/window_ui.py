@@ -1148,7 +1148,7 @@ class Ui_MainWindow(object):
 
         self.pushButton_13.setIcon(icon8)
 
-        self.pushButton_13.setIconSize(QSize(20, 20))
+        self.pushButton_13.setIconSize(QSize(35, 35))
 
 
 
@@ -1170,9 +1170,13 @@ class Ui_MainWindow(object):
 
         icon9.addFile(u":/icon/icon/icons8-play-button-48.png", QSize(), QIcon.Normal, QIcon.Off)
 
+        icon9.addFile(u":/icon/icon/wired-flat-45-clock-time.gif", QSize(), QIcon.Active, QIcon.On)
+
         self.pushButton_11.setIcon(icon9)
 
-        self.pushButton_11.setIconSize(QSize(20, 20))
+        self.pushButton_11.setIconSize(QSize(35, 35))
+
+        self.pushButton_11.setCheckable(True)
 
 
 
@@ -1196,7 +1200,7 @@ class Ui_MainWindow(object):
 
         self.pushButton_12.setIcon(icon10)
 
-        self.pushButton_12.setIconSize(QSize(20, 20))
+        self.pushButton_12.setIconSize(QSize(35, 35))
 
 
 
