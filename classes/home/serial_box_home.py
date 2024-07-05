@@ -29,7 +29,6 @@ class SerialBox:
         self.conn_button.clicked.connect(self.connect_to_COM)
         self.disc_button.clicked.connect(self.disconnect_to_COM)
         self.serial_port.errorOccurred.connect(self.cable_disconnection_action)
-        self.serial_port.readyRead.connect(self.read_data)
         
     def update_available_COMs(self):  
         

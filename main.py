@@ -6,6 +6,7 @@ from PySide6.QtSerialPort import QSerialPort
 # Private libraries
 from classes.mainwindow.mainwindow_class import MainWindow
 from classes.home.serial_box_home import SerialBox
+from classes.measurement.encoder_meas_box_measurement import EncoderMeasurementBox
     
 if __name__ == "__main__":
     
@@ -21,7 +22,7 @@ if __name__ == "__main__":
     
     # Single resources modules
     serial_tab = SerialBox(window, serial_port)
-    
+    encoder_measure_box = EncoderMeasurementBox(window, serial_port)
     
     # UI loop
     window.show()
