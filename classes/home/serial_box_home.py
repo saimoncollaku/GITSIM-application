@@ -1,8 +1,9 @@
 # Public libraries
-from PySide6 import QtWidgets, QtCore
+from PySide6 import QtCore
 from PySide6.QtSerialPort import QSerialPortInfo, QSerialPort
 import struct
 
+# Private libraries
 from classes.mainwindow.mainwindow_class import MainWindow
 
 class SerialBox:
@@ -20,7 +21,7 @@ class SerialBox:
         
         # Inizialization
         self.com_update_timer.start(100)
-        self.serial_port.setBaudRate(9600)
+        self.serial_port.setBaudRate(115200)
         self.main_window.set_permanent_message(f"Not connected 🔴")
         
         # Assign slots to the signals
@@ -28,6 +29,7 @@ class SerialBox:
         self.conn_button.clicked.connect(self.connect_to_COM)
         self.disc_button.clicked.connect(self.disconnect_to_COM)
         self.serial_port.errorOccurred.connect(self.cable_disconnection_action)
+        self.serial_port.readyRead.connect(self.read_data)
         
     def update_available_COMs(self):  
         
@@ -125,29 +127,4 @@ class SerialBox:
             
             # Change enable state of buttons
             self.conn_button.setEnabled(True)
-            self.disc_button.setEnabled(False)  
-    
-    # def read_data(self):
-    #     while self.serial_port.canReadLine():
-    #         data = self.serial_port.readLine().data().decode('utf-8').strip()
-    #         print(f"Received: {data}")
-    
-    # def read_data(self):
-    #     while self.serial_port.bytesAvailable() >= 17:  # Ensure we have enough bytes for a full packet
-    #         data = self.serial_port.read(17)  # Read 17 bytes (size of your packet)
-            
-    #         # Unpack the data
-    #         identifier = data[0]
-    #         float_values = struct.unpack('<ffff', data[1:])
-            
-    #         print(f"Received: Identifier={identifier}, Float values={float_values}")
-    
-    # def send_data(self):
-    #     data = 3.14159   # Example float data (replace with your actual float value)
-    #     identifier = 32 
-    #     telegram = struct.pack('>fB', data, identifier)
-    #     print(telegram)
-    #     done = self.serial_port.write(telegram)
-    #     print(done)
-
-          
+            self.disc_button.setEnabled(False)      

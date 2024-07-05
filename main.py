@@ -5,7 +5,7 @@ from PySide6.QtSerialPort import QSerialPort
 
 # Private libraries
 from classes.mainwindow.mainwindow_class import MainWindow
-from classes.home.serialbox_class import SerialBox
+from classes.home.serial_box_home import SerialBox
     
 if __name__ == "__main__":
     
