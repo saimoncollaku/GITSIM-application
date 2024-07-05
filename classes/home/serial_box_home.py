@@ -17,6 +17,9 @@ class SerialBox:
         self.conn_button = self.main_window.ui.com_connect_button
         self.disc_button = self.main_window.ui.com_disconnect_button
         self.com_select_list = self.main_window.ui.com_available_combo
+        self.ppr_encoder1_edit = self.main_window.ui.ppr_encoder1_edit
+        self.ppr_encoder2_edit = self.main_window.ui.ppr_encoder2_edit
+        self.wheel_diameter_edit = self.main_window.ui.wheel_diameter_edit
         self.com_update_timer = QtCore.QTimer()
         
         # Inizialization
@@ -74,7 +77,9 @@ class SerialBox:
                     
                     # Change enable state of buttons
                     self.conn_button.setEnabled(False)
-                    self.disc_button.setEnabled(True) 
+                    self.disc_button.setEnabled(True)
+                    
+                    self.send_connection_telegram()
                 else:
                     # Failure to connect - temporary message
                     message = f"Unable to connect to {info.portName()}"
@@ -126,4 +131,21 @@ class SerialBox:
             
             # Change enable state of buttons
             self.conn_button.setEnabled(True)
-            self.disc_button.setEnabled(False)      
+            self.disc_button.setEnabled(False)
+    
+    def send_connection_telegram(self):
+        # ppr_encoder1 = int(self.ppr_encoder1_edit.text())
+        # ppr_encoder2 = int(self.ppr_encoder2_edit.text())  
+        # wheel_diameter = float(self.wheel_diameter_edit.text())
+        
+        ppr_encoder1 = 89
+        ppr_encoder2 = 98 
+        wheel_diameter = 1.06
+        
+        telegram = struct.pack('<fHH',  wheel_diameter,
+                                        ppr_encoder1, 
+                                        ppr_encoder2)
+        self.serial_port.write(telegram)
+        print(telegram[0])
+        
+        

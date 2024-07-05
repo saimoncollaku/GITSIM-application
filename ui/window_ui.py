@@ -413,13 +413,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_10.addWidget(self.label_5)
 
-        self.lineEdit_5 = QLineEdit(self.serial_box)
-        self.lineEdit_5.setObjectName(u"lineEdit_5")
-        sizePolicy2.setHeightForWidth(self.lineEdit_5.sizePolicy().hasHeightForWidth())
-        self.lineEdit_5.setSizePolicy(sizePolicy2)
-        self.lineEdit_5.setFont(font4)
+        self.ppr_encoder1_edit = QLineEdit(self.serial_box)
+        self.ppr_encoder1_edit.setObjectName(u"ppr_encoder1_edit")
+        sizePolicy2.setHeightForWidth(self.ppr_encoder1_edit.sizePolicy().hasHeightForWidth())
+        self.ppr_encoder1_edit.setSizePolicy(sizePolicy2)
+        self.ppr_encoder1_edit.setFont(font4)
 
-        self.verticalLayout_10.addWidget(self.lineEdit_5)
+        self.verticalLayout_10.addWidget(self.ppr_encoder1_edit)
 
 
         self.verticalLayout_5.addLayout(self.verticalLayout_10)
@@ -438,13 +438,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9.addWidget(self.label_10)
 
-        self.lineEdit_6 = QLineEdit(self.serial_box)
-        self.lineEdit_6.setObjectName(u"lineEdit_6")
-        sizePolicy2.setHeightForWidth(self.lineEdit_6.sizePolicy().hasHeightForWidth())
-        self.lineEdit_6.setSizePolicy(sizePolicy2)
-        self.lineEdit_6.setFont(font4)
+        self.ppr_encoder2_edit = QLineEdit(self.serial_box)
+        self.ppr_encoder2_edit.setObjectName(u"ppr_encoder2_edit")
+        sizePolicy2.setHeightForWidth(self.ppr_encoder2_edit.sizePolicy().hasHeightForWidth())
+        self.ppr_encoder2_edit.setSizePolicy(sizePolicy2)
+        self.ppr_encoder2_edit.setFont(font4)
 
-        self.verticalLayout_9.addWidget(self.lineEdit_6)
+        self.verticalLayout_9.addWidget(self.ppr_encoder2_edit)
 
 
         self.verticalLayout_5.addLayout(self.verticalLayout_9)
@@ -461,13 +461,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.label_11)
 
-        self.lineEdit_2 = QLineEdit(self.serial_box)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
-        sizePolicy2.setHeightForWidth(self.lineEdit_2.sizePolicy().hasHeightForWidth())
-        self.lineEdit_2.setSizePolicy(sizePolicy2)
-        self.lineEdit_2.setFont(font4)
+        self.wheel_diameter_edit = QLineEdit(self.serial_box)
+        self.wheel_diameter_edit.setObjectName(u"wheel_diameter_edit")
+        sizePolicy2.setHeightForWidth(self.wheel_diameter_edit.sizePolicy().hasHeightForWidth())
+        self.wheel_diameter_edit.setSizePolicy(sizePolicy2)
+        self.wheel_diameter_edit.setFont(font4)
 
-        self.verticalLayout_7.addWidget(self.lineEdit_2)
+        self.verticalLayout_7.addWidget(self.wheel_diameter_edit)
 
 
         self.verticalLayout_5.addLayout(self.verticalLayout_7)
@@ -928,11 +928,11 @@ class Ui_MainWindow(object):
         self.com_disconnect_button.setText(QCoreApplication.translate("MainWindow", u"Disconnect", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Set constants ", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"PPR setting for Encoder 1 ", None))
-        self.lineEdit_5.setPlaceholderText(QCoreApplication.translate("MainWindow", u"80 \u00f7 128", None))
+        self.ppr_encoder1_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"80 \u00f7 128", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"PPR setting for Encoder 2 ", None))
-        self.lineEdit_6.setPlaceholderText(QCoreApplication.translate("MainWindow", u"80 \u00f7 128", None))
+        self.ppr_encoder2_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"80 \u00f7 128", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"Wheel diameter [m] ", None))
-        self.lineEdit_2.setPlaceholderText(QCoreApplication.translate("MainWindow", u"0.8 \u00f7 1.25", None))
+        self.wheel_diameter_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"0.8 \u00f7 1.25", None))
         self.data_encoder1_title.setText(QCoreApplication.translate("MainWindow", u"Encoder 1 measurement", None))
         self.pushButton_14.setText("")
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Distance travelled:", None))
