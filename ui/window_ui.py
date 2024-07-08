@@ -15,11 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QGridLayout,
-    QGroupBox, QHBoxLayout, QLabel, QLineEdit,
-    QMainWindow, QPushButton, QRadioButton, QSizePolicy,
-    QSpacerItem, QStackedWidget, QTextEdit, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDoubleSpinBox,
+    QFrame, QGridLayout, QGroupBox, QHBoxLayout,
+    QLabel, QLineEdit, QMainWindow, QPushButton,
+    QRadioButton, QSizePolicy, QSpacerItem, QSpinBox,
+    QStackedWidget, QTextEdit, QVBoxLayout, QWidget)
 
 from ui.gaugemeter import GaugeMeter
 import ui.resource_rc
@@ -285,7 +285,7 @@ class Ui_MainWindow(object):
         font2 = QFont()
         font2.setKerning(True)
         self.serial_box.setFont(font2)
-        self.serial_box.setFlat(True)
+        self.serial_box.setFlat(False)
         self.verticalLayout_5 = QVBoxLayout(self.serial_box)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.label_9 = QLabel(self.serial_box)
@@ -345,11 +345,10 @@ class Ui_MainWindow(object):
 
         self.label_13 = QLabel(self.serial_box)
         self.label_13.setObjectName(u"label_13")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Maximum)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.label_13.sizePolicy().hasHeightForWidth())
-        self.label_13.setSizePolicy(sizePolicy4)
+        sizePolicy.setHeightForWidth(self.label_13.sizePolicy().hasHeightForWidth())
+        self.label_13.setSizePolicy(sizePolicy)
+        self.label_13.setMinimumSize(QSize(200, 40))
+        self.label_13.setMaximumSize(QSize(200, 40))
         self.label_13.setFont(font4)
         self.label_13.setWordWrap(True)
 
@@ -357,11 +356,11 @@ class Ui_MainWindow(object):
 
         self.com_connect_button = QPushButton(self.serial_box)
         self.com_connect_button.setObjectName(u"com_connect_button")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.com_connect_button.sizePolicy().hasHeightForWidth())
-        self.com_connect_button.setSizePolicy(sizePolicy5)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.com_connect_button.sizePolicy().hasHeightForWidth())
+        self.com_connect_button.setSizePolicy(sizePolicy4)
         font6 = QFont()
         font6.setFamilies([u"Segoe UI"])
         font6.setPointSize(11)
@@ -375,8 +374,8 @@ class Ui_MainWindow(object):
         self.com_disconnect_button = QPushButton(self.serial_box)
         self.com_disconnect_button.setObjectName(u"com_disconnect_button")
         self.com_disconnect_button.setEnabled(False)
-        sizePolicy5.setHeightForWidth(self.com_disconnect_button.sizePolicy().hasHeightForWidth())
-        self.com_disconnect_button.setSizePolicy(sizePolicy5)
+        sizePolicy4.setHeightForWidth(self.com_disconnect_button.sizePolicy().hasHeightForWidth())
+        self.com_disconnect_button.setSizePolicy(sizePolicy4)
         self.com_disconnect_button.setFont(font6)
         self.com_disconnect_button.setCursor(QCursor(Qt.PointingHandCursor))
 
@@ -402,72 +401,110 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.addWidget(self.label_12)
 
         self.verticalLayout_10 = QVBoxLayout()
+        self.verticalLayout_10.setSpacing(1)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
         self.label_5 = QLabel(self.serial_box)
         self.label_5.setObjectName(u"label_5")
-        sizePolicy4.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
-        self.label_5.setSizePolicy(sizePolicy4)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Maximum)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
+        self.label_5.setSizePolicy(sizePolicy5)
         self.label_5.setFont(font4)
         self.label_5.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
         self.label_5.setWordWrap(False)
 
         self.verticalLayout_10.addWidget(self.label_5)
 
-        self.ppr_encoder1_edit = QLineEdit(self.serial_box)
-        self.ppr_encoder1_edit.setObjectName(u"ppr_encoder1_edit")
-        sizePolicy2.setHeightForWidth(self.ppr_encoder1_edit.sizePolicy().hasHeightForWidth())
-        self.ppr_encoder1_edit.setSizePolicy(sizePolicy2)
-        self.ppr_encoder1_edit.setFont(font4)
+        self.ppr1_spinbox = QSpinBox(self.serial_box)
+        self.ppr1_spinbox.setObjectName(u"ppr1_spinbox")
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Fixed)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.ppr1_spinbox.sizePolicy().hasHeightForWidth())
+        self.ppr1_spinbox.setSizePolicy(sizePolicy6)
+        font7 = QFont()
+        font7.setFamilies([u"Cascadia Code"])
+        font7.setPointSize(10)
+        font7.setKerning(True)
+        self.ppr1_spinbox.setFont(font7)
+        self.ppr1_spinbox.setCursor(QCursor(Qt.IBeamCursor))
+        self.ppr1_spinbox.setToolTipDuration(2)
+        self.ppr1_spinbox.setWrapping(False)
+        self.ppr1_spinbox.setFrame(True)
+        self.ppr1_spinbox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.ppr1_spinbox.setCorrectionMode(QAbstractSpinBox.CorrectionMode.CorrectToNearestValue)
+        self.ppr1_spinbox.setMinimum(80)
+        self.ppr1_spinbox.setMaximum(128)
+        self.ppr1_spinbox.setValue(128)
+        self.ppr1_spinbox.setDisplayIntegerBase(10)
 
-        self.verticalLayout_10.addWidget(self.ppr_encoder1_edit)
+        self.verticalLayout_10.addWidget(self.ppr1_spinbox)
 
 
         self.verticalLayout_5.addLayout(self.verticalLayout_10)
 
         self.verticalLayout_9 = QVBoxLayout()
+        self.verticalLayout_9.setSpacing(1)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.label_10 = QLabel(self.serial_box)
         self.label_10.setObjectName(u"label_10")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Fixed)
-        sizePolicy6.setHorizontalStretch(0)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
-        self.label_10.setSizePolicy(sizePolicy6)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Fixed)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
+        self.label_10.setSizePolicy(sizePolicy7)
         self.label_10.setFont(font4)
         self.label_10.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.verticalLayout_9.addWidget(self.label_10)
 
-        self.ppr_encoder2_edit = QLineEdit(self.serial_box)
-        self.ppr_encoder2_edit.setObjectName(u"ppr_encoder2_edit")
-        sizePolicy2.setHeightForWidth(self.ppr_encoder2_edit.sizePolicy().hasHeightForWidth())
-        self.ppr_encoder2_edit.setSizePolicy(sizePolicy2)
-        self.ppr_encoder2_edit.setFont(font4)
+        self.ppr2_spinbox = QSpinBox(self.serial_box)
+        self.ppr2_spinbox.setObjectName(u"ppr2_spinbox")
+        sizePolicy6.setHeightForWidth(self.ppr2_spinbox.sizePolicy().hasHeightForWidth())
+        self.ppr2_spinbox.setSizePolicy(sizePolicy6)
+        self.ppr2_spinbox.setFont(font7)
+        self.ppr2_spinbox.setCursor(QCursor(Qt.IBeamCursor))
+        self.ppr2_spinbox.setToolTipDuration(2)
+        self.ppr2_spinbox.setWrapping(False)
+        self.ppr2_spinbox.setFrame(True)
+        self.ppr2_spinbox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.ppr2_spinbox.setCorrectionMode(QAbstractSpinBox.CorrectionMode.CorrectToNearestValue)
+        self.ppr2_spinbox.setMinimum(80)
+        self.ppr2_spinbox.setMaximum(128)
+        self.ppr2_spinbox.setValue(128)
+        self.ppr2_spinbox.setDisplayIntegerBase(10)
 
-        self.verticalLayout_9.addWidget(self.ppr_encoder2_edit)
+        self.verticalLayout_9.addWidget(self.ppr2_spinbox)
 
 
         self.verticalLayout_5.addLayout(self.verticalLayout_9)
 
         self.verticalLayout_7 = QVBoxLayout()
-        self.verticalLayout_7.setSpacing(0)
+        self.verticalLayout_7.setSpacing(1)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.label_11 = QLabel(self.serial_box)
         self.label_11.setObjectName(u"label_11")
-        sizePolicy6.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
-        self.label_11.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
+        self.label_11.setSizePolicy(sizePolicy7)
         self.label_11.setFont(font4)
         self.label_11.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.verticalLayout_7.addWidget(self.label_11)
 
-        self.wheel_diameter_edit = QLineEdit(self.serial_box)
-        self.wheel_diameter_edit.setObjectName(u"wheel_diameter_edit")
-        sizePolicy2.setHeightForWidth(self.wheel_diameter_edit.sizePolicy().hasHeightForWidth())
-        self.wheel_diameter_edit.setSizePolicy(sizePolicy2)
-        self.wheel_diameter_edit.setFont(font4)
+        self.diameter_spinbox = QDoubleSpinBox(self.serial_box)
+        self.diameter_spinbox.setObjectName(u"diameter_spinbox")
+        sizePolicy6.setHeightForWidth(self.diameter_spinbox.sizePolicy().hasHeightForWidth())
+        self.diameter_spinbox.setSizePolicy(sizePolicy6)
+        self.diameter_spinbox.setFont(font7)
+        self.diameter_spinbox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.diameter_spinbox.setCorrectionMode(QAbstractSpinBox.CorrectionMode.CorrectToNearestValue)
+        self.diameter_spinbox.setDecimals(3)
+        self.diameter_spinbox.setMinimum(0.800000000000000)
+        self.diameter_spinbox.setMaximum(1.250000000000000)
+        self.diameter_spinbox.setValue(1.000000000000000)
 
-        self.verticalLayout_7.addWidget(self.wheel_diameter_edit)
+        self.verticalLayout_7.addWidget(self.diameter_spinbox)
 
 
         self.verticalLayout_5.addLayout(self.verticalLayout_7)
@@ -489,10 +526,10 @@ class Ui_MainWindow(object):
         self.data_encoder1_title.setObjectName(u"data_encoder1_title")
         sizePolicy2.setHeightForWidth(self.data_encoder1_title.sizePolicy().hasHeightForWidth())
         self.data_encoder1_title.setSizePolicy(sizePolicy2)
-        font7 = QFont()
-        font7.setPointSize(12)
-        font7.setBold(True)
-        self.data_encoder1_title.setFont(font7)
+        font8 = QFont()
+        font8.setPointSize(12)
+        font8.setBold(True)
+        self.data_encoder1_title.setFont(font8)
         self.data_encoder1_title.setAutoFillBackground(False)
         self.data_encoder1_title.setStyleSheet(u"		background-color:#bb2e29;\n"
 "		color: #fff;")
@@ -514,8 +551,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
         self.pushButton_14 = QPushButton(self.page_2)
         self.pushButton_14.setObjectName(u"pushButton_14")
-        sizePolicy6.setHeightForWidth(self.pushButton_14.sizePolicy().hasHeightForWidth())
-        self.pushButton_14.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.pushButton_14.sizePolicy().hasHeightForWidth())
+        self.pushButton_14.setSizePolicy(sizePolicy7)
         icon7 = QIcon()
         icon7.addFile(u":/icon/icon/icons8-reset-64.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButton_14.setIcon(icon7)
@@ -527,9 +564,9 @@ class Ui_MainWindow(object):
         self.label_4.setObjectName(u"label_4")
         sizePolicy2.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
         self.label_4.setSizePolicy(sizePolicy2)
-        font8 = QFont()
-        font8.setPointSize(11)
-        self.label_4.setFont(font8)
+        font9 = QFont()
+        font9.setPointSize(11)
+        self.label_4.setFont(font9)
         self.label_4.setMargin(14)
 
         self.horizontalLayout_17.addWidget(self.label_4)
@@ -538,10 +575,10 @@ class Ui_MainWindow(object):
         self.distance_encoder1_label.setObjectName(u"distance_encoder1_label")
         sizePolicy2.setHeightForWidth(self.distance_encoder1_label.sizePolicy().hasHeightForWidth())
         self.distance_encoder1_label.setSizePolicy(sizePolicy2)
-        font9 = QFont()
-        font9.setPointSize(11)
-        font9.setItalic(True)
-        self.distance_encoder1_label.setFont(font9)
+        font10 = QFont()
+        font10.setPointSize(11)
+        font10.setItalic(True)
+        self.distance_encoder1_label.setFont(font10)
 
         self.horizontalLayout_17.addWidget(self.distance_encoder1_label)
 
@@ -558,7 +595,7 @@ class Ui_MainWindow(object):
         self.data_encoder1_title_3.setObjectName(u"data_encoder1_title_3")
         sizePolicy2.setHeightForWidth(self.data_encoder1_title_3.sizePolicy().hasHeightForWidth())
         self.data_encoder1_title_3.setSizePolicy(sizePolicy2)
-        self.data_encoder1_title_3.setFont(font7)
+        self.data_encoder1_title_3.setFont(font8)
         self.data_encoder1_title_3.setAutoFillBackground(False)
         self.data_encoder1_title_3.setStyleSheet(u"		background-color:#bb2e29;\n"
 "		color: #fff;")
@@ -580,8 +617,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
         self.pushButton_15 = QPushButton(self.page_2)
         self.pushButton_15.setObjectName(u"pushButton_15")
-        sizePolicy6.setHeightForWidth(self.pushButton_15.sizePolicy().hasHeightForWidth())
-        self.pushButton_15.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.pushButton_15.sizePolicy().hasHeightForWidth())
+        self.pushButton_15.setSizePolicy(sizePolicy7)
         self.pushButton_15.setIcon(icon7)
         self.pushButton_15.setIconSize(QSize(25, 25))
 
@@ -591,7 +628,7 @@ class Ui_MainWindow(object):
         self.label_18.setObjectName(u"label_18")
         sizePolicy2.setHeightForWidth(self.label_18.sizePolicy().hasHeightForWidth())
         self.label_18.setSizePolicy(sizePolicy2)
-        self.label_18.setFont(font8)
+        self.label_18.setFont(font9)
         self.label_18.setMargin(14)
 
         self.horizontalLayout_18.addWidget(self.label_18)
@@ -600,7 +637,7 @@ class Ui_MainWindow(object):
         self.distance_encoder2_label.setObjectName(u"distance_encoder2_label")
         sizePolicy2.setHeightForWidth(self.distance_encoder2_label.sizePolicy().hasHeightForWidth())
         self.distance_encoder2_label.setSizePolicy(sizePolicy2)
-        self.distance_encoder2_label.setFont(font9)
+        self.distance_encoder2_label.setFont(font10)
 
         self.horizontalLayout_18.addWidget(self.distance_encoder2_label)
 
@@ -619,7 +656,7 @@ class Ui_MainWindow(object):
         self.data_encoder1_title_5.setObjectName(u"data_encoder1_title_5")
         sizePolicy2.setHeightForWidth(self.data_encoder1_title_5.sizePolicy().hasHeightForWidth())
         self.data_encoder1_title_5.setSizePolicy(sizePolicy2)
-        self.data_encoder1_title_5.setFont(font7)
+        self.data_encoder1_title_5.setFont(font8)
         self.data_encoder1_title_5.setAutoFillBackground(False)
         self.data_encoder1_title_5.setStyleSheet(u"		background-color:#bb2e29;\n"
 "		color: #fff;")
@@ -634,7 +671,7 @@ class Ui_MainWindow(object):
 
         self.label_6 = QLabel(self.page_2)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setFont(font8)
+        self.label_6.setFont(font9)
         self.label_6.setWordWrap(True)
 
         self.verticalLayout_16.addWidget(self.label_6)
@@ -643,13 +680,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
         self.label_17 = QLabel(self.page_2)
         self.label_17.setObjectName(u"label_17")
-        self.label_17.setFont(font8)
+        self.label_17.setFont(font9)
 
         self.horizontalLayout_16.addWidget(self.label_17)
 
         self.lineEdit = QLineEdit(self.page_2)
         self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setFont(font8)
+        self.lineEdit.setFont(font9)
 
         self.horizontalLayout_16.addWidget(self.lineEdit)
 
@@ -658,12 +695,12 @@ class Ui_MainWindow(object):
 
         self.pushButton_13 = QPushButton(self.page_2)
         self.pushButton_13.setObjectName(u"pushButton_13")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.pushButton_13.sizePolicy().hasHeightForWidth())
-        self.pushButton_13.setSizePolicy(sizePolicy7)
-        self.pushButton_13.setFont(font8)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.pushButton_13.sizePolicy().hasHeightForWidth())
+        self.pushButton_13.setSizePolicy(sizePolicy8)
+        self.pushButton_13.setFont(font9)
         icon8 = QIcon()
         icon8.addFile(u":/icon/icon/icons8-folder-48.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButton_13.setIcon(icon8)
@@ -673,9 +710,9 @@ class Ui_MainWindow(object):
 
         self.pushButton_11 = QPushButton(self.page_2)
         self.pushButton_11.setObjectName(u"pushButton_11")
-        sizePolicy7.setHeightForWidth(self.pushButton_11.sizePolicy().hasHeightForWidth())
-        self.pushButton_11.setSizePolicy(sizePolicy7)
-        self.pushButton_11.setFont(font8)
+        sizePolicy8.setHeightForWidth(self.pushButton_11.sizePolicy().hasHeightForWidth())
+        self.pushButton_11.setSizePolicy(sizePolicy8)
+        self.pushButton_11.setFont(font9)
         icon9 = QIcon()
         icon9.addFile(u":/icon/icon/icons8-play-button-48.png", QSize(), QIcon.Normal, QIcon.Off)
         icon9.addFile(u":/icon/icon/wired-flat-45-clock-time.gif", QSize(), QIcon.Active, QIcon.On)
@@ -687,9 +724,9 @@ class Ui_MainWindow(object):
 
         self.pushButton_12 = QPushButton(self.page_2)
         self.pushButton_12.setObjectName(u"pushButton_12")
-        sizePolicy7.setHeightForWidth(self.pushButton_12.sizePolicy().hasHeightForWidth())
-        self.pushButton_12.setSizePolicy(sizePolicy7)
-        self.pushButton_12.setFont(font8)
+        sizePolicy8.setHeightForWidth(self.pushButton_12.sizePolicy().hasHeightForWidth())
+        self.pushButton_12.setSizePolicy(sizePolicy8)
+        self.pushButton_12.setFont(font9)
         icon10 = QIcon()
         icon10.addFile(u":/icon/icon/icons8-stop-button-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButton_12.setIcon(icon10)
@@ -708,7 +745,7 @@ class Ui_MainWindow(object):
         self.data_encoder1_title_4.setObjectName(u"data_encoder1_title_4")
         sizePolicy2.setHeightForWidth(self.data_encoder1_title_4.sizePolicy().hasHeightForWidth())
         self.data_encoder1_title_4.setSizePolicy(sizePolicy2)
-        self.data_encoder1_title_4.setFont(font7)
+        self.data_encoder1_title_4.setFont(font8)
         self.data_encoder1_title_4.setAutoFillBackground(False)
         self.data_encoder1_title_4.setStyleSheet(u"		background-color:#bb2e29;\n"
 "		color: #fff;")
@@ -725,7 +762,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_15.setObjectName(u"verticalLayout_15")
         self.label_3 = QLabel(self.page_2)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setFont(font8)
+        self.label_3.setFont(font9)
         self.label_3.setScaledContents(False)
         self.label_3.setWordWrap(True)
 
@@ -735,20 +772,20 @@ class Ui_MainWindow(object):
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
         self.radioButton = QRadioButton(self.page_2)
         self.radioButton.setObjectName(u"radioButton")
-        self.radioButton.setFont(font8)
+        self.radioButton.setFont(font9)
         self.radioButton.setChecked(False)
 
         self.horizontalLayout_15.addWidget(self.radioButton)
 
         self.radioButton_2 = QRadioButton(self.page_2)
         self.radioButton_2.setObjectName(u"radioButton_2")
-        self.radioButton_2.setFont(font8)
+        self.radioButton_2.setFont(font9)
 
         self.horizontalLayout_15.addWidget(self.radioButton_2)
 
         self.radioButton_3 = QRadioButton(self.page_2)
         self.radioButton_3.setObjectName(u"radioButton_3")
-        self.radioButton_3.setFont(font8)
+        self.radioButton_3.setFont(font9)
         self.radioButton_3.setChecked(True)
 
         self.horizontalLayout_15.addWidget(self.radioButton_3)
@@ -763,13 +800,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.label_7 = QLabel(self.page_2)
         self.label_7.setObjectName(u"label_7")
-        self.label_7.setFont(font8)
+        self.label_7.setFont(font9)
 
         self.horizontalLayout_5.addWidget(self.label_7)
 
         self.lineEdit_4 = QLineEdit(self.page_2)
         self.lineEdit_4.setObjectName(u"lineEdit_4")
-        self.lineEdit_4.setFont(font8)
+        self.lineEdit_4.setFont(font9)
 
         self.horizontalLayout_5.addWidget(self.lineEdit_4)
 
@@ -780,13 +817,13 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.label_8 = QLabel(self.page_2)
         self.label_8.setObjectName(u"label_8")
-        self.label_8.setFont(font8)
+        self.label_8.setFont(font9)
 
         self.horizontalLayout_4.addWidget(self.label_8)
 
         self.lineEdit_3 = QLineEdit(self.page_2)
         self.lineEdit_3.setObjectName(u"lineEdit_3")
-        self.lineEdit_3.setFont(font8)
+        self.lineEdit_3.setFont(font9)
 
         self.horizontalLayout_4.addWidget(self.lineEdit_3)
 
@@ -795,17 +832,17 @@ class Ui_MainWindow(object):
 
         self.pushButton = QPushButton(self.page_2)
         self.pushButton.setObjectName(u"pushButton")
-        sizePolicy7.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy7)
-        self.pushButton.setFont(font8)
+        sizePolicy8.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        self.pushButton.setSizePolicy(sizePolicy8)
+        self.pushButton.setFont(font9)
 
         self.verticalLayout_8.addWidget(self.pushButton)
 
         self.pushButton_2 = QPushButton(self.page_2)
         self.pushButton_2.setObjectName(u"pushButton_2")
-        sizePolicy7.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy7)
-        self.pushButton_2.setFont(font8)
+        sizePolicy8.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
+        self.pushButton_2.setSizePolicy(sizePolicy8)
+        self.pushButton_2.setFont(font9)
 
         self.verticalLayout_8.addWidget(self.pushButton_2)
 
@@ -928,11 +965,18 @@ class Ui_MainWindow(object):
         self.com_disconnect_button.setText(QCoreApplication.translate("MainWindow", u"Disconnect", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Set constants ", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"PPR setting for Encoder 1 ", None))
-        self.ppr_encoder1_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"80 \u00f7 128", None))
+#if QT_CONFIG(tooltip)
+        self.ppr1_spinbox.setToolTip(QCoreApplication.translate("MainWindow", u"Acceptable values range: 80 \u00f7 128", None))
+#endif // QT_CONFIG(tooltip)
+        self.ppr1_spinbox.setSpecialValueText("")
+        self.ppr1_spinbox.setPrefix("")
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"PPR setting for Encoder 2 ", None))
-        self.ppr_encoder2_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"80 \u00f7 128", None))
+#if QT_CONFIG(tooltip)
+        self.ppr2_spinbox.setToolTip(QCoreApplication.translate("MainWindow", u"Acceptable values range: 80 \u00f7 128", None))
+#endif // QT_CONFIG(tooltip)
+        self.ppr2_spinbox.setSpecialValueText("")
+        self.ppr2_spinbox.setPrefix("")
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"Wheel diameter [m] ", None))
-        self.wheel_diameter_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"0.8 \u00f7 1.25", None))
         self.data_encoder1_title.setText(QCoreApplication.translate("MainWindow", u"Encoder 1 measurement", None))
         self.pushButton_14.setText("")
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Distance travelled:", None))

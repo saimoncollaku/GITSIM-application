@@ -669,7 +669,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <string/>
              </property>
              <property name="flat">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_5">
               <item>
@@ -764,10 +764,22 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <widget class="QLabel" name="label_13">
                 <property name="sizePolicy">
-                 <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                   <horstretch>0</horstretch>
                   <verstretch>0</verstretch>
                  </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>40</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>40</height>
+                 </size>
                 </property>
                 <property name="font">
                  <font>
@@ -873,6 +885,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_10">
+                <property name="spacing">
+                 <number>1</number>
+                </property>
                 <item>
                  <widget class="QLabel" name="label_5">
                   <property name="sizePolicy">
@@ -899,21 +914,58 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="ppr_encoder1_edit">
+                 <widget class="QSpinBox" name="ppr1_spinbox">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
                   </property>
                   <property name="font">
                    <font>
-                    <pointsize>11</pointsize>
+                    <family>Cascadia Code</family>
+                    <pointsize>10</pointsize>
                     <kerning>true</kerning>
                    </font>
                   </property>
-                  <property name="placeholderText">
-                   <string>80 ÷ 128</string>
+                  <property name="cursor">
+                   <cursorShape>IBeamCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Acceptable values range: 80 ÷ 128</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>2</number>
+                  </property>
+                  <property name="wrapping">
+                   <bool>false</bool>
+                  </property>
+                  <property name="frame">
+                   <bool>true</bool>
+                  </property>
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+                  </property>
+                  <property name="specialValueText">
+                   <string/>
+                  </property>
+                  <property name="correctionMode">
+                   <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
+                  </property>
+                  <property name="prefix">
+                   <string/>
+                  </property>
+                  <property name="minimum">
+                   <number>80</number>
+                  </property>
+                  <property name="maximum">
+                   <number>128</number>
+                  </property>
+                  <property name="value">
+                   <number>128</number>
+                  </property>
+                  <property name="displayIntegerBase">
+                   <number>10</number>
                   </property>
                  </widget>
                 </item>
@@ -921,6 +973,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               </item>
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_9">
+                <property name="spacing">
+                 <number>1</number>
+                </property>
                 <item>
                  <widget class="QLabel" name="label_10">
                   <property name="sizePolicy">
@@ -944,21 +999,58 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="ppr_encoder2_edit">
+                 <widget class="QSpinBox" name="ppr2_spinbox">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
                   </property>
                   <property name="font">
                    <font>
-                    <pointsize>11</pointsize>
+                    <family>Cascadia Code</family>
+                    <pointsize>10</pointsize>
                     <kerning>true</kerning>
                    </font>
                   </property>
-                  <property name="placeholderText">
-                   <string>80 ÷ 128</string>
+                  <property name="cursor">
+                   <cursorShape>IBeamCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Acceptable values range: 80 ÷ 128</string>
+                  </property>
+                  <property name="toolTipDuration">
+                   <number>2</number>
+                  </property>
+                  <property name="wrapping">
+                   <bool>false</bool>
+                  </property>
+                  <property name="frame">
+                   <bool>true</bool>
+                  </property>
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+                  </property>
+                  <property name="specialValueText">
+                   <string/>
+                  </property>
+                  <property name="correctionMode">
+                   <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
+                  </property>
+                  <property name="prefix">
+                   <string/>
+                  </property>
+                  <property name="minimum">
+                   <number>80</number>
+                  </property>
+                  <property name="maximum">
+                   <number>128</number>
+                  </property>
+                  <property name="value">
+                   <number>128</number>
+                  </property>
+                  <property name="displayIntegerBase">
+                   <number>10</number>
                   </property>
                  </widget>
                 </item>
@@ -967,7 +1059,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_7">
                 <property name="spacing">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <item>
                  <widget class="QLabel" name="label_11">
@@ -992,21 +1084,37 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="wheel_diameter_edit">
+                 <widget class="QDoubleSpinBox" name="diameter_spinbox">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                   <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
                   </property>
                   <property name="font">
                    <font>
-                    <pointsize>11</pointsize>
+                    <family>Cascadia Code</family>
+                    <pointsize>10</pointsize>
                     <kerning>true</kerning>
                    </font>
                   </property>
-                  <property name="placeholderText">
-                   <string>0.8 ÷ 1.25</string>
+                  <property name="buttonSymbols">
+                   <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+                  </property>
+                  <property name="correctionMode">
+                   <enum>QAbstractSpinBox::CorrectionMode::CorrectToNearestValue</enum>
+                  </property>
+                  <property name="decimals">
+                   <number>3</number>
+                  </property>
+                  <property name="minimum">
+                   <double>0.800000000000000</double>
+                  </property>
+                  <property name="maximum">
+                   <double>1.250000000000000</double>
+                  </property>
+                  <property name="value">
+                   <double>1.000000000000000</double>
                   </property>
                  </widget>
                 </item>

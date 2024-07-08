@@ -17,9 +17,9 @@ class SerialBox:
         self.conn_button = self.main_window.ui.com_connect_button
         self.disc_button = self.main_window.ui.com_disconnect_button
         self.com_select_list = self.main_window.ui.com_available_combo
-        self.ppr_encoder1_edit = self.main_window.ui.ppr_encoder1_edit
-        self.ppr_encoder2_edit = self.main_window.ui.ppr_encoder2_edit
-        self.wheel_diameter_edit = self.main_window.ui.wheel_diameter_edit
+        self.ppr1_spinbox = self.main_window.ui.ppr1_spinbox
+        self.ppr2_spinbox = self.main_window.ui.ppr2_spinbox
+        self.diameter_spinbox = self.main_window.ui.diameter_spinbox
         self.com_update_timer = QtCore.QTimer()
         
         # Inizialization
@@ -76,8 +76,7 @@ class SerialBox:
                     self.main_window.set_temporary_message(message)
                     
                     # Change enable state of buttons
-                    self.conn_button.setEnabled(False)
-                    self.disc_button.setEnabled(True)
+                    self.enable_disable_interface(False)
                     
                     self.send_connection_telegram()
                 else:
@@ -111,8 +110,7 @@ class SerialBox:
         self.serial_port.setPortName("")
         
         # Change enable state of buttons
-        self.conn_button.setEnabled(True)
-        self.disc_button.setEnabled(False) 
+        self.enable_disable_interface(True)
             
     def cable_disconnection_action(self):
         # Test - check if the error is due to a disconnection
@@ -130,8 +128,7 @@ class SerialBox:
             self.serial_port.setPortName("") 
             
             # Change enable state of buttons
-            self.conn_button.setEnabled(True)
-            self.disc_button.setEnabled(False)
+            self.enable_disable_interface(True)
     
     def send_connection_telegram(self):
         # ppr_encoder1 = int(self.ppr_encoder1_edit.text())
@@ -147,5 +144,21 @@ class SerialBox:
                                         ppr_encoder2)
         self.serial_port.write(telegram)
         print(telegram[0])
+        
+    def enable_disable_interface(self, enable: bool):
+        if enable:
+            self.conn_button.setEnabled(True)
+            self.disc_button.setEnabled(False)
+            self.ppr1_spinbox.setEnabled(True)
+            self.ppr2_spinbox.setEnabled(True)
+            self.diameter_spinbox.setEnabled(True)
+        else:
+            self.conn_button.setEnabled(False)
+            self.disc_button.setEnabled(True)
+            self.ppr1_spinbox.setEnabled(False)
+            self.ppr2_spinbox.setEnabled(False)
+            self.diameter_spinbox.setEnabled(False)
+        
+        
         
         
