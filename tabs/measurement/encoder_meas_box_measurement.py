@@ -4,7 +4,7 @@ import struct
 import math
 
 # Private libraries
-from classes.mainwindow.mainwindow_class import MainWindow
+from tabs.shared.mainwindow_class import MainWindow
 
 class EncoderMeasurementBox:
     def __init__(self, main_window: MainWindow, serial_port: QSerialPort):

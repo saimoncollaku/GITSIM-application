@@ -4,9 +4,9 @@ from PySide6.QtWidgets import QApplication
 from PySide6.QtSerialPort import QSerialPort
 
 # Private libraries
-from classes.mainwindow.mainwindow_class import MainWindow
-from classes.home.serial_box_home import SerialBox
-from classes.measurement.encoder_meas_box_measurement import EncoderMeasurementBox
+from tabs.shared.mainwindow_class import MainWindow
+from tabs.home.serial_box_home import SerialBox
+from tabs.measurement.encoder_meas_box_measurement import EncoderMeasurementBox
     
 if __name__ == "__main__":
     

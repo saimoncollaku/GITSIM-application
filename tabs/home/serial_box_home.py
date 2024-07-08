@@ -4,7 +4,7 @@ from PySide6.QtSerialPort import QSerialPortInfo, QSerialPort
 import struct
 
 # Private libraries
-from classes.mainwindow.mainwindow_class import MainWindow
+from tabs.shared.mainwindow_class import MainWindow
 
 class SerialBox:
     def __init__(self, main_window: MainWindow, serial_port: QSerialPort):
@@ -131,19 +131,10 @@ class SerialBox:
             self.enable_disable_interface(True)
     
     def send_connection_telegram(self):
-        # ppr_encoder1 = int(self.ppr_encoder1_edit.text())
-        # ppr_encoder2 = int(self.ppr_encoder2_edit.text())  
-        # wheel_diameter = float(self.wheel_diameter_edit.text())
-        
-        ppr_encoder1 = 89
-        ppr_encoder2 = 98 
-        wheel_diameter = 1.06
-        
-        telegram = struct.pack('<fHH',  wheel_diameter,
-                                        ppr_encoder1, 
-                                        ppr_encoder2)
+        telegram = struct.pack('<fHH',  self.diameter_spinbox.value(),
+                                        self.ppr1_spinbox.value(), 
+                                        self.ppr2_spinbox.value())
         self.serial_port.write(telegram)
-        print(telegram[0])
         
     def enable_disable_interface(self, enable: bool):
         if enable:
