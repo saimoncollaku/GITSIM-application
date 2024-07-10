@@ -1,16 +1,16 @@
 # Public libraries
-from PySide6.QtSerialPort import QSerialPort
 import struct
 import math
 
 # Private libraries
-from tabs.shared.mainwindow_class import MainWindow
+from tabs.shared.mainwindow import MainWindow
+from tabs.shared.telegram_sender import TelegramSender
 
 class EncoderMeasurementBox:
-    def __init__(self, main_window: MainWindow, serial_port: QSerialPort):
+    def __init__(self, main_window: MainWindow, sender: TelegramSender):
         # Setup shared resources
         self.main_window = main_window
-        self.serial_port = serial_port
+        self.sender = sender
         
         # Setup exclusive resources
         self.distance1_label = main_window.ui.distance_encoder1_label
@@ -24,18 +24,18 @@ class EncoderMeasurementBox:
         self.distance_encoder1 = 0
         self.distance_encoder2 = 0
         
-        self.serial_port.readyRead.connect(self.read_data)
+        self.sender.readyRead.connect(self.read_data)
         
         
 
     def read_data(self):
-        # if self.serial_port.bytesAvailable() < 12:
+        # if self.sender.bytesAvailable() < 12:
             
             
         # Ensure we have enough bytes for a full packet
-        if self.serial_port.bytesAvailable() >= 12: 
+        if self.sender.bytesAvailable() >= 12: 
             # Read 12 bytes (size of your packet) 
-            uart_byte_array = self.serial_port.read(12) 
+            uart_byte_array = self.sender.read(12) 
             
             # Unpack the data (little endian)
             uart_data = struct.unpack('<ffHH', uart_byte_array)
