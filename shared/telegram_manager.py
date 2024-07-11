@@ -18,11 +18,16 @@ class TelegramManager(QSerialPort):
             "cont1": int(0),
             "cont2": int(0),
         }
+        self.setBaudRate(115200)
+        self.readyRead.connect(self.read_response_telegram)
+        
+        
         
     def read_response_telegram(self):
+        
         if self.bytesAvailable() >= 12: 
             # Read and unpack
-            uart_byte_array = self.sender.read(12)
+            uart_byte_array = self.read(12)
             uart_data = struct.unpack('<ffHH', uart_byte_array)
             
             # Update speed
@@ -46,7 +51,7 @@ class TelegramManager(QSerialPort):
         If no special data has been assigned, the telegram 
         is filled with empty data.
         """
-        
+        print(self.value_telegram)
         # Send the value-telegram and addon-telegram
         self.write(self.value_telegram)
         self.write(self.addon_telegram)

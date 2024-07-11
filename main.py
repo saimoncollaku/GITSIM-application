@@ -1,5 +1,6 @@
 # Public imports
 import sys
+import re
 from PySide6.QtWidgets import QApplication
 
 # Private imports (shared directory)

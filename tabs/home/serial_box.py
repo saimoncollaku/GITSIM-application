@@ -56,11 +56,10 @@ class SerialBox:
         
     def connect_to_COM(self):
         # ! Test - check if I'm already connected, the program should
-        # ! never go here, its for debug purposes!
+        # ! never go here
         if self.manager.portName() != "":
-            message = "DEBUG - Already connected!"
-            self.main_window.set_temporary_message(message)
-            return
+            msg = "The app tried to connect to multiple serial devices"
+            raise Exception(msg)
         
         # Check if there are no ports to connect to
         if self.com_select_list.currentText() == "":
@@ -81,8 +80,8 @@ class SerialBox:
                     self.main_window.set_temporary_message(message)
                     
                     self.change_widgets_enable_state(True)
-                    self.update_encoder_costants
-                    self.send_costants()
+                    self.update_encoder_object_costants()
+                    self.send_costants_via_serial()
                 else:
                     # Failure to connect - temporary message
                     message = f"Unable to connect to {info.portName()}"
@@ -95,11 +94,12 @@ class SerialBox:
                 
     def disconnect_to_COM(self):
         # ! Test - check if I'm already disconnected, the program should
-        # ! never go here, its for debug purposes
+        # ! never go here
         if self.manager.portName() == "":
-            message = "DEBUG - Already disconnected!"
-            self.main_window.set_temporary_message(message)
-            return
+            msg_pt1 = "The app tried to disconnect from serial device"
+            msg_pt2 = "while it was already disconnected"
+            msg = f"{msg_pt1} {msg_pt2}"
+            raise Exception(msg)
         
         # Disconnection - permanent message
         message = "Not connected 🔴"
@@ -134,7 +134,7 @@ class SerialBox:
             # Change enable state of buttons
             self.change_widgets_enable_state(False)
     
-    def send_costants(self):
+    def send_costants_via_serial(self):
         # Fetch the user values from the spinboxes
         diameter = self.encoder.diameter
         ppr1 = self.encoder.ppr_e1
@@ -143,7 +143,7 @@ class SerialBox:
         # Call the manager in order to send a connection telegram
         self.manager.send_connection_telegram(diameter, ppr1, ppr2)
        
-    def update_encoder_costants(self):
+    def update_encoder_object_costants(self):
         self.encoder.diameter = self.diameter_spinbox.value()
         self.encoder.ppr_e1 = self.ppr1_spinbox.value()
         self.encoder.ppr_e2 = self.ppr2_spinbox.value()
