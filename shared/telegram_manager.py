@@ -1,32 +1,58 @@
 from PySide6.QtSerialPort import QSerialPort
+from PySide6.QtCore import Signal
 import struct
 
-class TelegramSender(QSerialPort):
+class TelegramManager(QSerialPort):
+    
+    telegram_received = Signal()
+    
     def __init__(self):
         super().__init__()
         
         # Initialize default telegram
         self.assign_empty_telegram()
         
-        # Assign slot/signal
-        self.readyRead.connect(self.send_functioning_telegram)
+        self.last_data_received = {
+            "speed1": float(0),
+            "speed2": float(0),
+            "cont1": int(0),
+            "cont2": int(0),
+        }
+        
+    def read_response_telegram(self):
+        if self.bytesAvailable() >= 12: 
+            # Read and unpack
+            uart_byte_array = self.sender.read(12)
+            uart_data = struct.unpack('<ffHH', uart_byte_array)
+            
+            # Update speed
+            self.last_data_received["speed1"] =  uart_data[0]
+            self.last_data_received["speed2"]  =  uart_data[1]
+            
+            # Update count
+            self.last_data_received["count1"]  =  uart_data[2]
+            self.last_data_received["count2"]  =  uart_data[3]
+            
+            # Send a functioning telegram in responce
+            self.send_functioning_telegram()
+            
+            # Emit signal
+            self.telegram_received.emit()
+        
         
     def send_functioning_telegram(self) -> None:
         """
-        Sends a functioning telegram to the board,
-        after a responce has been received from the latter.
+        Sends a functioning telegram to the board.
         If no special data has been assigned, the telegram 
-        is filled with zeroes.
+        is filled with empty data.
         """
         
-        # Ensure the board sent a full packet
-        if self.bytesAvailable() >= 12: 
-            # Send the value-telegram and addon-telegram
-            self.write(self.value_telegram)
-            self.write(self.addon_telegram)
-            
-            # Set the next telegram as empty
-            self.assign_empty_telegram()
+        # Send the value-telegram and addon-telegram
+        self.write(self.value_telegram)
+        self.write(self.addon_telegram)
+        
+        # Set the next telegram as empty
+        self.assign_empty_telegram()
             
     def send_connection_telegram(self, diameter: float, 
                               ppr1: int, ppr2: int) -> None:

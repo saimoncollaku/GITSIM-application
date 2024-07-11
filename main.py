@@ -1,20 +1,27 @@
-# Public libraries
+# Public imports
 import sys
 from PySide6.QtWidgets import QApplication
-from PySide6.QtSerialPort import QSerialPort
+
+# Private imports (shared directory)
+from shared.mainwindow import MainWindow
+from shared.telegram_manager import TelegramManager
+from shared.encoder_data import EncoderData
+
+# Private imports (tabs directory)
+
 
 # Private libraries
-from tabs.shared.mainwindow import MainWindow
 from tabs.home.serial_box import SerialBox
 from tabs.measurement.encoder_measure import EncoderMeasurementBox
-from tabs.shared.telegram_sender import TelegramSender
     
 if __name__ == "__main__":
     
     # Initialize shared resources
     app = QApplication(sys.argv)
-    sender = TelegramSender()
+    telegram_manager = TelegramManager()
     window = MainWindow()
+    encoder_data = EncoderData()
+    
     
     # Loading style file
     with open("style.qss", "r") as style_file:
@@ -22,8 +29,10 @@ if __name__ == "__main__":
     app.setStyleSheet(style_str)
     
     # Single resources modules
-    serial_tab = SerialBox(window, sender)
-    encoder_measure_box = EncoderMeasurementBox(window, sender)
+    serial_tab = SerialBox(window, telegram_manager, encoder_data)
+    encoder_measure_box = EncoderMeasurementBox(window, 
+                                                telegram_manager,
+                                                encoder_data)
     
     # UI loop
     window.show()
