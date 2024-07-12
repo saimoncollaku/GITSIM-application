@@ -1,16 +1,18 @@
 from PySide6.QtSerialPort import QSerialPort
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Signal, QTimer 
 import struct
 
 class TelegramManager(QSerialPort):
     
     telegram_received = Signal()
+    unknown_board_detected = Signal()
     
     def __init__(self):
         super().__init__()
         
         # Initialize default telegram
         self.assign_empty_telegram()
+        self.board_identifier_timer = QTimer()
         
         self.last_data_received = {
             "speed1": float(0),
@@ -20,12 +22,16 @@ class TelegramManager(QSerialPort):
         }
         self.setBaudRate(115200)
         self.readyRead.connect(self.read_response_telegram)
+        self.board_identifier_timer.timeout.connect(self.emit_unknown_board)
         
-        
-        
+    def emit_unknown_board(self):
+        self.unknown_board_detected.emit()
+        self.board_identifier_timer.stop()
+    
     def read_response_telegram(self):
         
         if self.bytesAvailable() >= 12: 
+            
             # Read and unpack
             uart_byte_array = self.read(12)
             uart_data = struct.unpack('<ffHH', uart_byte_array)
@@ -39,11 +45,11 @@ class TelegramManager(QSerialPort):
             self.last_data_received["count2"]  =  uart_data[3]
             
             # Send a functioning telegram in responce
-            self.send_functioning_telegram()
+            if self.check_responce_data():
+                self.send_functioning_telegram()
+                self.board_identifier_timer.stop()
+                self.telegram_received.emit()
             
-            # Emit signal
-            self.telegram_received.emit()
-        
         
     def send_functioning_telegram(self) -> None:
         """
@@ -51,7 +57,6 @@ class TelegramManager(QSerialPort):
         If no special data has been assigned, the telegram 
         is filled with empty data.
         """
-        print(self.value_telegram)
         # Send the value-telegram and addon-telegram
         self.write(self.value_telegram)
         self.write(self.addon_telegram)
@@ -76,10 +81,14 @@ class TelegramManager(QSerialPort):
                                         ppr1, 
                                         ppr2)
         
+        # Start a countdown in which the board has to respond
+        self.board_identifier_timer.start(100)
+        
         # Send telegram
         self.write(telegram)
         
-    def assign_value_telegram(self, type: str, value1: float, value2: float):
+    def assign_value_telegram(self, type: str, value1: float, 
+                              value2: float):
         match type.upper():
             case "SPEED":
                 self.assign_speed_telegram(value1, value2)
@@ -106,3 +115,34 @@ class TelegramManager(QSerialPort):
     def assign_empty_telegram(self):
         self.value_telegram = struct.pack('<ffB', 0, 0, 0)
         self.addon_telegram = struct.pack('<fB', 0, 0)
+        
+    def check_responce_data(self) -> bool:
+        
+        # Check speed 1
+        if self.last_data_received["speed1"] < 49.9:
+            return False
+        if self.last_data_received["speed1"] > 50.1:
+            return False
+        
+        # Check speed 2
+        if self.last_data_received["speed2"] < 49.9:
+            return False
+        if self.last_data_received["speed2"] > 50.1:
+            return False
+        
+        # Check count 1
+        if self.last_data_received["count1"] < 0:
+            return False
+        if self.last_data_received["count1"] > 4000:
+            return False
+        
+        # Check count 2
+        if self.last_data_received["count2"] < 0:
+            return False
+        if self.last_data_received["count2"] > 4000:
+            return False
+        
+        return True
+        
+        
+        

@@ -37,6 +37,7 @@ class SerialBox:
         self.conn_button.clicked.connect(self.connect_to_COM)
         self.disc_button.clicked.connect(self.disconnect_to_COM)
         self.manager.errorOccurred.connect(self.cable_disconnection_action)
+        self.manager.unknown_board_detected.connect(self.unknown_board_action)
         
     def update_available_COMs(self):  
         
@@ -79,7 +80,7 @@ class SerialBox:
                     message = "Connected successfully!"
                     self.main_window.set_temporary_message(message)
                     
-                    self.change_widgets_enable_state(True)
+                    self.main_window.serial_box_interface_to_connected()
                     self.update_encoder_object_costants()
                     self.send_costants_via_serial()
                 else:
@@ -114,7 +115,7 @@ class SerialBox:
         self.manager.setPortName("")
         
         # Change enable state of buttons
-        self.change_widgets_enable_state(False)
+        self.main_window.serial_box_interface_to_disconnected()
             
     def cable_disconnection_action(self):
         # Test - check if the error is due to a disconnection
@@ -132,8 +133,24 @@ class SerialBox:
             self.manager.setPortName("") 
             
             # Change enable state of buttons
-            self.change_widgets_enable_state(False)
+            self.main_window.serial_box_interface_to_disconnected()
     
+    def unknown_board_action(self):
+            # Cable disconnection - temporary message
+            message = " The device is not a GITSIM board!"
+            self.main_window.set_temporary_message(message)
+            
+            # Cable disconnection - permanent message
+            message = "Not connected 🔴"
+            self.main_window.set_permanent_message(message)
+            
+            # Closing connection procedure
+            self.manager.close()
+            self.manager.setPortName("") 
+            
+            # Change enable state of buttons
+            self.main_window.serial_box_interface_to_disconnected()
+        
     def send_costants_via_serial(self):
         # Fetch the user values from the spinboxes
         diameter = self.encoder.diameter
@@ -147,27 +164,3 @@ class SerialBox:
         self.encoder.diameter = self.diameter_spinbox.value()
         self.encoder.ppr_e1 = self.ppr1_spinbox.value()
         self.encoder.ppr_e2 = self.ppr2_spinbox.value()
-        
-        
-    def change_widgets_enable_state(self, to_state: bool):
-        """
-        Enable and disable various widgets, depending on connection 
-        state between the app and the board
-
-        Args:
-            to_state (bool): states if the app is going to be connected
-            or disconnected to the board ('True' if connected)
-        """
-        
-        if to_state:
-            self.conn_button.setEnabled(False)
-            self.disc_button.setEnabled(True)
-            self.ppr1_spinbox.setEnabled(False)
-            self.ppr2_spinbox.setEnabled(False)
-            self.diameter_spinbox.setEnabled(False)
-        else:
-            self.conn_button.setEnabled(True)
-            self.disc_button.setEnabled(False)
-            self.ppr1_spinbox.setEnabled(True)
-            self.ppr2_spinbox.setEnabled(True)
-            self.diameter_spinbox.setEnabled(True)   

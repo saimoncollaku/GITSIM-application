@@ -46,8 +46,6 @@ class MainWindow(QMainWindow):
         self.set_temporary_message("Welcome to GITSIM!")
         self.setup_tab_changes()
         
-        
-    ###############################################################
 
     def set_temporary_message(self, message:str, duration:int=3000):
         self.ui.temporary_message_label.setText(message)
@@ -94,3 +92,24 @@ class MainWindow(QMainWindow):
         
     def set_error2_tab(self):
         self.ui.stackedWidget.setCurrentIndex(4)
+        
+    def serial_box_interface_to_connected(self):
+        self.ui.com_connect_button.setEnabled(False)
+        self.ui.com_disconnect_button.setEnabled(True)
+        self.ui.ppr1_spinbox.setEnabled(False)
+        self.ui.ppr2_spinbox.setEnabled(False)
+        self.ui.diameter_spinbox.setEnabled(False)
+        
+    def serial_box_interface_to_disconnected(self):
+        self.ui.com_connect_button.setEnabled(True)
+        self.ui.com_disconnect_button.setEnabled(False)
+        self.ui.ppr1_spinbox.setEnabled(True)
+        self.ui.ppr2_spinbox.setEnabled(True)
+        self.ui.diameter_spinbox.setEnabled(True)
+        
+    def serial_box_interface_to_disabled(self):
+        self.ui.com_connect_button.setEnabled(False)
+        self.ui.com_disconnect_button.setEnabled(False)
+        self.ui.ppr1_spinbox.setEnabled(False)
+        self.ui.ppr2_spinbox.setEnabled(False)
+        self.ui.diameter_spinbox.setEnabled(False)    
