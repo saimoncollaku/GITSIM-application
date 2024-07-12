@@ -1,6 +1,5 @@
 # Public imports
 import sys
-import re
 from PySide6.QtWidgets import QApplication
 
 # Private imports (shared directory)
@@ -9,9 +8,6 @@ from shared.telegram_manager import TelegramManager
 from shared.encoder_data import EncoderData
 
 # Private imports (tabs directory)
-
-
-# Private libraries
 from tabs.home.serial_box import SerialBox
 from tabs.measurement.encoder_measure import EncoderMeasurementBox
     
@@ -22,7 +18,6 @@ if __name__ == "__main__":
     telegram_manager = TelegramManager()
     window = MainWindow()
     encoder_data = EncoderData()
-    
     
     # Loading style file
     with open("style.qss", "r") as style_file:

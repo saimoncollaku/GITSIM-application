@@ -24,9 +24,13 @@ class TelegramManager(QSerialPort):
         self.readyRead.connect(self.read_response_telegram)
         self.board_identifier_timer.timeout.connect(self.emit_unknown_board)
         
+        
     def emit_unknown_board(self):
         self.unknown_board_detected.emit()
         self.board_identifier_timer.stop()
+        self.close()
+        self.setPortName("") 
+    
     
     def read_response_telegram(self):
         
@@ -61,9 +65,14 @@ class TelegramManager(QSerialPort):
         self.write(self.value_telegram)
         self.write(self.addon_telegram)
         
+        if self.value_telegram[8] == 3:
+            self.close_serial_connection()
+            
+        
         # Set the next telegram as empty
         self.assign_empty_telegram()
-            
+        
+         
     def send_connection_telegram(self, diameter: float, 
                               ppr1: int, ppr2: int) -> None:
         """
@@ -87,6 +96,7 @@ class TelegramManager(QSerialPort):
         # Send telegram
         self.write(telegram)
         
+        
     def assign_value_telegram(self, type: str, value1: float, 
                               value2: float):
         match type.upper():
@@ -100,21 +110,26 @@ class TelegramManager(QSerialPort):
                 msg = "Trying to send an unknown type of value-telegram"
                 raise Exception(msg) 
     
+    
     def assign_speed_telegram(self, speed1: float, speed2: float):
         identifier = int(1)
         self.value_telegram = struct.pack('<ffB', speed1, speed2, identifier)
+        
         
     def assign_acceleration_telegram(self, acc1: float, acc2: float):
         identifier = int(2)
         self.value_telegram = struct.pack('<ffB', acc1, acc2, identifier)
     
+    
     def assign_disconnection_telegram(self):
         identifier = int(3)
         self.value_telegram = struct.pack('<ffB', 0, 0, identifier)
         
+        
     def assign_empty_telegram(self):
         self.value_telegram = struct.pack('<ffB', 0, 0, 0)
         self.addon_telegram = struct.pack('<fB', 0, 0)
+        
         
     def check_responce_data(self) -> bool:
         
@@ -143,6 +158,12 @@ class TelegramManager(QSerialPort):
             return False
         
         return True
-        
+   
+   
+    def close_serial_connection(self):
+        for i in range(0, 15):
+            self.waitForBytesWritten(10)
+        self.close()
+        self.setPortName("")
         
         

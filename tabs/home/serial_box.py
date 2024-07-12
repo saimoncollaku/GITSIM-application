@@ -111,8 +111,7 @@ class SerialBox:
         self.main_window.set_temporary_message(message)
 
         # Closing connection procedure
-        self.manager.close()
-        self.manager.setPortName("")
+        self.manager.assign_disconnection_telegram()
         
         # Change enable state of buttons
         self.main_window.serial_box_interface_to_disconnected()
@@ -143,10 +142,6 @@ class SerialBox:
             # Cable disconnection - permanent message
             message = "Not connected 🔴"
             self.main_window.set_permanent_message(message)
-            
-            # Closing connection procedure
-            self.manager.close()
-            self.manager.setPortName("") 
             
             # Change enable state of buttons
             self.main_window.serial_box_interface_to_disconnected()
