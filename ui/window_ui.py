@@ -22,7 +22,7 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDoubl
     QStackedWidget, QTextEdit, QVBoxLayout, QWidget)
 
 from ui.gaugemeter import GaugeMeter
-import resource_rc
+import ui.resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
