@@ -161,7 +161,7 @@ class TelegramManager(QSerialPort):
    
    
     def close_serial_connection(self):
-        for i in range(0, 15):
+        while self.bytesToWrite() > 0:
             self.waitForBytesWritten(10)
         self.close()
         self.setPortName("")
