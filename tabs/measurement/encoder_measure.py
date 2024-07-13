@@ -19,8 +19,12 @@ class EncoderMeasurementBox():
         # Setup exclusive resources
         self.distance1_label = main_window.ui.distance_encoder1_label
         self.distance2_label = main_window.ui.distance_encoder2_label
+        self.gauge_meter1 = main_window.ui.gauge_meter_1
+        self.gauge_meter2 = main_window.ui.gauge_meter_2
         self.displayed_distance1 = 0
         self.displayed_distance2 = 0
+        self.displayed_speed1 = 0
+        self.displayed_speed2 = 0
         
         self.manager.telegram_received.connect(self.update_encoder_object)
         self.encoder.variables_updated.connect(self.update_measurements)
@@ -39,7 +43,13 @@ class EncoderMeasurementBox():
             
         
     def update_speed_measurement(self):
-        pass
+        if self.displayed_speed1 != self.encoder.speed_e1:
+            self.displayed_speed1 = self.encoder.speed_e1
+            self.gauge_meter1.set_value(self.displayed_speed1)
+            
+        if self.displayed_speed2 != self.encoder.speed_e2:
+            self.displayed_speed2 = self.encoder.speed_e2
+            self.gauge_meter2.set_value(self.displayed_speed2)
     
         
     def update_distance_measurement(self):

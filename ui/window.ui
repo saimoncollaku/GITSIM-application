@@ -588,7 +588,7 @@
           <cursorShape>ArrowCursor</cursorShape>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page">
           <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -1300,7 +1300,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 </widget>
                </item>
                <item>
-                <widget class="GaugeMeter" name="gauge_meter_3" native="true"/>
+                <widget class="GaugeMeter" name="gauge_meter_2" native="true"/>
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_18">

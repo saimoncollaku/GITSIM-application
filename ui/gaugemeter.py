@@ -4,7 +4,7 @@ from PySide6.QtCore import Qt, QRectF, QPointF
 import math
 
 class GaugeMeter(QWidget):
-    def __init__(self, parent=None, min_value=0, max_value=100, 
+    def __init__(self, parent=None, min_value=0, max_value=150, 
                  tick_interval=10):
         # Initialize the GaugeMeter widget
         super().__init__(parent)
@@ -15,11 +15,12 @@ class GaugeMeter(QWidget):
         # self.setMinimumSize(200, 200)  # Set minimum size for the widget
 
     def set_value(self, value):
-        # Set the current value of the gauge, ensuring it's within the valid range
-        self.value = max(self.min_value, min(self.max_value, value))
+        if value != self.value:
+            # Set the current value of the gauge, ensuring it's within the valid range
+            self.value = max(self.min_value, min(self.max_value, value))
         
-        # Trigger the 
-        self.update()
+            # Trigger the scene repaint
+            self.update()
 
     def paintEvent(self, event):
         # Main paint event handler
