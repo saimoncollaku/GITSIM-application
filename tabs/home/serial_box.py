@@ -38,6 +38,8 @@ class SerialBox:
         self.disc_button.clicked.connect(self.disconnect_to_COM)
         self.manager.errorOccurred.connect(self.cable_disconnection_action)
         self.manager.unknown_board_detected.connect(self.unknown_board_action)
+        self.manager.aboutToClose.connect(
+            self.main_window.serial_box_interface_to_disconnected)
         
     def update_available_COMs(self):  
         
@@ -112,9 +114,8 @@ class SerialBox:
 
         # Closing connection procedure
         self.manager.assign_disconnection_telegram()
-        
         # Change enable state of buttons
-        self.main_window.serial_box_interface_to_disconnected()
+        # self.main_window.serial_box_interface_to_disconnected()
             
     def cable_disconnection_action(self):
         # Test - check if the error is due to a disconnection
@@ -130,9 +131,6 @@ class SerialBox:
             # Closing connection procedure
             self.manager.close()
             self.manager.setPortName("") 
-            
-            # Change enable state of buttons
-            self.main_window.serial_box_interface_to_disconnected()
     
     def unknown_board_action(self):
             # Cable disconnection - temporary message
@@ -144,7 +142,7 @@ class SerialBox:
             self.main_window.set_permanent_message(message)
             
             # Change enable state of buttons
-            self.main_window.serial_box_interface_to_disconnected()
+            # self.main_window.serial_box_interface_to_disconnected()
         
     def send_costants_via_serial(self):
         # Fetch the user values from the spinboxes
