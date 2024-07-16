@@ -9,8 +9,8 @@ class EncoderData(QObject):
         
         # Costants
         self.diameter = float(0)
-        self.ppr_e1 = int(0)
-        self.ppr_e2 = int(0)
+        self.ppr_e1 = int(1)
+        self.ppr_e2 = int(1)
         
         # Speed
         self.speed_e1 = float(0)
@@ -33,3 +33,10 @@ class EncoderData(QObject):
         self.ppr_e1 = ppr1
         self.ppr_e2 = ppr2
         self.costants_updated.emit()
+        
+    def reset_variables(self):
+        self.counter_e1 = int(0)
+        self.counter_e2 = int(0)
+        self.speed_e1 = 0.00
+        self.speed_e2 = 0.00
+        self.variables_updated.emit()

@@ -37,7 +37,6 @@ class EncoderMeasurementBox():
         self.manager.telegram_received.connect(self.update_encoder_object)
         self.encoder.variables_updated.connect(self.update_measurements)
           
-        
     def update_encoder_object(self):
         speed1 = self.manager.last_data_received["speed1"]
         speed2 = self.manager.last_data_received["speed2"]
@@ -45,7 +44,6 @@ class EncoderMeasurementBox():
         count2 = self.manager.last_data_received["count2"]
         self.encoder.update_speed_and_count(speed1, speed2, count1, count2)         
             
-        
     def update_speed_measurement(self):
         if self.displayed_speed1 != self.encoder.speed_e1:
             self.displayed_speed1 = self.encoder.speed_e1
@@ -54,8 +52,7 @@ class EncoderMeasurementBox():
         if self.displayed_speed2 != self.encoder.speed_e2:
             self.displayed_speed2 = self.encoder.speed_e2
             self.gauge_meter2.set_value(self.displayed_speed2)
-    
-        
+     
     def update_distance_measurement(self):
         if self.displayed_count1 != self.encoder.counter_e1:
             # Calculating the distance
@@ -88,10 +85,7 @@ class EncoderMeasurementBox():
             self.displayed_count2 = self.encoder.counter_e2
             self.counter2_label.setText(f"{self.encoder.counter_e2}")
             
-                  
     def update_measurements(self):
         self.update_distance_measurement()
         self.update_speed_measurement()
         self.update_counter_measurement()
-        
-        

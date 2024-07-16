@@ -85,6 +85,7 @@ class SerialBox:
                     self.main_window.serial_box_interface_to_connected()
                     self.update_encoder_object_costants()
                     self.send_costants_via_serial()
+                    self.encoder.reset_variables()
                 else:
                     # Failure to connect - temporary message
                     message = f"Unable to connect to {info.portName()}"

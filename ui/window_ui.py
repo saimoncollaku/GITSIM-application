@@ -584,8 +584,6 @@ class Ui_MainWindow(object):
 "        padding: 5px;\n"
 "}\n"
 "")
-        self.distance_encoder1_label.setFrameShape(QFrame.Shape.NoFrame)
-        self.distance_encoder1_label.setFrameShadow(QFrame.Shadow.Sunken)
         self.distance_encoder1_label.setMargin(1)
 
         self.horizontalLayout_17.addWidget(self.distance_encoder1_label)
@@ -1014,14 +1012,14 @@ class Ui_MainWindow(object):
         self.ppr2_spinbox.setPrefix("")
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"Wheel diameter [m] ", None))
         self.data_encoder1_title.setText(QCoreApplication.translate("MainWindow", u"Encoder 1 measurement", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Distance travelled [m]:", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Distance [m]:", None))
         self.distance_encoder1_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Pulses counted [x4]:", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Pulses [x4]:", None))
         self.pulses_encoder1_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.data_encoder1_title_3.setText(QCoreApplication.translate("MainWindow", u"Encoder 2 measurement", None))
-        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Distance travelled [m]:", None))
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Distance [m]:", None))
         self.distance_encoder2_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Pulses counted [x4]:", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Pulses [x4]:", None))
         self.pulses_encoder2_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Set single kinematic values", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Choose to which Encoder you wish to assign the value: ", None))

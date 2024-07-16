@@ -189,4 +189,3 @@ class TelegramManager(QSerialPort):
         self.close()
         self.setPortName("")
         
-        

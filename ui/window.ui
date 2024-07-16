@@ -1209,7 +1209,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </font>
                    </property>
                    <property name="text">
-                    <string>Distance travelled [m]:</string>
+                    <string>Distance [m]:</string>
                    </property>
                    <property name="margin">
                     <number>14</number>
@@ -1238,12 +1238,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
         padding: 5px;
 }
 </string>
-                   </property>
-                   <property name="frameShape">
-                    <enum>QFrame::Shape::NoFrame</enum>
-                   </property>
-                   <property name="frameShadow">
-                    <enum>QFrame::Shadow::Sunken</enum>
                    </property>
                    <property name="text">
                     <string>0</string>
@@ -1274,7 +1268,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </font>
                    </property>
                    <property name="text">
-                    <string>Pulses counted [x4]:</string>
+                    <string>Pulses [x4]:</string>
                    </property>
                    <property name="margin">
                     <number>14</number>
@@ -1406,7 +1400,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </font>
                    </property>
                    <property name="text">
-                    <string>Distance travelled [m]:</string>
+                    <string>Distance [m]:</string>
                    </property>
                    <property name="margin">
                     <number>14</number>
@@ -1462,7 +1456,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </font>
                    </property>
                    <property name="text">
-                    <string>Pulses counted [x4]:</string>
+                    <string>Pulses [x4]:</string>
                    </property>
                    <property name="margin">
                     <number>14</number>
