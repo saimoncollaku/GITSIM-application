@@ -17,12 +17,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDoubleSpinBox,
     QFrame, QGridLayout, QGroupBox, QHBoxLayout,
-    QLabel, QLineEdit, QMainWindow, QPushButton,
-    QRadioButton, QSizePolicy, QSpacerItem, QSpinBox,
-    QStackedWidget, QTextEdit, QVBoxLayout, QWidget)
+    QLabel, QMainWindow, QPushButton, QRadioButton,
+    QSizePolicy, QSpacerItem, QSpinBox, QStackedWidget,
+    QTextEdit, QVBoxLayout, QWidget)
 
 from ui.gaugemeter import GaugeMeter
-import ui.resource_rc
+import resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -258,6 +258,9 @@ class Ui_MainWindow(object):
 
         self.stackedWidget = QStackedWidget(self.widget_3)
         self.stackedWidget.setObjectName(u"stackedWidget")
+        font2 = QFont()
+        font2.setPointSize(10)
+        self.stackedWidget.setFont(font2)
         self.stackedWidget.setCursor(QCursor(Qt.ArrowCursor))
         self.page = QWidget()
         self.page.setObjectName(u"page")
@@ -282,9 +285,10 @@ class Ui_MainWindow(object):
         self.serial_box = QGroupBox(self.page)
         self.serial_box.setObjectName(u"serial_box")
         self.serial_box.setEnabled(True)
-        font2 = QFont()
-        font2.setKerning(True)
-        self.serial_box.setFont(font2)
+        font3 = QFont()
+        font3.setPointSize(10)
+        font3.setKerning(True)
+        self.serial_box.setFont(font3)
         self.serial_box.setFlat(False)
         self.verticalLayout_5 = QVBoxLayout(self.serial_box)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -295,11 +299,11 @@ class Ui_MainWindow(object):
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
         self.label_9.setSizePolicy(sizePolicy2)
-        font3 = QFont()
-        font3.setPointSize(12)
-        font3.setBold(True)
-        font3.setKerning(True)
-        self.label_9.setFont(font3)
+        font4 = QFont()
+        font4.setPointSize(12)
+        font4.setBold(True)
+        font4.setKerning(True)
+        self.label_9.setFont(font4)
         self.label_9.setStyleSheet(u"		background-color:#bb2e29;\n"
 "		color: #fff;")
         self.label_9.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -314,10 +318,10 @@ class Ui_MainWindow(object):
         self.label_2.setObjectName(u"label_2")
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
         self.label_2.setSizePolicy(sizePolicy)
-        font4 = QFont()
-        font4.setPointSize(11)
-        font4.setKerning(True)
-        self.label_2.setFont(font4)
+        font5 = QFont()
+        font5.setPointSize(11)
+        font5.setKerning(True)
+        self.label_2.setFont(font5)
 
         self.verticalLayout_4.addWidget(self.label_2)
 
@@ -330,12 +334,12 @@ class Ui_MainWindow(object):
         self.com_available_combo.setSizePolicy(sizePolicy3)
         self.com_available_combo.setMinimumSize(QSize(100, 0))
         self.com_available_combo.setMaximumSize(QSize(9999, 16777215))
-        font5 = QFont()
-        font5.setFamilies([u"Consolas"])
-        font5.setPointSize(11)
-        font5.setBold(False)
-        font5.setKerning(True)
-        self.com_available_combo.setFont(font5)
+        font6 = QFont()
+        font6.setFamilies([u"Consolas"])
+        font6.setPointSize(11)
+        font6.setBold(False)
+        font6.setKerning(True)
+        self.com_available_combo.setFont(font6)
         self.com_available_combo.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_4.addWidget(self.com_available_combo)
@@ -349,7 +353,7 @@ class Ui_MainWindow(object):
         self.label_13.setSizePolicy(sizePolicy)
         self.label_13.setMinimumSize(QSize(200, 40))
         self.label_13.setMaximumSize(QSize(200, 40))
-        self.label_13.setFont(font4)
+        self.label_13.setFont(font5)
         self.label_13.setWordWrap(True)
 
         self.verticalLayout_5.addWidget(self.label_13)
@@ -361,12 +365,12 @@ class Ui_MainWindow(object):
         sizePolicy4.setVerticalStretch(0)
         sizePolicy4.setHeightForWidth(self.com_connect_button.sizePolicy().hasHeightForWidth())
         self.com_connect_button.setSizePolicy(sizePolicy4)
-        font6 = QFont()
-        font6.setFamilies([u"Segoe UI"])
-        font6.setPointSize(11)
-        font6.setBold(False)
-        font6.setKerning(True)
-        self.com_connect_button.setFont(font6)
+        font7 = QFont()
+        font7.setFamilies([u"Segoe UI"])
+        font7.setPointSize(11)
+        font7.setBold(False)
+        font7.setKerning(True)
+        self.com_connect_button.setFont(font7)
         self.com_connect_button.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_5.addWidget(self.com_connect_button)
@@ -376,7 +380,7 @@ class Ui_MainWindow(object):
         self.com_disconnect_button.setEnabled(False)
         sizePolicy4.setHeightForWidth(self.com_disconnect_button.sizePolicy().hasHeightForWidth())
         self.com_disconnect_button.setSizePolicy(sizePolicy4)
-        self.com_disconnect_button.setFont(font6)
+        self.com_disconnect_button.setFont(font7)
         self.com_disconnect_button.setCursor(QCursor(Qt.PointingHandCursor))
 
         self.verticalLayout_5.addWidget(self.com_disconnect_button)
@@ -392,7 +396,7 @@ class Ui_MainWindow(object):
         self.label_12.setObjectName(u"label_12")
         sizePolicy2.setHeightForWidth(self.label_12.sizePolicy().hasHeightForWidth())
         self.label_12.setSizePolicy(sizePolicy2)
-        self.label_12.setFont(font3)
+        self.label_12.setFont(font4)
         self.label_12.setStyleSheet(u"		background-color:#bb2e29;\n"
 "		color: #fff;")
         self.label_12.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -410,7 +414,7 @@ class Ui_MainWindow(object):
         sizePolicy5.setVerticalStretch(0)
         sizePolicy5.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy5)
-        self.label_5.setFont(font4)
+        self.label_5.setFont(font5)
         self.label_5.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
         self.label_5.setWordWrap(False)
 
@@ -423,11 +427,11 @@ class Ui_MainWindow(object):
         sizePolicy6.setVerticalStretch(0)
         sizePolicy6.setHeightForWidth(self.ppr1_spinbox.sizePolicy().hasHeightForWidth())
         self.ppr1_spinbox.setSizePolicy(sizePolicy6)
-        font7 = QFont()
-        font7.setFamilies([u"Cascadia Code"])
-        font7.setPointSize(10)
-        font7.setKerning(True)
-        self.ppr1_spinbox.setFont(font7)
+        font8 = QFont()
+        font8.setFamilies([u"Cascadia Code"])
+        font8.setPointSize(10)
+        font8.setKerning(True)
+        self.ppr1_spinbox.setFont(font8)
         self.ppr1_spinbox.setCursor(QCursor(Qt.IBeamCursor))
         self.ppr1_spinbox.setToolTipDuration(2)
         self.ppr1_spinbox.setWrapping(False)
@@ -454,7 +458,7 @@ class Ui_MainWindow(object):
         sizePolicy7.setVerticalStretch(0)
         sizePolicy7.setHeightForWidth(self.label_10.sizePolicy().hasHeightForWidth())
         self.label_10.setSizePolicy(sizePolicy7)
-        self.label_10.setFont(font4)
+        self.label_10.setFont(font5)
         self.label_10.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.verticalLayout_9.addWidget(self.label_10)
@@ -463,7 +467,7 @@ class Ui_MainWindow(object):
         self.ppr2_spinbox.setObjectName(u"ppr2_spinbox")
         sizePolicy6.setHeightForWidth(self.ppr2_spinbox.sizePolicy().hasHeightForWidth())
         self.ppr2_spinbox.setSizePolicy(sizePolicy6)
-        self.ppr2_spinbox.setFont(font7)
+        self.ppr2_spinbox.setFont(font8)
         self.ppr2_spinbox.setCursor(QCursor(Qt.IBeamCursor))
         self.ppr2_spinbox.setToolTipDuration(2)
         self.ppr2_spinbox.setWrapping(False)
@@ -487,7 +491,7 @@ class Ui_MainWindow(object):
         self.label_11.setObjectName(u"label_11")
         sizePolicy7.setHeightForWidth(self.label_11.sizePolicy().hasHeightForWidth())
         self.label_11.setSizePolicy(sizePolicy7)
-        self.label_11.setFont(font4)
+        self.label_11.setFont(font5)
         self.label_11.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
 
         self.verticalLayout_7.addWidget(self.label_11)
@@ -496,7 +500,7 @@ class Ui_MainWindow(object):
         self.diameter_spinbox.setObjectName(u"diameter_spinbox")
         sizePolicy6.setHeightForWidth(self.diameter_spinbox.sizePolicy().hasHeightForWidth())
         self.diameter_spinbox.setSizePolicy(sizePolicy6)
-        self.diameter_spinbox.setFont(font7)
+        self.diameter_spinbox.setFont(font8)
         self.diameter_spinbox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
         self.diameter_spinbox.setCorrectionMode(QAbstractSpinBox.CorrectionMode.CorrectToNearestValue)
         self.diameter_spinbox.setDecimals(3)
@@ -526,10 +530,10 @@ class Ui_MainWindow(object):
         self.data_encoder1_title.setObjectName(u"data_encoder1_title")
         sizePolicy2.setHeightForWidth(self.data_encoder1_title.sizePolicy().hasHeightForWidth())
         self.data_encoder1_title.setSizePolicy(sizePolicy2)
-        font8 = QFont()
-        font8.setPointSize(12)
-        font8.setBold(True)
-        self.data_encoder1_title.setFont(font8)
+        font9 = QFont()
+        font9.setPointSize(12)
+        font9.setBold(True)
+        self.data_encoder1_title.setFont(font9)
         self.data_encoder1_title.setAutoFillBackground(False)
         self.data_encoder1_title.setStyleSheet(u"		background-color:#bb2e29;\n"
 "		color: #fff;")
@@ -549,41 +553,75 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_17 = QHBoxLayout()
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
-        self.pushButton_14 = QPushButton(self.page_2)
-        self.pushButton_14.setObjectName(u"pushButton_14")
-        sizePolicy7.setHeightForWidth(self.pushButton_14.sizePolicy().hasHeightForWidth())
-        self.pushButton_14.setSizePolicy(sizePolicy7)
-        icon7 = QIcon()
-        icon7.addFile(u":/icon/icon/icons8-reset-64.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_14.setIcon(icon7)
-        self.pushButton_14.setIconSize(QSize(25, 25))
-
-        self.horizontalLayout_17.addWidget(self.pushButton_14)
-
         self.label_4 = QLabel(self.page_2)
         self.label_4.setObjectName(u"label_4")
-        sizePolicy2.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy2)
-        font9 = QFont()
-        font9.setPointSize(11)
-        self.label_4.setFont(font9)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        self.label_4.setSizePolicy(sizePolicy8)
+        font10 = QFont()
+        font10.setPointSize(11)
+        self.label_4.setFont(font10)
         self.label_4.setMargin(14)
 
         self.horizontalLayout_17.addWidget(self.label_4)
 
         self.distance_encoder1_label = QLabel(self.page_2)
         self.distance_encoder1_label.setObjectName(u"distance_encoder1_label")
-        sizePolicy2.setHeightForWidth(self.distance_encoder1_label.sizePolicy().hasHeightForWidth())
-        self.distance_encoder1_label.setSizePolicy(sizePolicy2)
-        font10 = QFont()
-        font10.setPointSize(11)
-        font10.setItalic(True)
-        self.distance_encoder1_label.setFont(font10)
+        sizePolicy8.setHeightForWidth(self.distance_encoder1_label.sizePolicy().hasHeightForWidth())
+        self.distance_encoder1_label.setSizePolicy(sizePolicy8)
+        font11 = QFont()
+        font11.setFamilies([u"DSEG7 Modern"])
+        font11.setPointSize(11)
+        font11.setItalic(False)
+        self.distance_encoder1_label.setFont(font11)
+        self.distance_encoder1_label.setStyleSheet(u"QLabel {\n"
+"        border: 2px solid black;\n"
+"        border-radius: 5px;\n"
+"        padding: 5px;\n"
+"}")
+        self.distance_encoder1_label.setFrameShape(QFrame.Shape.NoFrame)
+        self.distance_encoder1_label.setFrameShadow(QFrame.Shadow.Sunken)
+        self.distance_encoder1_label.setMargin(1)
 
         self.horizontalLayout_17.addWidget(self.distance_encoder1_label)
 
 
         self.verticalLayout_6.addLayout(self.horizontalLayout_17)
+
+        self.horizontalLayout_19 = QHBoxLayout()
+        self.horizontalLayout_19.setSpacing(0)
+        self.horizontalLayout_19.setObjectName(u"horizontalLayout_19")
+        self.label_14 = QLabel(self.page_2)
+        self.label_14.setObjectName(u"label_14")
+        sizePolicy8.setHeightForWidth(self.label_14.sizePolicy().hasHeightForWidth())
+        self.label_14.setSizePolicy(sizePolicy8)
+        self.label_14.setFont(font10)
+        self.label_14.setMargin(14)
+
+        self.horizontalLayout_19.addWidget(self.label_14)
+
+        self.pulses_encoder1_label = QLabel(self.page_2)
+        self.pulses_encoder1_label.setObjectName(u"pulses_encoder1_label")
+        sizePolicy8.setHeightForWidth(self.pulses_encoder1_label.sizePolicy().hasHeightForWidth())
+        self.pulses_encoder1_label.setSizePolicy(sizePolicy8)
+        self.pulses_encoder1_label.setFont(font11)
+        self.pulses_encoder1_label.setStyleSheet(u"QLabel {\n"
+"        border: 2px solid black;\n"
+"        border-radius: 5px;\n"
+"        padding: 5px;\n"
+"}\n"
+"")
+        self.pulses_encoder1_label.setFrameShape(QFrame.Shape.NoFrame)
+        self.pulses_encoder1_label.setFrameShadow(QFrame.Shadow.Plain)
+        self.pulses_encoder1_label.setLineWidth(1)
+        self.pulses_encoder1_label.setMargin(1)
+
+        self.horizontalLayout_19.addWidget(self.pulses_encoder1_label)
+
+
+        self.verticalLayout_6.addLayout(self.horizontalLayout_19)
 
 
         self.horizontalLayout_8.addLayout(self.verticalLayout_6)
@@ -595,7 +633,7 @@ class Ui_MainWindow(object):
         self.data_encoder1_title_3.setObjectName(u"data_encoder1_title_3")
         sizePolicy2.setHeightForWidth(self.data_encoder1_title_3.sizePolicy().hasHeightForWidth())
         self.data_encoder1_title_3.setSizePolicy(sizePolicy2)
-        self.data_encoder1_title_3.setFont(font8)
+        self.data_encoder1_title_3.setFont(font9)
         self.data_encoder1_title_3.setAutoFillBackground(False)
         self.data_encoder1_title_3.setStyleSheet(u"		background-color:#bb2e29;\n"
 "		color: #fff;")
@@ -610,244 +648,75 @@ class Ui_MainWindow(object):
 
         self.gauge_meter_2 = GaugeMeter(self.page_2)
         self.gauge_meter_2.setObjectName(u"gauge_meter_2")
+        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.gauge_meter_2.sizePolicy().hasHeightForWidth())
+        self.gauge_meter_2.setSizePolicy(sizePolicy9)
 
         self.verticalLayout_11.addWidget(self.gauge_meter_2)
 
         self.horizontalLayout_18 = QHBoxLayout()
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
-        self.pushButton_15 = QPushButton(self.page_2)
-        self.pushButton_15.setObjectName(u"pushButton_15")
-        sizePolicy7.setHeightForWidth(self.pushButton_15.sizePolicy().hasHeightForWidth())
-        self.pushButton_15.setSizePolicy(sizePolicy7)
-        self.pushButton_15.setIcon(icon7)
-        self.pushButton_15.setIconSize(QSize(25, 25))
-
-        self.horizontalLayout_18.addWidget(self.pushButton_15)
-
         self.label_18 = QLabel(self.page_2)
         self.label_18.setObjectName(u"label_18")
-        sizePolicy2.setHeightForWidth(self.label_18.sizePolicy().hasHeightForWidth())
-        self.label_18.setSizePolicy(sizePolicy2)
-        self.label_18.setFont(font9)
+        sizePolicy8.setHeightForWidth(self.label_18.sizePolicy().hasHeightForWidth())
+        self.label_18.setSizePolicy(sizePolicy8)
+        self.label_18.setFont(font10)
         self.label_18.setMargin(14)
 
         self.horizontalLayout_18.addWidget(self.label_18)
 
         self.distance_encoder2_label = QLabel(self.page_2)
         self.distance_encoder2_label.setObjectName(u"distance_encoder2_label")
-        sizePolicy2.setHeightForWidth(self.distance_encoder2_label.sizePolicy().hasHeightForWidth())
-        self.distance_encoder2_label.setSizePolicy(sizePolicy2)
-        self.distance_encoder2_label.setFont(font10)
+        sizePolicy8.setHeightForWidth(self.distance_encoder2_label.sizePolicy().hasHeightForWidth())
+        self.distance_encoder2_label.setSizePolicy(sizePolicy8)
+        self.distance_encoder2_label.setFont(font11)
+        self.distance_encoder2_label.setStyleSheet(u"QLabel {\n"
+"        border: 2px solid black;\n"
+"        border-radius: 5px;\n"
+"        padding: 5px;\n"
+"}")
+        self.distance_encoder2_label.setMargin(1)
 
         self.horizontalLayout_18.addWidget(self.distance_encoder2_label)
 
 
         self.verticalLayout_11.addLayout(self.horizontalLayout_18)
 
+        self.horizontalLayout_20 = QHBoxLayout()
+        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
+        self.label_15 = QLabel(self.page_2)
+        self.label_15.setObjectName(u"label_15")
+        sizePolicy8.setHeightForWidth(self.label_15.sizePolicy().hasHeightForWidth())
+        self.label_15.setSizePolicy(sizePolicy8)
+        self.label_15.setFont(font10)
+        self.label_15.setMargin(14)
+
+        self.horizontalLayout_20.addWidget(self.label_15)
+
+        self.pulses_encoder2_label = QLabel(self.page_2)
+        self.pulses_encoder2_label.setObjectName(u"pulses_encoder2_label")
+        sizePolicy8.setHeightForWidth(self.pulses_encoder2_label.sizePolicy().hasHeightForWidth())
+        self.pulses_encoder2_label.setSizePolicy(sizePolicy8)
+        self.pulses_encoder2_label.setFont(font11)
+        self.pulses_encoder2_label.setStyleSheet(u"QLabel {\n"
+"        border: 2px solid black;\n"
+"        border-radius: 5px;\n"
+"        padding: 5px;\n"
+"}")
+        self.pulses_encoder2_label.setMargin(1)
+
+        self.horizontalLayout_20.addWidget(self.pulses_encoder2_label)
+
+
+        self.verticalLayout_11.addLayout(self.horizontalLayout_20)
+
 
         self.horizontalLayout_8.addLayout(self.verticalLayout_11)
 
 
         self.gridLayout.addLayout(self.horizontalLayout_8, 0, 0, 1, 2)
-
-        self.verticalLayout_16 = QVBoxLayout()
-        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
-        self.data_encoder1_title_5 = QLabel(self.page_2)
-        self.data_encoder1_title_5.setObjectName(u"data_encoder1_title_5")
-        sizePolicy2.setHeightForWidth(self.data_encoder1_title_5.sizePolicy().hasHeightForWidth())
-        self.data_encoder1_title_5.setSizePolicy(sizePolicy2)
-        self.data_encoder1_title_5.setFont(font8)
-        self.data_encoder1_title_5.setAutoFillBackground(False)
-        self.data_encoder1_title_5.setStyleSheet(u"		background-color:#bb2e29;\n"
-"		color: #fff;")
-        self.data_encoder1_title_5.setFrameShape(QFrame.Shape.NoFrame)
-        self.data_encoder1_title_5.setFrameShadow(QFrame.Shadow.Plain)
-        self.data_encoder1_title_5.setMidLineWidth(0)
-        self.data_encoder1_title_5.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.data_encoder1_title_5.setMargin(2)
-        self.data_encoder1_title_5.setTextInteractionFlags(Qt.TextInteractionFlag.NoTextInteraction)
-
-        self.verticalLayout_16.addWidget(self.data_encoder1_title_5)
-
-        self.label_6 = QLabel(self.page_2)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setFont(font9)
-        self.label_6.setWordWrap(True)
-
-        self.verticalLayout_16.addWidget(self.label_6)
-
-        self.horizontalLayout_16 = QHBoxLayout()
-        self.horizontalLayout_16.setObjectName(u"horizontalLayout_16")
-        self.label_17 = QLabel(self.page_2)
-        self.label_17.setObjectName(u"label_17")
-        self.label_17.setFont(font9)
-
-        self.horizontalLayout_16.addWidget(self.label_17)
-
-        self.lineEdit = QLineEdit(self.page_2)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setFont(font9)
-
-        self.horizontalLayout_16.addWidget(self.lineEdit)
-
-
-        self.verticalLayout_16.addLayout(self.horizontalLayout_16)
-
-        self.pushButton_13 = QPushButton(self.page_2)
-        self.pushButton_13.setObjectName(u"pushButton_13")
-        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
-        sizePolicy8.setHorizontalStretch(0)
-        sizePolicy8.setVerticalStretch(0)
-        sizePolicy8.setHeightForWidth(self.pushButton_13.sizePolicy().hasHeightForWidth())
-        self.pushButton_13.setSizePolicy(sizePolicy8)
-        self.pushButton_13.setFont(font9)
-        icon8 = QIcon()
-        icon8.addFile(u":/icon/icon/icons8-folder-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_13.setIcon(icon8)
-        self.pushButton_13.setIconSize(QSize(35, 35))
-
-        self.verticalLayout_16.addWidget(self.pushButton_13)
-
-        self.pushButton_11 = QPushButton(self.page_2)
-        self.pushButton_11.setObjectName(u"pushButton_11")
-        sizePolicy8.setHeightForWidth(self.pushButton_11.sizePolicy().hasHeightForWidth())
-        self.pushButton_11.setSizePolicy(sizePolicy8)
-        self.pushButton_11.setFont(font9)
-        icon9 = QIcon()
-        icon9.addFile(u":/icon/icon/icons8-play-button-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        icon9.addFile(u":/icon/icon/wired-flat-45-clock-time.gif", QSize(), QIcon.Active, QIcon.On)
-        self.pushButton_11.setIcon(icon9)
-        self.pushButton_11.setIconSize(QSize(35, 35))
-        self.pushButton_11.setCheckable(True)
-
-        self.verticalLayout_16.addWidget(self.pushButton_11)
-
-        self.pushButton_12 = QPushButton(self.page_2)
-        self.pushButton_12.setObjectName(u"pushButton_12")
-        sizePolicy8.setHeightForWidth(self.pushButton_12.sizePolicy().hasHeightForWidth())
-        self.pushButton_12.setSizePolicy(sizePolicy8)
-        self.pushButton_12.setFont(font9)
-        icon10 = QIcon()
-        icon10.addFile(u":/icon/icon/icons8-stop-button-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_12.setIcon(icon10)
-        self.pushButton_12.setIconSize(QSize(35, 35))
-
-        self.verticalLayout_16.addWidget(self.pushButton_12)
-
-
-        self.gridLayout.addLayout(self.verticalLayout_16, 2, 1, 1, 1)
-
-        self.verticalLayout_8 = QVBoxLayout()
-        self.verticalLayout_8.setSpacing(6)
-        self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-        self.verticalLayout_8.setContentsMargins(-1, 0, 0, 0)
-        self.data_encoder1_title_4 = QLabel(self.page_2)
-        self.data_encoder1_title_4.setObjectName(u"data_encoder1_title_4")
-        sizePolicy2.setHeightForWidth(self.data_encoder1_title_4.sizePolicy().hasHeightForWidth())
-        self.data_encoder1_title_4.setSizePolicy(sizePolicy2)
-        self.data_encoder1_title_4.setFont(font8)
-        self.data_encoder1_title_4.setAutoFillBackground(False)
-        self.data_encoder1_title_4.setStyleSheet(u"		background-color:#bb2e29;\n"
-"		color: #fff;")
-        self.data_encoder1_title_4.setFrameShape(QFrame.Shape.NoFrame)
-        self.data_encoder1_title_4.setFrameShadow(QFrame.Shadow.Plain)
-        self.data_encoder1_title_4.setMidLineWidth(0)
-        self.data_encoder1_title_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.data_encoder1_title_4.setMargin(2)
-        self.data_encoder1_title_4.setTextInteractionFlags(Qt.TextInteractionFlag.NoTextInteraction)
-
-        self.verticalLayout_8.addWidget(self.data_encoder1_title_4)
-
-        self.verticalLayout_15 = QVBoxLayout()
-        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
-        self.label_3 = QLabel(self.page_2)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setFont(font9)
-        self.label_3.setScaledContents(False)
-        self.label_3.setWordWrap(True)
-
-        self.verticalLayout_15.addWidget(self.label_3)
-
-        self.horizontalLayout_15 = QHBoxLayout()
-        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.radioButton = QRadioButton(self.page_2)
-        self.radioButton.setObjectName(u"radioButton")
-        self.radioButton.setFont(font9)
-        self.radioButton.setChecked(False)
-
-        self.horizontalLayout_15.addWidget(self.radioButton)
-
-        self.radioButton_2 = QRadioButton(self.page_2)
-        self.radioButton_2.setObjectName(u"radioButton_2")
-        self.radioButton_2.setFont(font9)
-
-        self.horizontalLayout_15.addWidget(self.radioButton_2)
-
-        self.radioButton_3 = QRadioButton(self.page_2)
-        self.radioButton_3.setObjectName(u"radioButton_3")
-        self.radioButton_3.setFont(font9)
-        self.radioButton_3.setChecked(True)
-
-        self.horizontalLayout_15.addWidget(self.radioButton_3)
-
-
-        self.verticalLayout_15.addLayout(self.horizontalLayout_15)
-
-
-        self.verticalLayout_8.addLayout(self.verticalLayout_15)
-
-        self.horizontalLayout_5 = QHBoxLayout()
-        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
-        self.label_7 = QLabel(self.page_2)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setFont(font9)
-
-        self.horizontalLayout_5.addWidget(self.label_7)
-
-        self.lineEdit_4 = QLineEdit(self.page_2)
-        self.lineEdit_4.setObjectName(u"lineEdit_4")
-        self.lineEdit_4.setFont(font9)
-
-        self.horizontalLayout_5.addWidget(self.lineEdit_4)
-
-
-        self.verticalLayout_8.addLayout(self.horizontalLayout_5)
-
-        self.horizontalLayout_4 = QHBoxLayout()
-        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.label_8 = QLabel(self.page_2)
-        self.label_8.setObjectName(u"label_8")
-        self.label_8.setFont(font9)
-
-        self.horizontalLayout_4.addWidget(self.label_8)
-
-        self.lineEdit_3 = QLineEdit(self.page_2)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
-        self.lineEdit_3.setFont(font9)
-
-        self.horizontalLayout_4.addWidget(self.lineEdit_3)
-
-
-        self.verticalLayout_8.addLayout(self.horizontalLayout_4)
-
-        self.pushButton = QPushButton(self.page_2)
-        self.pushButton.setObjectName(u"pushButton")
-        sizePolicy8.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy8)
-        self.pushButton.setFont(font9)
-
-        self.verticalLayout_8.addWidget(self.pushButton)
-
-        self.pushButton_2 = QPushButton(self.page_2)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        sizePolicy8.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy8)
-        self.pushButton_2.setFont(font9)
-
-        self.verticalLayout_8.addWidget(self.pushButton_2)
-
-
-        self.gridLayout.addLayout(self.verticalLayout_8, 2, 0, 1, 1)
 
         self.line_5 = QFrame(self.page_2)
         self.line_5.setObjectName(u"line_5")
@@ -858,6 +727,161 @@ class Ui_MainWindow(object):
         self.line_5.setFrameShape(QFrame.Shape.HLine)
 
         self.gridLayout.addWidget(self.line_5, 1, 0, 1, 2)
+
+        self.verticalLayout_15 = QVBoxLayout()
+        self.verticalLayout_15.setObjectName(u"verticalLayout_15")
+        self.label = QLabel(self.page_2)
+        self.label.setObjectName(u"label")
+        sizePolicy2.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy2)
+        self.label.setMinimumSize(QSize(0, 26))
+        self.label.setMaximumSize(QSize(16777215, 26))
+        self.label.setFont(font9)
+        self.label.setStyleSheet(u"		background-color:#bb2e29;\n"
+"		color: #fff;")
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.verticalLayout_15.addWidget(self.label)
+
+        self.horizontalLayout_5 = QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.verticalLayout_17 = QVBoxLayout()
+        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
+        self.label_7 = QLabel(self.page_2)
+        self.label_7.setObjectName(u"label_7")
+        sizePolicy8.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
+        self.label_7.setSizePolicy(sizePolicy8)
+        self.label_7.setFont(font10)
+        self.label_7.setWordWrap(True)
+
+        self.verticalLayout_17.addWidget(self.label_7)
+
+        self.horizontalLayout_9 = QHBoxLayout()
+        self.horizontalLayout_9.setSpacing(0)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.radioButton_3 = QRadioButton(self.page_2)
+        self.radioButton_3.setObjectName(u"radioButton_3")
+        self.radioButton_3.setFont(font10)
+
+        self.horizontalLayout_9.addWidget(self.radioButton_3)
+
+        self.radioButton_2 = QRadioButton(self.page_2)
+        self.radioButton_2.setObjectName(u"radioButton_2")
+        self.radioButton_2.setFont(font10)
+
+        self.horizontalLayout_9.addWidget(self.radioButton_2)
+
+        self.radioButton = QRadioButton(self.page_2)
+        self.radioButton.setObjectName(u"radioButton")
+        self.radioButton.setFont(font10)
+
+        self.horizontalLayout_9.addWidget(self.radioButton)
+
+
+        self.verticalLayout_17.addLayout(self.horizontalLayout_9)
+
+
+        self.horizontalLayout_5.addLayout(self.verticalLayout_17)
+
+        self.line = QFrame(self.page_2)
+        self.line.setObjectName(u"line")
+        self.line.setFrameShape(QFrame.Shape.VLine)
+        self.line.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.horizontalLayout_5.addWidget(self.line)
+
+        self.verticalLayout_16 = QVBoxLayout()
+        self.verticalLayout_16.setSpacing(8)
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.label_8 = QLabel(self.page_2)
+        self.label_8.setObjectName(u"label_8")
+        sizePolicy10 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Maximum)
+        sizePolicy10.setHorizontalStretch(0)
+        sizePolicy10.setVerticalStretch(0)
+        sizePolicy10.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
+        self.label_8.setSizePolicy(sizePolicy10)
+        self.label_8.setFont(font10)
+        self.label_8.setWordWrap(True)
+
+        self.verticalLayout_16.addWidget(self.label_8)
+
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setSpacing(0)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.label_3 = QLabel(self.page_2)
+        self.label_3.setObjectName(u"label_3")
+        sizePolicy5.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy5)
+        font12 = QFont()
+        font12.setFamilies([u"Segoe UI"])
+        font12.setPointSize(11)
+        self.label_3.setFont(font12)
+
+        self.horizontalLayout_6.addWidget(self.label_3)
+
+        self.doubleSpinBox = QDoubleSpinBox(self.page_2)
+        self.doubleSpinBox.setObjectName(u"doubleSpinBox")
+        sizePolicy2.setHeightForWidth(self.doubleSpinBox.sizePolicy().hasHeightForWidth())
+        self.doubleSpinBox.setSizePolicy(sizePolicy2)
+        font13 = QFont()
+        font13.setFamilies([u"Cascadia Code"])
+        font13.setPointSize(10)
+        self.doubleSpinBox.setFont(font13)
+        self.doubleSpinBox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+
+        self.horizontalLayout_6.addWidget(self.doubleSpinBox)
+
+        self.pushButton = QPushButton(self.page_2)
+        self.pushButton.setObjectName(u"pushButton")
+        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        self.pushButton.setSizePolicy(sizePolicy)
+        self.pushButton.setFont(font12)
+
+        self.horizontalLayout_6.addWidget(self.pushButton)
+
+
+        self.verticalLayout_16.addLayout(self.horizontalLayout_6)
+
+        self.horizontalLayout_7 = QHBoxLayout()
+        self.horizontalLayout_7.setSpacing(0)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalLayout_7.setContentsMargins(-1, -1, -1, 5)
+        self.label_6 = QLabel(self.page_2)
+        self.label_6.setObjectName(u"label_6")
+        sizePolicy5.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
+        self.label_6.setSizePolicy(sizePolicy5)
+        self.label_6.setFont(font10)
+
+        self.horizontalLayout_7.addWidget(self.label_6)
+
+        self.doubleSpinBox_2 = QDoubleSpinBox(self.page_2)
+        self.doubleSpinBox_2.setObjectName(u"doubleSpinBox_2")
+        sizePolicy2.setHeightForWidth(self.doubleSpinBox_2.sizePolicy().hasHeightForWidth())
+        self.doubleSpinBox_2.setSizePolicy(sizePolicy2)
+        self.doubleSpinBox_2.setFont(font13)
+        self.doubleSpinBox_2.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+
+        self.horizontalLayout_7.addWidget(self.doubleSpinBox_2)
+
+        self.pushButton_2 = QPushButton(self.page_2)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
+        self.pushButton_2.setSizePolicy(sizePolicy)
+        self.pushButton_2.setFont(font10)
+
+        self.horizontalLayout_7.addWidget(self.pushButton_2)
+
+
+        self.verticalLayout_16.addLayout(self.horizontalLayout_7)
+
+
+        self.horizontalLayout_5.addLayout(self.verticalLayout_16)
+
+
+        self.verticalLayout_15.addLayout(self.horizontalLayout_5)
+
+
+        self.gridLayout.addLayout(self.verticalLayout_15, 2, 0, 1, 2)
 
         self.stackedWidget.addWidget(self.page_2)
         self.page_3 = QWidget()
@@ -923,40 +947,40 @@ class Ui_MainWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<h1 style=\" margin-top:18px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:xx-large; font-weight:700; color:#2c3e50;\">Welcome to GITSIM</span><span style=\" font-family:'Arial','sans-serif'; font-size:xx-large; font-weight:700; color:#333333;\"> </span></h1>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-inden"
-                        "t:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; color:#333333;\">GITSIM is an ecosystem (board + application) for the emulation of Incremental Encoder signals, commonly used in railway infrastructure. </span></p>\n"
-"<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:large; font-weight:700; color:#333333;\">Purpose </span></h3>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; color:#333333;\">The primary purpose of GITSIM is to provide a user-friendly interface for engineers, technicians and researchers to: </span></p>\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<h1 style=\" margin-top:18px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:9pt; font-weight:700; color:#2c3e50;\">Welcome to GITSIM</span><span style=\" font-family:'Arial','sans-serif'; font-size:9pt; font-weight:700; color:#333333;\"> </span></h1>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text"
+                        "-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\">GITSIM is an ecosystem (board + application) for the emulation of Incremental Encoder signals, commonly used in railway infrastructure. </span></p>\n"
+"<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:9pt; font-weight:700; color:#333333;\">Purpose </span></h3>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\">The primary purpose of GITSIM is to provide a user-friendly interface for engineers, technicians and researchers to: </span></p>\n"
 "<ol style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
-"<li style=\" font-family:'Arial','sans-se"
-                        "rif'; color:#333333;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Generate realistic Incremental Encoder signals </li>\n"
-"<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Simulate various train movement scenarios </li>\n"
-"<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Test and validate train odometry systems </li></ol>\n"
-"<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:large; font-weight:700; color:#333333;\">Key Features </span></h3>\n"
-"<ul style=\"margin-"
-                        "top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
-"<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-weight:700;\">Scenario Simulation:</span> Pre-programmed and custom scenarios for comprehensive testing </li>\n"
-"<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-weight:700;\">Customizable Parameters:</span> Adjust speed, direction, and other signal characteristics </li>\n"
-"<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-weight:700;\">Visual Feedback:</span"
-                        "> Monitor generated signals through intuitive graphical representations </li>\n"
-"<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-weight:700;\">Data Logging:</span> Record and export simulation data for further analysis </li></ul>\n"
-"<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:large; font-weight:700; color:#333333;\">Getting Started </span></h3>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; color:#333333;\">To begin using GITSIM: </span></p>\n"
-"<ol style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-"
-                        "list-indent: 1;\">\n"
-"<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Ensure your GITSIM board is properly connected </li>\n"
-"<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Launch the GITSIM application </li>\n"
-"<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Establish the application-board connection </li>\n"
-"<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Configure your simulation parameters </li>\n"
-""
-                        "<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Start the signal generation </li>\n"
-"<li style=\" font-family:'Arial','sans-serif'; color:#333333;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Monitor and analyze the results </li></ol>\n"
+"<li style=\" font-fami"
+                        "ly:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Generate realistic Incremental Encoder signals </li>\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Simulate various train movement scenarios </li>\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Test and validate train odometry systems </li></ol>\n"
+"<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:9pt; font-weight:700; colo"
+                        "r:#333333;\">Key Features </span></h3>\n"
+"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-weight:700;\">Scenario Simulation:</span> Pre-programmed and custom scenarios for comprehensive testing </li>\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-weight:700;\">Customizable Parameters:</span> Adjust speed, direction, and other signal characteristics </li>\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-bl"
+                        "ock-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-weight:700;\">Visual Feedback:</span> Monitor generated signals through intuitive graphical representations </li>\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-weight:700;\">Data Logging:</span> Record and export simulation data for further analysis </li></ul>\n"
+"<h3 style=\" margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:9pt; font-weight:700; color:#333333;\">Getting Started </span></h3>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#3333"
+                        "33;\">To begin using GITSIM: </span></p>\n"
+"<ol style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\">\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Ensure your GITSIM board is properly connected </li>\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Launch the GITSIM application </li>\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Establish the application-board connection </li>\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; col"
+                        "or:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Configure your simulation parameters </li>\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Start the signal generation </li>\n"
+"<li style=\" font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\">Monitor and analyze the results </li></ol>\n"
 "<hr />\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-style:italic; color:#333333;\">Made by Saimon Collaku</span><span style=\" font-family:'Arial','sans-serif'; color:#333333;\"> </span></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-"
-                        "serif'; font-style:italic; color:#333333;\">ARCES - Advanced Research Center on Electronic Systems &quot;Ercole de Castro&quot; of University of Bologna</span></p></body></html>", None))
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:9pt; font-style:italic; color:#333333;\">Made by Saimon Collaku</span><span style=\" font-fam"
+                        "ily:'Arial','sans-serif'; font-size:9pt; color:#333333;\"> </span></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;\"><span style=\" font-family:'Arial','sans-serif'; font-size:9pt; font-style:italic; color:#333333;\">ARCES - Advanced Research Center on Electronic Systems &quot;Ercole de Castro&quot; of University of Bologna</span></p></body></html>", None))
         self.serial_box.setTitle("")
         self.label_9.setText(QCoreApplication.translate("MainWindow", u"Select serial port", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Available ports:", None))
@@ -978,30 +1002,24 @@ class Ui_MainWindow(object):
         self.ppr2_spinbox.setPrefix("")
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"Wheel diameter [m] ", None))
         self.data_encoder1_title.setText(QCoreApplication.translate("MainWindow", u"Encoder 1 measurement", None))
-        self.pushButton_14.setText("")
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Distance travelled:", None))
-        self.distance_encoder1_label.setText(QCoreApplication.translate("MainWindow", u"0 m", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Distance travelled [m]:", None))
+        self.distance_encoder1_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Pulses counted:", None))
+        self.pulses_encoder1_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.data_encoder1_title_3.setText(QCoreApplication.translate("MainWindow", u"Encoder 2 measurement", None))
-        self.pushButton_15.setText("")
-        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Distance travelled:", None))
-        self.distance_encoder2_label.setText(QCoreApplication.translate("MainWindow", u"0 m", None))
-        self.data_encoder1_title_5.setText(QCoreApplication.translate("MainWindow", u"Data collection", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Choose the file name and the folder where you wish to save the data:", None))
-        self.label_17.setText(QCoreApplication.translate("MainWindow", u"File name:", None))
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"* \" / \\ < > : | ?  are forbidden", None))
-        self.pushButton_13.setText(QCoreApplication.translate("MainWindow", u"Select folder", None))
-        self.pushButton_11.setText(QCoreApplication.translate("MainWindow", u" Start registration", None))
-        self.pushButton_12.setText(QCoreApplication.translate("MainWindow", u" Stop registration", None))
-        self.data_encoder1_title_4.setText(QCoreApplication.translate("MainWindow", u"Encoder modification", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Choose which Encoder you wish to modify:", None))
-        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"1", None))
-        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"2", None))
-        self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"Both", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Speed [km/h] =", None))
-        self.lineEdit_4.setPlaceholderText(QCoreApplication.translate("MainWindow", u"-500 \u00f7 500", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Acceleration [m/s<span style=\" vertical-align:super;\">2</span>] =</p></body></html>", None))
-        self.lineEdit_3.setPlaceholderText(QCoreApplication.translate("MainWindow", u"-10 \u00f7 10", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Set speed", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Set acceleration", None))
+        self.label_18.setText(QCoreApplication.translate("MainWindow", u"Distance travelled [m]:", None))
+        self.distance_encoder2_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Pulses counted:", None))
+        self.pulses_encoder2_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Set single kinematic values", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Choose to which Encoder you wish to assign the value: ", None))
+        self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"A", None))
+        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"B", None))
+        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Both", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Choose the value you want to set:", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Speed [m/s]: ", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Set", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Acceleration [m/s<span style=\" vertical-align:super;\">2</span>]: </p></body></html>", None))
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Set", None))
     # retranslateUi
 

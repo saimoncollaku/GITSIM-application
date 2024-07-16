@@ -3,7 +3,7 @@
 from PySide6.QtWidgets import QMainWindow, QPushButton
 from PySide6.QtCore import QTimer
 from PySide6.QtGui import QMovie
-
+from PySide6.QtGui import QFontDatabase, QFont
 
 # Private libraries
 from ui.window_ui import Ui_MainWindow
@@ -35,6 +35,13 @@ class MainWindow(QMainWindow):
         # Load and set the converted ui
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        
+        # # Apply custom font
+        font_path = "font\\DSEG7-Modern\\DSEG7Modern-Regular.ttf"
+        font_id = QFontDatabase.addApplicationFont(font_path)
+        # font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
+        # custom_font = QFont(font_family)
+        # self.ui.pulses_encoder1_label.setFont(custom_font) 
         
         # Initialize components
         self.timer = QTimer(self)

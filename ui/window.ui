@@ -584,6 +584,11 @@
        </item>
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
          <property name="cursor">
           <cursorShape>ArrowCursor</cursorShape>
          </property>
@@ -613,33 +618,33 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;h1 style=&quot; margin-top:18px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:xx-large; font-weight:700; color:#2c3e50;&quot;&gt;Welcome to GITSIM&lt;/span&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:xx-large; font-weight:700; color:#333333;&quot;&gt; &lt;/span&gt;&lt;/h1&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot;&gt;GITSIM is an ecosystem (board + application) for the emulation of Incremental Encoder signals, commonly used in railway infrastructure. &lt;/span&gt;&lt;/p&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:large; font-weight:700; color:#333333;&quot;&gt;Purpose &lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot;&gt;The primary purpose of GITSIM is to provide a user-friendly interface for engineers, technicians and researchers to: &lt;/span&gt;&lt;/p&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;h1 style=&quot; margin-top:18px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; font-weight:700; color:#2c3e50;&quot;&gt;Welcome to GITSIM&lt;/span&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; font-weight:700; color:#333333;&quot;&gt; &lt;/span&gt;&lt;/h1&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot;&gt;GITSIM is an ecosystem (board + application) for the emulation of Incremental Encoder signals, commonly used in railway infrastructure. &lt;/span&gt;&lt;/p&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; font-weight:700; color:#333333;&quot;&gt;Purpose &lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot;&gt;The primary purpose of GITSIM is to provide a user-friendly interface for engineers, technicians and researchers to: &lt;/span&gt;&lt;/p&gt;
 &lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Generate realistic Incremental Encoder signals &lt;/li&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Simulate various train movement scenarios &lt;/li&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Test and validate train odometry systems &lt;/li&gt;&lt;/ol&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:large; font-weight:700; color:#333333;&quot;&gt;Key Features &lt;/span&gt;&lt;/h3&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Generate realistic Incremental Encoder signals &lt;/li&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Simulate various train movement scenarios &lt;/li&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Test and validate train odometry systems &lt;/li&gt;&lt;/ol&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; font-weight:700; color:#333333;&quot;&gt;Key Features &lt;/span&gt;&lt;/h3&gt;
 &lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Scenario Simulation:&lt;/span&gt; Pre-programmed and custom scenarios for comprehensive testing &lt;/li&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Customizable Parameters:&lt;/span&gt; Adjust speed, direction, and other signal characteristics &lt;/li&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Visual Feedback:&lt;/span&gt; Monitor generated signals through intuitive graphical representations &lt;/li&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Data Logging:&lt;/span&gt; Record and export simulation data for further analysis &lt;/li&gt;&lt;/ul&gt;
-&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:large; font-weight:700; color:#333333;&quot;&gt;Getting Started &lt;/span&gt;&lt;/h3&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot;&gt;To begin using GITSIM: &lt;/span&gt;&lt;/p&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Scenario Simulation:&lt;/span&gt; Pre-programmed and custom scenarios for comprehensive testing &lt;/li&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Customizable Parameters:&lt;/span&gt; Adjust speed, direction, and other signal characteristics &lt;/li&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Visual Feedback:&lt;/span&gt; Monitor generated signals through intuitive graphical representations &lt;/li&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Data Logging:&lt;/span&gt; Record and export simulation data for further analysis &lt;/li&gt;&lt;/ul&gt;
+&lt;h3 style=&quot; margin-top:14px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; font-weight:700; color:#333333;&quot;&gt;Getting Started &lt;/span&gt;&lt;/h3&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot;&gt;To begin using GITSIM: &lt;/span&gt;&lt;/p&gt;
 &lt;ol style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Ensure your GITSIM board is properly connected &lt;/li&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Launch the GITSIM application &lt;/li&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Establish the application-board connection &lt;/li&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Configure your simulation parameters &lt;/li&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Start the signal generation &lt;/li&gt;
-&lt;li style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Monitor and analyze the results &lt;/li&gt;&lt;/ol&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:12px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Ensure your GITSIM board is properly connected &lt;/li&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Launch the GITSIM application &lt;/li&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Establish the application-board connection &lt;/li&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Configure your simulation parameters &lt;/li&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Start the signal generation &lt;/li&gt;
+&lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;Monitor and analyze the results &lt;/li&gt;&lt;/ol&gt;
 &lt;hr /&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-style:italic; color:#333333;&quot;&gt;Made by Saimon Collaku&lt;/span&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; color:#333333;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-style:italic; color:#333333;&quot;&gt;ARCES - Advanced Research Center on Electronic Systems &amp;quot;Ercole de Castro&amp;quot; of University of Bologna&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; font-style:italic; color:#333333;&quot;&gt;Made by Saimon Collaku&lt;/span&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; color:#333333;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:37px; margin-right:37px; -qt-block-indent:0; text-indent:0px; line-height:150%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:9pt; font-style:italic; color:#333333;&quot;&gt;ARCES - Advanced Research Center on Electronic Systems &amp;quot;Ercole de Castro&amp;quot; of University of Bologna&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="tabStopDistance">
               <double>0.000000000000000</double>
@@ -662,6 +667,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </property>
              <property name="font">
               <font>
+               <pointsize>10</pointsize>
                <kerning>true</kerning>
               </font>
              </property>
@@ -1184,32 +1190,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_17">
                  <item>
-                  <widget class="QPushButton" name="pushButton_14">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="resource.qrc">
-                     <normaloff>:/icon/icon/icons8-reset-64.png</normaloff>:/icon/icon/icons8-reset-64.png</iconset>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
                   <widget class="QLabel" name="label_4">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
@@ -1220,7 +1203,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </font>
                    </property>
                    <property name="text">
-                    <string>Distance travelled:</string>
+                    <string>Distance travelled [m]:</string>
                    </property>
                    <property name="margin">
                     <number>14</number>
@@ -1230,7 +1213,50 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QLabel" name="distance_encoder1_label">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>DSEG7 Modern</family>
+                     <pointsize>11</pointsize>
+                     <italic>false</italic>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QLabel {
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 5px;
+}</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Sunken</enum>
+                   </property>
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                   <property name="margin">
+                    <number>1</number>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_19">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_14">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
@@ -1238,11 +1264,53 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    <property name="font">
                     <font>
                      <pointsize>11</pointsize>
-                     <italic>true</italic>
                     </font>
                    </property>
                    <property name="text">
-                    <string>0 m</string>
+                    <string>Pulses counted:</string>
+                   </property>
+                   <property name="margin">
+                    <number>14</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="pulses_encoder1_label">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>DSEG7 Modern</family>
+                     <pointsize>11</pointsize>
+                     <italic>false</italic>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QLabel {
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 5px;
+}
+</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::NoFrame</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Plain</enum>
+                   </property>
+                   <property name="lineWidth">
+                    <number>1</number>
+                   </property>
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                   <property name="margin">
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
@@ -1300,37 +1368,21 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 </widget>
                </item>
                <item>
-                <widget class="GaugeMeter" name="gauge_meter_2" native="true"/>
+                <widget class="GaugeMeter" name="gauge_meter_2" native="true">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_18">
                  <item>
-                  <widget class="QPushButton" name="pushButton_15">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="text">
-                    <string/>
-                   </property>
-                   <property name="icon">
-                    <iconset resource="resource.qrc">
-                     <normaloff>:/icon/icon/icons8-reset-64.png</normaloff>:/icon/icon/icons8-reset-64.png</iconset>
-                   </property>
-                   <property name="iconSize">
-                    <size>
-                     <width>25</width>
-                     <height>25</height>
-                    </size>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
                   <widget class="QLabel" name="label_18">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
@@ -1341,7 +1393,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </font>
                    </property>
                    <property name="text">
-                    <string>Distance travelled:</string>
+                    <string>Distance travelled [m]:</string>
                    </property>
                    <property name="margin">
                     <number>14</number>
@@ -1351,7 +1403,41 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QLabel" name="distance_encoder2_label">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>DSEG7 Modern</family>
+                     <pointsize>11</pointsize>
+                     <italic>false</italic>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QLabel {
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 5px;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                   <property name="margin">
+                    <number>1</number>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_20">
+                 <item>
+                  <widget class="QLabel" name="label_15">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
@@ -1359,416 +1445,49 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    <property name="font">
                     <font>
                      <pointsize>11</pointsize>
-                     <italic>true</italic>
                     </font>
                    </property>
                    <property name="text">
-                    <string>0 m</string>
+                    <string>Pulses counted:</string>
+                   </property>
+                   <property name="margin">
+                    <number>14</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="pulses_encoder2_label">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>DSEG7 Modern</family>
+                     <pointsize>11</pointsize>
+                     <italic>false</italic>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QLabel {
+        border: 2px solid black;
+        border-radius: 5px;
+        padding: 5px;
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>0</string>
+                   </property>
+                   <property name="margin">
+                    <number>1</number>
                    </property>
                   </widget>
                  </item>
                 </layout>
                </item>
               </layout>
-             </item>
-            </layout>
-           </item>
-           <item row="2" column="1">
-            <layout class="QVBoxLayout" name="verticalLayout_16">
-             <item>
-              <widget class="QLabel" name="data_encoder1_title_5">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="autoFillBackground">
-                <bool>false</bool>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">		background-color:#bb2e29;
-		color: #fff;</string>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::Shape::NoFrame</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Shadow::Plain</enum>
-               </property>
-               <property name="midLineWidth">
-                <number>0</number>
-               </property>
-               <property name="text">
-                <string>Data collection</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignmentFlag::AlignCenter</set>
-               </property>
-               <property name="margin">
-                <number>2</number>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::TextInteractionFlag::NoTextInteraction</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="label_6">
-               <property name="font">
-                <font>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Choose the file name and the folder where you wish to save the data:</string>
-               </property>
-               <property name="wordWrap">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_16">
-               <item>
-                <widget class="QLabel" name="label_17">
-                 <property name="font">
-                  <font>
-                   <pointsize>11</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>File name:</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="lineEdit">
-                 <property name="font">
-                  <font>
-                   <pointsize>11</pointsize>
-                  </font>
-                 </property>
-                 <property name="placeholderText">
-                  <string>* &quot; / \ &lt; &gt; : | ?  are forbidden</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_13">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Select folder</string>
-               </property>
-               <property name="icon">
-                <iconset resource="resource.qrc">
-                 <normaloff>:/icon/icon/icons8-folder-48.png</normaloff>:/icon/icon/icons8-folder-48.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>35</width>
-                 <height>35</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_11">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string> Start registration</string>
-               </property>
-               <property name="icon">
-                <iconset resource="resource.qrc">
-                 <normaloff>:/icon/icon/icons8-play-button-48.png</normaloff>
-                 <activeon>:/icon/icon/wired-flat-45-clock-time.gif</activeon>:/icon/icon/icons8-play-button-48.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>35</width>
-                 <height>35</height>
-                </size>
-               </property>
-               <property name="checkable">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_12">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string> Stop registration</string>
-               </property>
-               <property name="icon">
-                <iconset resource="resource.qrc">
-                 <normaloff>:/icon/icon/icons8-stop-button-50.png</normaloff>:/icon/icon/icons8-stop-button-50.png</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>35</width>
-                 <height>35</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item row="2" column="0">
-            <layout class="QVBoxLayout" name="verticalLayout_8">
-             <property name="spacing">
-              <number>6</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QLabel" name="data_encoder1_title_4">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>12</pointsize>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="autoFillBackground">
-                <bool>false</bool>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">		background-color:#bb2e29;
-		color: #fff;</string>
-               </property>
-               <property name="frameShape">
-                <enum>QFrame::Shape::NoFrame</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Shadow::Plain</enum>
-               </property>
-               <property name="midLineWidth">
-                <number>0</number>
-               </property>
-               <property name="text">
-                <string>Encoder modification</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignmentFlag::AlignCenter</set>
-               </property>
-               <property name="margin">
-                <number>2</number>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::TextInteractionFlag::NoTextInteraction</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_15">
-               <item>
-                <widget class="QLabel" name="label_3">
-                 <property name="font">
-                  <font>
-                   <pointsize>11</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Choose which Encoder you wish to modify:</string>
-                 </property>
-                 <property name="scaledContents">
-                  <bool>false</bool>
-                 </property>
-                 <property name="wordWrap">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_15">
-                 <item>
-                  <widget class="QRadioButton" name="radioButton">
-                   <property name="font">
-                    <font>
-                     <pointsize>11</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>1</string>
-                   </property>
-                   <property name="checked">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="radioButton_2">
-                   <property name="font">
-                    <font>
-                     <pointsize>11</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>2</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="radioButton_3">
-                   <property name="font">
-                    <font>
-                     <pointsize>11</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Both</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_5">
-               <item>
-                <widget class="QLabel" name="label_7">
-                 <property name="font">
-                  <font>
-                   <pointsize>11</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Speed [km/h] =</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="lineEdit_4">
-                 <property name="font">
-                  <font>
-                   <pointsize>11</pointsize>
-                  </font>
-                 </property>
-                 <property name="placeholderText">
-                  <string>-500 ÷ 500</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_4">
-               <item>
-                <widget class="QLabel" name="label_8">
-                 <property name="font">
-                  <font>
-                   <pointsize>11</pointsize>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Acceleration [m/s&lt;span style=&quot; vertical-align:super;&quot;&gt;2&lt;/span&gt;] =&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLineEdit" name="lineEdit_3">
-                 <property name="font">
-                  <font>
-                   <pointsize>11</pointsize>
-                  </font>
-                 </property>
-                 <property name="placeholderText">
-                  <string>-10 ÷ 10</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Set speed</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="pushButton_2">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="font">
-                <font>
-                 <pointsize>11</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Set acceleration</string>
-               </property>
-              </widget>
              </item>
             </layout>
            </item>
@@ -1790,6 +1509,284 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <enum>Qt::Orientation::Horizontal</enum>
              </property>
             </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <layout class="QVBoxLayout" name="verticalLayout_15">
+             <item>
+              <widget class="QLabel" name="label">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>26</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>16777215</width>
+                 <height>26</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">		background-color:#bb2e29;
+		color: #fff;</string>
+               </property>
+               <property name="text">
+                <string>Set single kinematic values</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignmentFlag::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_17">
+                 <item>
+                  <widget class="QLabel" name="label_7">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>11</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Choose to which Encoder you wish to assign the value: </string>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_9">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QRadioButton" name="radioButton_3">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>A</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="radioButton_2">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>B</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QRadioButton" name="radioButton">
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Both</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="Line" name="line">
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Vertical</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_16">
+                 <property name="spacing">
+                  <number>8</number>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="label_8">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>11</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Choose the value you want to set:</string>
+                   </property>
+                   <property name="wordWrap">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_6">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_3">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Speed [m/s]: </string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QDoubleSpinBox" name="doubleSpinBox">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Cascadia Code</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="buttonSymbols">
+                      <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Segoe UI</family>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Set</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_7">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>5</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_6">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Acceleration [m/s&lt;span style=&quot; vertical-align:super;&quot;&gt;2&lt;/span&gt;]: &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <family>Cascadia Code</family>
+                       <pointsize>10</pointsize>
+                      </font>
+                     </property>
+                     <property name="buttonSymbols">
+                      <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_2">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="font">
+                      <font>
+                       <pointsize>11</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Set</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>

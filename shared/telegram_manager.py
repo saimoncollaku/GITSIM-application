@@ -178,16 +178,16 @@ class TelegramManager(QSerialPort):
         # TODO find a more simple implementation
         if self.bytesToWrite() > 0:
             
+            def check_bytes_written():
+                if self.bytesToWrite() == 0:
+                    loop.quit()
+            
             loop = QEventLoop()
             timeout_timer = QTimer()
             check_timer = QTimer()
             timeout_timer.setSingleShot(True)
             timeout_timer.timeout.connect(loop.quit)
             check_timer.timeout.connect(check_bytes_written)
-            
-            def check_bytes_written():
-                if self.bytesToWrite() == 0:
-                    loop.quit()
             
             check_timer.start(5)
             timeout_timer.start(50)
