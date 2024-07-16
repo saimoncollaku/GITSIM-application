@@ -10,6 +10,7 @@ from shared.encoder_data import EncoderData
 # Private imports (tabs directory)
 from tabs.home.serial_box import SerialBox
 from tabs.measurement.encoder_measure import EncoderMeasurementBox
+from tabs.measurement.set_single_value import SetSingleValue
     
 if __name__ == "__main__":
     
@@ -29,6 +30,9 @@ if __name__ == "__main__":
     encoder_measure_box = EncoderMeasurementBox(window, 
                                                 telegram_manager,
                                                 encoder_data)
+    set_single_value_box = SetSingleValue(window, 
+                                          telegram_manager, 
+                                          encoder_data)
     
     # UI loop
     window.show()

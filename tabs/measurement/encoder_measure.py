@@ -1,7 +1,3 @@
-# Public libraries
-import struct
-import math
-
 # Private libraries
 from shared.mainwindow import MainWindow
 from shared.telegram_manager import TelegramManager
@@ -71,7 +67,7 @@ class EncoderMeasurementBox():
             d = self.encoder.diameter
             self.displayed_distance2 = self.encoder.counter_e2 * d / ppr
             # Formatting the string in a nice way
-            integer_part = f"{int(self.displayed_distance1):<2}"
+            integer_part = f"{int(self.displayed_distance2):<2}"
             decimal_part = f"{self.displayed_distance2 % 1:.2f}"[1:]
             output_string = f"{integer_part}\u2009.\u2009{decimal_part[1:]}"
             self.distance2_label.setText(output_string)

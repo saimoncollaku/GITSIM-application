@@ -74,7 +74,7 @@ class TelegramManager(QSerialPort):
         self.write(self.value_telegram)
         self.write(self.addon_telegram)
         
-        if self.value_telegram[8] == 3:
+        if self.value_telegram[8] == 7:
             self.close_serial_connection()
             
         
@@ -104,34 +104,33 @@ class TelegramManager(QSerialPort):
         # self.connection_is = True
         # Send telegram
         self.write(telegram)
-        
-        
-    def assign_value_telegram(self, type: str, value1: float, 
-                              value2: float):
-        match type.upper():
-            case "SPEED":
-                self.assign_speed_telegram(value1, value2)
-            case "ACCELERATION":
-                self.assign_acceleration_telegram(value1, value2)
-            case "DISCONNECTION":
-                self.assign_disconnection_telegram()
-            case _:
-                msg = "Trying to send an unknown type of value-telegram"
-                raise Exception(msg) 
     
-    
-    def assign_speed_telegram(self, speed1: float, speed2: float):
+    def assign_speed_e1_telegram(self, speed1: float):
         identifier = int(1)
-        self.value_telegram = struct.pack('<ffB', speed1, speed2, identifier)
+        self.value_telegram = struct.pack('<ffB', speed1, 0, identifier)
         
-        
-    def assign_acceleration_telegram(self, acc1: float, acc2: float):
+    def assign_speed_e2_telegram(self, speed2: float):
         identifier = int(2)
-        self.value_telegram = struct.pack('<ffB', acc1, acc2, identifier)
-    
-    
-    def assign_disconnection_telegram(self):
+        self.value_telegram = struct.pack('<ffB', 0, speed2, identifier)
+        
+    def assign_speed_both_telegram(self, speed1: float, speed2: float):
         identifier = int(3)
+        self.value_telegram = struct.pack('<ffB', speed1, speed2, identifier)
+                
+    def assign_acceleration_e1_telegram(self, acc1: float):
+        identifier = int(4)
+        self.value_telegram = struct.pack('<ffB', acc1, 0, identifier)
+        
+    def assign_acceleration_e2_telegram(self, acc2: float):
+        identifier = int(5)
+        self.value_telegram = struct.pack('<ffB', 0, acc2, identifier)
+    
+    def assign_acceleration_both_telegram(self, acc1: float, acc2: float):
+        identifier = int(6)
+        self.value_telegram = struct.pack('<ffB', acc1, acc2, identifier)
+        
+    def assign_disconnection_telegram(self):
+        identifier = int(7)
         self.value_telegram = struct.pack('<ffB', 0, 0, identifier)
         
         

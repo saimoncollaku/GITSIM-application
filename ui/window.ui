@@ -593,7 +593,7 @@
           <cursorShape>ArrowCursor</cursorShape>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page">
           <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -1591,31 +1591,31 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     <number>0</number>
                    </property>
                    <item>
-                    <widget class="QRadioButton" name="radioButton_3">
+                    <widget class="QRadioButton" name="single_encoder1_radio">
                      <property name="font">
                       <font>
                        <pointsize>11</pointsize>
                       </font>
                      </property>
                      <property name="text">
-                      <string>A</string>
+                      <string>1</string>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QRadioButton" name="radioButton_2">
+                    <widget class="QRadioButton" name="single_encoder2_radio">
                      <property name="font">
                       <font>
                        <pointsize>11</pointsize>
                       </font>
                      </property>
                      <property name="text">
-                      <string>B</string>
+                      <string>2</string>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QRadioButton" name="radioButton">
+                    <widget class="QRadioButton" name="single_both_radio">
                      <property name="font">
                       <font>
                        <pointsize>11</pointsize>
@@ -1623,6 +1623,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                      </property>
                      <property name="text">
                       <string>Both</string>
+                     </property>
+                     <property name="checked">
+                      <bool>true</bool>
                      </property>
                     </widget>
                    </item>
@@ -1666,7 +1669,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_6">
                    <property name="spacing">
-                    <number>0</number>
+                    <number>5</number>
                    </property>
                    <item>
                     <widget class="QLabel" name="label_3">
@@ -1688,7 +1691,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </widget>
                    </item>
                    <item>
-                    <widget class="QDoubleSpinBox" name="doubleSpinBox">
+                    <widget class="QDoubleSpinBox" name="speed_spinbox">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                        <horstretch>0</horstretch>
@@ -1701,13 +1704,28 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        <pointsize>10</pointsize>
                       </font>
                      </property>
+                     <property name="autoFillBackground">
+                      <bool>false</bool>
+                     </property>
                      <property name="buttonSymbols">
                       <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+                     </property>
+                     <property name="showGroupSeparator" stdset="0">
+                      <bool>false</bool>
+                     </property>
+                     <property name="decimals">
+                      <number>3</number>
+                     </property>
+                     <property name="minimum">
+                      <double>-150.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>150.000000000000000</double>
                      </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="pushButton">
+                    <widget class="QPushButton" name="set_speed_button">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                        <horstretch>0</horstretch>
@@ -1730,7 +1748,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <layout class="QHBoxLayout" name="horizontalLayout_7">
                    <property name="spacing">
-                    <number>0</number>
+                    <number>5</number>
                    </property>
                    <property name="bottomMargin">
                     <number>5</number>
@@ -1754,7 +1772,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </widget>
                    </item>
                    <item>
-                    <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+                    <widget class="QDoubleSpinBox" name="acc_spinbox">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                        <horstretch>0</horstretch>
@@ -1770,10 +1788,19 @@ li.checked::marker { content: &quot;\2612&quot;; }
                      <property name="buttonSymbols">
                       <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                      </property>
+                     <property name="decimals">
+                      <number>3</number>
+                     </property>
+                     <property name="minimum">
+                      <double>-20.000000000000000</double>
+                     </property>
+                     <property name="maximum">
+                      <double>20.000000000000000</double>
+                     </property>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="pushButton_2">
+                    <widget class="QPushButton" name="set_acc_button">
                      <property name="sizePolicy">
                       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                        <horstretch>0</horstretch>

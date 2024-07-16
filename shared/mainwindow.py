@@ -49,6 +49,7 @@ class MainWindow(QMainWindow):
         self.timer.timeout.connect(self.clear_temporary_message)
         self.set_temporary_message("Welcome to GITSIM!")
         self.setup_tab_changes()
+        self.single_value_to_disabled()
         
 
     def set_temporary_message(self, message:str, duration:int=3000):
@@ -117,3 +118,21 @@ class MainWindow(QMainWindow):
         self.ui.ppr1_spinbox.setEnabled(False)
         self.ui.ppr2_spinbox.setEnabled(False)
         self.ui.diameter_spinbox.setEnabled(False)    
+        
+    def single_value_to_disabled(self):
+        self.ui.speed_spinbox.setEnabled(False)
+        self.ui.acc_spinbox.setEnabled(False)
+        self.ui.set_speed_button.setEnabled(False)
+        self.ui.set_acc_button.setEnabled(False)
+        self.ui.single_both_radio.setEnabled(False)
+        self.ui.single_encoder1_radio.setEnabled(False)
+        self.ui.single_encoder2_radio.setEnabled(False)
+        
+    def single_value_to_enabled(self):
+        self.ui.speed_spinbox.setEnabled(True)
+        self.ui.acc_spinbox.setEnabled(True)
+        self.ui.set_speed_button.setEnabled(True)
+        self.ui.set_acc_button.setEnabled(True)
+        self.ui.single_both_radio.setEnabled(True)
+        self.ui.single_encoder1_radio.setEnabled(True)
+        self.ui.single_encoder2_radio.setEnabled(True)

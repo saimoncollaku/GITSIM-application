@@ -83,6 +83,7 @@ class SerialBox:
                     self.main_window.set_temporary_message(message)
                     
                     self.main_window.serial_box_interface_to_connected()
+                    self.main_window.single_value_to_enabled()
                     self.update_encoder_object_costants()
                     self.send_costants_via_serial()
                     self.encoder.reset_variables()
