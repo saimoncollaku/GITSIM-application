@@ -22,7 +22,7 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDoubl
     QTextEdit, QVBoxLayout, QWidget)
 
 from ui.gaugemeter import GaugeMeter
-import resource_rc
+import ui.resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -552,7 +552,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.addWidget(self.gauge_meter_1)
 
         self.horizontalLayout_17 = QHBoxLayout()
+        self.horizontalLayout_17.setSpacing(0)
         self.horizontalLayout_17.setObjectName(u"horizontalLayout_17")
+        self.horizontalLayout_17.setContentsMargins(-1, -1, -1, 6)
         self.label_4 = QLabel(self.page_2)
         self.label_4.setObjectName(u"label_4")
         sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
@@ -572,15 +574,16 @@ class Ui_MainWindow(object):
         sizePolicy8.setHeightForWidth(self.distance_encoder1_label.sizePolicy().hasHeightForWidth())
         self.distance_encoder1_label.setSizePolicy(sizePolicy8)
         font11 = QFont()
-        font11.setFamilies([u"DSEG7 Modern"])
-        font11.setPointSize(11)
+        font11.setFamilies([u"7-Segment"])
+        font11.setPointSize(23)
         font11.setItalic(False)
         self.distance_encoder1_label.setFont(font11)
         self.distance_encoder1_label.setStyleSheet(u"QLabel {\n"
-"        border: 2px solid black;\n"
+"        border: 1px solid black;\n"
 "        border-radius: 5px;\n"
 "        padding: 5px;\n"
-"}")
+"}\n"
+"")
         self.distance_encoder1_label.setFrameShape(QFrame.Shape.NoFrame)
         self.distance_encoder1_label.setFrameShadow(QFrame.Shadow.Sunken)
         self.distance_encoder1_label.setMargin(1)
@@ -608,7 +611,7 @@ class Ui_MainWindow(object):
         self.pulses_encoder1_label.setSizePolicy(sizePolicy8)
         self.pulses_encoder1_label.setFont(font11)
         self.pulses_encoder1_label.setStyleSheet(u"QLabel {\n"
-"        border: 2px solid black;\n"
+"        border: 1px solid black;\n"
 "        border-radius: 5px;\n"
 "        padding: 5px;\n"
 "}\n"
@@ -657,7 +660,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.addWidget(self.gauge_meter_2)
 
         self.horizontalLayout_18 = QHBoxLayout()
+        self.horizontalLayout_18.setSpacing(0)
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
+        self.horizontalLayout_18.setContentsMargins(-1, -1, -1, 6)
         self.label_18 = QLabel(self.page_2)
         self.label_18.setObjectName(u"label_18")
         sizePolicy8.setHeightForWidth(self.label_18.sizePolicy().hasHeightForWidth())
@@ -673,10 +678,11 @@ class Ui_MainWindow(object):
         self.distance_encoder2_label.setSizePolicy(sizePolicy8)
         self.distance_encoder2_label.setFont(font11)
         self.distance_encoder2_label.setStyleSheet(u"QLabel {\n"
-"        border: 2px solid black;\n"
+"        border: 1px solid black;\n"
 "        border-radius: 5px;\n"
 "        padding: 5px;\n"
-"}")
+"}\n"
+"")
         self.distance_encoder2_label.setMargin(1)
 
         self.horizontalLayout_18.addWidget(self.distance_encoder2_label)
@@ -699,12 +705,18 @@ class Ui_MainWindow(object):
         self.pulses_encoder2_label.setObjectName(u"pulses_encoder2_label")
         sizePolicy8.setHeightForWidth(self.pulses_encoder2_label.sizePolicy().hasHeightForWidth())
         self.pulses_encoder2_label.setSizePolicy(sizePolicy8)
-        self.pulses_encoder2_label.setFont(font11)
+        font12 = QFont()
+        font12.setFamilies([u"7-Segment"])
+        font12.setPointSize(23)
+        font12.setItalic(False)
+        font12.setStrikeOut(False)
+        self.pulses_encoder2_label.setFont(font12)
         self.pulses_encoder2_label.setStyleSheet(u"QLabel {\n"
-"        border: 2px solid black;\n"
+"        border: 1px solid black;\n"
 "        border-radius: 5px;\n"
 "        padding: 5px;\n"
-"}")
+"}\n"
+"")
         self.pulses_encoder2_label.setMargin(1)
 
         self.horizontalLayout_20.addWidget(self.pulses_encoder2_label)
@@ -812,10 +824,10 @@ class Ui_MainWindow(object):
         self.label_3.setObjectName(u"label_3")
         sizePolicy5.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
         self.label_3.setSizePolicy(sizePolicy5)
-        font12 = QFont()
-        font12.setFamilies([u"Segoe UI"])
-        font12.setPointSize(11)
-        self.label_3.setFont(font12)
+        font13 = QFont()
+        font13.setFamilies([u"Segoe UI"])
+        font13.setPointSize(11)
+        self.label_3.setFont(font13)
 
         self.horizontalLayout_6.addWidget(self.label_3)
 
@@ -823,10 +835,10 @@ class Ui_MainWindow(object):
         self.doubleSpinBox.setObjectName(u"doubleSpinBox")
         sizePolicy2.setHeightForWidth(self.doubleSpinBox.sizePolicy().hasHeightForWidth())
         self.doubleSpinBox.setSizePolicy(sizePolicy2)
-        font13 = QFont()
-        font13.setFamilies([u"Cascadia Code"])
-        font13.setPointSize(10)
-        self.doubleSpinBox.setFont(font13)
+        font14 = QFont()
+        font14.setFamilies([u"Cascadia Code"])
+        font14.setPointSize(10)
+        self.doubleSpinBox.setFont(font14)
         self.doubleSpinBox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
 
         self.horizontalLayout_6.addWidget(self.doubleSpinBox)
@@ -835,7 +847,7 @@ class Ui_MainWindow(object):
         self.pushButton.setObjectName(u"pushButton")
         sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
         self.pushButton.setSizePolicy(sizePolicy)
-        self.pushButton.setFont(font12)
+        self.pushButton.setFont(font13)
 
         self.horizontalLayout_6.addWidget(self.pushButton)
 
@@ -858,7 +870,7 @@ class Ui_MainWindow(object):
         self.doubleSpinBox_2.setObjectName(u"doubleSpinBox_2")
         sizePolicy2.setHeightForWidth(self.doubleSpinBox_2.sizePolicy().hasHeightForWidth())
         self.doubleSpinBox_2.setSizePolicy(sizePolicy2)
-        self.doubleSpinBox_2.setFont(font13)
+        self.doubleSpinBox_2.setFont(font14)
         self.doubleSpinBox_2.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
 
         self.horizontalLayout_7.addWidget(self.doubleSpinBox_2)
@@ -1004,12 +1016,12 @@ class Ui_MainWindow(object):
         self.data_encoder1_title.setText(QCoreApplication.translate("MainWindow", u"Encoder 1 measurement", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Distance travelled [m]:", None))
         self.distance_encoder1_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Pulses counted:", None))
+        self.label_14.setText(QCoreApplication.translate("MainWindow", u"Pulses counted [x4]:", None))
         self.pulses_encoder1_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.data_encoder1_title_3.setText(QCoreApplication.translate("MainWindow", u"Encoder 2 measurement", None))
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"Distance travelled [m]:", None))
         self.distance_encoder2_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Pulses counted:", None))
+        self.label_15.setText(QCoreApplication.translate("MainWindow", u"Pulses counted [x4]:", None))
         self.pulses_encoder2_label.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Set single kinematic values", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Choose to which Encoder you wish to assign the value: ", None))

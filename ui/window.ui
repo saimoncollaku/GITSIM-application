@@ -32,7 +32,7 @@
    <string>GITSIM</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resource.qrc">
+   <iconset>
     <normaloff>:/icon/icon/GITSIM.png</normaloff>:/icon/icon/GITSIM.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -100,7 +100,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/menu-4-32.ico</normaloff>:/icon/icon/menu-4-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -136,7 +136,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/home-4-32.ico</normaloff>:/icon/icon/home-4-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -162,7 +162,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/dashboard-32.ico</normaloff>:/icon/icon/dashboard-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -188,7 +188,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/graph-32.ico</normaloff>:/icon/icon/graph-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -214,7 +214,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/multiply-2-32.ico</normaloff>:/icon/icon/multiply-2-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -240,7 +240,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/elevator-32.ico</normaloff>:/icon/icon/elevator-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -305,7 +305,7 @@
           <string>Minimize</string>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/menu-4-32.ico</normaloff>:/icon/icon/menu-4-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -347,7 +347,7 @@
           <string>Home</string>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/home-4-32.ico</normaloff>:/icon/icon/home-4-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -379,7 +379,7 @@
           <string>Measurement</string>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/dashboard-32.ico</normaloff>:/icon/icon/dashboard-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -411,7 +411,7 @@
           <string>Curve emulation</string>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/graph-32.ico</normaloff>:/icon/icon/graph-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -443,7 +443,7 @@
           <string>Error 1</string>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/multiply-2-32.ico</normaloff>:/icon/icon/multiply-2-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -475,7 +475,7 @@
           <string>Error 2</string>
          </property>
          <property name="icon">
-          <iconset resource="resource.qrc">
+          <iconset>
            <normaloff>:/icon/icon/elevator-32.ico</normaloff>:/icon/icon/elevator-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -1189,6 +1189,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_17">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>6</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label_4">
                    <property name="sizePolicy">
@@ -1220,17 +1226,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                    <property name="font">
                     <font>
-                     <family>DSEG7 Modern</family>
-                     <pointsize>11</pointsize>
+                     <family>7-Segment</family>
+                     <pointsize>23</pointsize>
                      <italic>false</italic>
                     </font>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QLabel {
-        border: 2px solid black;
+        border: 1px solid black;
         border-radius: 5px;
         padding: 5px;
-}</string>
+}
+</string>
                    </property>
                    <property name="frameShape">
                     <enum>QFrame::Shape::NoFrame</enum>
@@ -1267,7 +1274,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </font>
                    </property>
                    <property name="text">
-                    <string>Pulses counted:</string>
+                    <string>Pulses counted [x4]:</string>
                    </property>
                    <property name="margin">
                     <number>14</number>
@@ -1284,14 +1291,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                    <property name="font">
                     <font>
-                     <family>DSEG7 Modern</family>
-                     <pointsize>11</pointsize>
+                     <family>7-Segment</family>
+                     <pointsize>23</pointsize>
                      <italic>false</italic>
                     </font>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QLabel {
-        border: 2px solid black;
+        border: 1px solid black;
         border-radius: 5px;
         padding: 5px;
 }
@@ -1379,6 +1386,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </item>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_18">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>6</number>
+                 </property>
                  <item>
                   <widget class="QLabel" name="label_18">
                    <property name="sizePolicy">
@@ -1410,17 +1423,18 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                    <property name="font">
                     <font>
-                     <family>DSEG7 Modern</family>
-                     <pointsize>11</pointsize>
+                     <family>7-Segment</family>
+                     <pointsize>23</pointsize>
                      <italic>false</italic>
                     </font>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QLabel {
-        border: 2px solid black;
+        border: 1px solid black;
         border-radius: 5px;
         padding: 5px;
-}</string>
+}
+</string>
                    </property>
                    <property name="text">
                     <string>0</string>
@@ -1448,7 +1462,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                     </font>
                    </property>
                    <property name="text">
-                    <string>Pulses counted:</string>
+                    <string>Pulses counted [x4]:</string>
                    </property>
                    <property name="margin">
                     <number>14</number>
@@ -1465,17 +1479,19 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </property>
                    <property name="font">
                     <font>
-                     <family>DSEG7 Modern</family>
-                     <pointsize>11</pointsize>
+                     <family>7-Segment</family>
+                     <pointsize>23</pointsize>
                      <italic>false</italic>
+                     <strikeout>false</strikeout>
                     </font>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">QLabel {
-        border: 2px solid black;
+        border: 1px solid black;
         border-radius: 5px;
         padding: 5px;
-}</string>
+}
+</string>
                    </property>
                    <property name="text">
                     <string>0</string>

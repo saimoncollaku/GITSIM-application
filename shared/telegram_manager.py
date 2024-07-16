@@ -52,22 +52,18 @@ class TelegramManager(QSerialPort):
             self.last_data_received["count2"]  =  uart_data[3]
             
             if not self.board_identifier_timer.isActive():
-                print("ok")
                 self.send_functioning_telegram()
                 self.telegram_received.emit()
                 return
             
             # Send a functioning telegram in responce
-            # print(self.check_responce_data())
             if self.check_responce_data():
-                print("taaak")
                 self.send_functioning_telegram()
                 self.board_identifier_timer.stop()
                 self.telegram_received.emit()
                 return
                 
-            
-        
+              
     def send_functioning_telegram(self) -> None:
         """
         Sends a functioning telegram to the board.
@@ -77,7 +73,7 @@ class TelegramManager(QSerialPort):
         # Send the value-telegram and addon-telegram
         self.write(self.value_telegram)
         self.write(self.addon_telegram)
-        print(self.value_telegram)
+        
         if self.value_telegram[8] == 3:
             self.close_serial_connection()
             
@@ -148,18 +144,14 @@ class TelegramManager(QSerialPort):
         
         # Check speed 1
         if self.last_data_received["speed1"] < 49.9:
-            print("1")
             return False
         elif self.last_data_received["speed1"] > 50.1:
-            print("2")
             return False
         
         # Check speed 2
         if self.last_data_received["speed2"] < 49.9:
-            print("3")
             return False
         elif self.last_data_received["speed2"] > 50.1:
-            print("4")
             return False
         
         return True
