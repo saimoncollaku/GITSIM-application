@@ -50,7 +50,7 @@ class TelegramManager(QSerialPort):
                 self.telegram_received.emit()
                 return
             
-            # Send a functioning telegram in responce
+            # Check only if we are evaluating if the board is GITSIM
             if self.check_responce_data():
                 self.send_functioning_telegram()
                 self.board_identifier_timer.stop()
@@ -130,17 +130,18 @@ class TelegramManager(QSerialPort):
         self.addon_telegram = struct.pack('<fB', 0, 0)
         
     def check_responce_data(self) -> bool:
+        # * The starting speed HAS to be zero!
         
         # Check speed 1
-        if self.last_data_received["speed1"] < 49.9:
+        if self.last_data_received["speed1"] < -0.1:
             return False
-        elif self.last_data_received["speed1"] > 50.1:
+        elif self.last_data_received["speed1"] > 0.1:
             return False
         
         # Check speed 2
-        if self.last_data_received["speed2"] < 49.9:
+        if self.last_data_received["speed2"] < -0.1:
             return False
-        elif self.last_data_received["speed2"] > 50.1:
+        elif self.last_data_received["speed2"] > 0.1:
             return False
         
         return True
