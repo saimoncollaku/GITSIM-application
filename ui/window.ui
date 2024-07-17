@@ -593,7 +593,7 @@
           <cursorShape>ArrowCursor</cursorShape>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page">
           <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -1219,10 +1219,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QLabel" name="distance_encoder1_label">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>46</height>
+                    </size>
                    </property>
                    <property name="font">
                     <font>
@@ -1278,10 +1284,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QLabel" name="pulses_encoder1_label">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>46</height>
+                    </size>
                    </property>
                    <property name="font">
                     <font>
@@ -1410,10 +1422,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QLabel" name="distance_encoder2_label">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>46</height>
+                    </size>
                    </property>
                    <property name="font">
                     <font>
@@ -1466,10 +1484,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <item>
                   <widget class="QLabel" name="pulses_encoder2_label">
                    <property name="sizePolicy">
-                    <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>46</height>
+                    </size>
                    </property>
                    <property name="font">
                     <font>

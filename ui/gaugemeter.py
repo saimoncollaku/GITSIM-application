@@ -1,23 +1,23 @@
 from PySide6.QtWidgets import QWidget
 from PySide6.QtGui import QPainter, QColor, QPen, QFont, QPolygon
-from PySide6.QtCore import Qt, QRectF, QPointF
+from PySide6.QtCore import Qt, QRectF, QPointF, QPoint
 import math
 
 class GaugeMeter(QWidget):
-    def __init__(self, parent=None, min_value=0, max_value=150, 
+    def __init__(self, parent=None, min_value=0, max_value=200, 
                  tick_interval=10):
         # Initialize the GaugeMeter widget
         super().__init__(parent)
         self.min_value = min_value
         self.max_value = max_value
         self.tick_interval = tick_interval
-        self.value = min_value
-        # self.setMinimumSize(200, 200)  # Set minimum size for the widget
+        self.value = 0
+        self.update()
 
     def set_value(self, value):
         if value != self.value:
             # Set the current value of the gauge, ensuring it's within the valid range
-            self.value = max(self.min_value, min(self.max_value, value))
+            self.value = max(-self.max_value, min(self.max_value, value))
         
             # Trigger the scene repaint
             self.update()
@@ -36,7 +36,35 @@ class GaugeMeter(QWidget):
         self.draw_all_ticks(painter, center, radius)
         self.draw_arrow(painter, center, radius)
         self.draw_circle(painter, center)
-        self.draw_value_label(painter, center, radius)  # Changed this line
+        self.draw_value_label(painter, center, radius) 
+        self.draw_direction_arrows(painter, center, radius) 
+        
+    def draw_direction_arrows(self, painter, center, radius):
+        # Draw direction arrows
+        painter.setPen(Qt.NoPen)
+        painter.setBrush(QColor(0, 0, 0))  # Black color for arrows
+
+        arrow_size = 16  # Size of the arrow
+        arrow_y = center.y() + radius - 60  # Position above the value label
+
+        # Right arrow (positive)
+        if self.value > 0:
+            right_arrow = QPolygon([
+                QPoint(center.x() + 20, arrow_y),
+                QPoint(center.x() + 20 + arrow_size, arrow_y + arrow_size // 2),
+                QPoint(center.x() + 20, arrow_y + arrow_size)
+            ])
+            painter.drawPolygon(right_arrow)
+
+        # Left arrow (negative)
+        if self.value < 0:
+            left_arrow = QPolygon([
+                QPoint(center.x() - 20, arrow_y),
+                QPoint(center.x() - 20 - arrow_size, arrow_y + arrow_size // 2),
+                QPoint(center.x() - 20, arrow_y + arrow_size)
+            ])
+            painter.drawPolygon(left_arrow)
+        
 
     def draw_background(self, painter, center, radius):
         # Draw the circular background of the gauge
@@ -81,7 +109,7 @@ class GaugeMeter(QWidget):
         painter.setPen(Qt.NoPen)
         painter.setBrush(QColor(255, 0, 0))
         
-        arrow_angle = self.value_to_angle(self.value)
+        arrow_angle = self.value_to_angle(abs(self.value))
         arrow_length = radius - 20
         arrow_width = 8
         
@@ -115,10 +143,9 @@ class GaugeMeter(QWidget):
         painter.drawEllipse(center, 10, 10)
 
     def draw_value_label(self, painter, center, radius):
-        # Draw the current value label at the bottom inside the gauge circle
         painter.setPen(QColor(0, 0, 0))
-        painter.setFont(QFont("Arial", 10, QFont.Bold))
-        value_text = f"{self.value:.2f} ㎧"
+        painter.setFont(QFont("Arial", 12, QFont.Bold))
+        value_text = f"{abs(self.value):.2f} ㎧"
         
         # Calculate the position for the text
         text_width = painter.fontMetrics().horizontalAdvance(value_text)
@@ -126,7 +153,7 @@ class GaugeMeter(QWidget):
         
         # Position the text at the bottom inside the circle
         text_x = center.x() - text_width / 2
-        text_y = center.y() + radius - text_height - 5  # 5 pixels padding from bottom
+        text_y = center.y() + radius - text_height - 0  # Increased padding to make room for arrows
         
         painter.drawText(text_x, text_y, value_text)
 
