@@ -119,8 +119,6 @@ class TelegramManager(QSerialPort):
     
     def assign_acc_both_telegram(self, acc1: float, acc2: float):
         identifier = int(6)
-        print(acc1)
-        print(acc2)
         self.value_telegram = struct.pack('<ffB', acc1, acc2, identifier)
         
     def assign_disconnection_telegram(self):
