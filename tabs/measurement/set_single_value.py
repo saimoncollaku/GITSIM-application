@@ -24,7 +24,6 @@ class SetSingleValue():
         self.set_speed_button.clicked.connect(self.call_uart_send_speed)
         self.manager.aboutToClose.connect(self.main_window.single_value_to_disabled)
         
-    
     def return_encoder_to_modify(self) -> str:
         
         if self.change_encoder1.isChecked():
@@ -39,8 +38,7 @@ class SetSingleValue():
         
     def call_uart_send_speed(self):
         option = self.return_encoder_to_modify()
-        print("entrato")
-        
+                
         if option == "1":
             self.manager.assign_speed_e1_telegram(self.speed_spinbox.value())
         elif option == "2":

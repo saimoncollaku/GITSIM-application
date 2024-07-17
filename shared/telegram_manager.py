@@ -24,16 +24,10 @@ class TelegramManager(QSerialPort):
         self.setBaudRate(115200)
         self.readyRead.connect(self.read_response_telegram)
         self.board_identifier_timer.timeout.connect(self.emit_unknown_board)
-        # self.connection_is = False
-        
         
     def emit_unknown_board(self):
         self.unknown_board_detected.emit()
         self.board_identifier_timer.stop()
-        self.clear(QSerialPort.Direction.Input)
-        self.close()
-        self.setPortName("") 
-    
     
     def read_response_telegram(self):
         
@@ -62,8 +56,7 @@ class TelegramManager(QSerialPort):
                 self.board_identifier_timer.stop()
                 self.telegram_received.emit()
                 return
-                
-              
+                           
     def send_functioning_telegram(self) -> None:
         """
         Sends a functioning telegram to the board.
@@ -80,8 +73,7 @@ class TelegramManager(QSerialPort):
         
         # Set the next telegram as empty
         self.assign_empty_telegram()
-        
-         
+            
     def send_connection_telegram(self, diameter: float, 
                               ppr1: int, ppr2: int) -> None:
         """
@@ -133,11 +125,9 @@ class TelegramManager(QSerialPort):
         identifier = int(7)
         self.value_telegram = struct.pack('<ffB', 0, 0, identifier)
         
-        
     def assign_empty_telegram(self):
         self.value_telegram = struct.pack('<ffB', 0, 0, 0)
         self.addon_telegram = struct.pack('<fB', 0, 0)
-        
         
     def check_responce_data(self) -> bool:
         
@@ -154,7 +144,6 @@ class TelegramManager(QSerialPort):
             return False
         
         return True
-   
    
     def close_serial_connection(self):
         # Force write (its not enough)

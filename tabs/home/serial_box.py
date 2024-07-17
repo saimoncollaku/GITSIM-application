@@ -66,21 +66,15 @@ class SerialBox:
         
         # Check if there are no ports to connect to
         if self.com_select_list.currentText() == "":
-            message = "No ports to connect to!"
-            self.main_window.set_temporary_message(message)
+            self.show_no_ports_available_message()
             return
         
         for info in QSerialPortInfo.availablePorts():
             if info.portName() == self.com_select_list.currentText():
                 self.manager.setPort(info)
                 if self.manager.open(QSerialPort.ReadWrite):
-                    # Connection success - permanent message
-                    message = f"Connected to {info.portName()} 🟢"
-                    self.main_window.set_permanent_message(message)
-                    
-                    # Connection success - temporary message
-                    message = "Connected successfully!"
-                    self.main_window.set_temporary_message(message)
+                    self.show_connection_success_message()
+                    self.show_connection_failed_message()
                     
                     self.main_window.serial_box_interface_to_connected()
                     self.main_window.single_value_to_enabled()
@@ -88,13 +82,8 @@ class SerialBox:
                     self.send_costants_via_serial()
                     self.encoder.reset_variables()
                 else:
-                    # Failure to connect - temporary message
-                    message = f"Unable to connect to {info.portName()}"
-                    self.main_window.set_temporary_message(message)
-                    
-                    # Closing connection procedure
-                    self.manager.close()
-                    self.manager.setPortName("")
+                    self.show_connection_failed_message()
+                    self.manager.close_serial_connection()
                 break
                 
     def disconnect_to_COM(self):
@@ -106,45 +95,18 @@ class SerialBox:
             msg = f"{msg_pt1} {msg_pt2}"
             raise Exception(msg)
         
-        # Disconnection - permanent message
-        message = "Not connected 🔴"
-        self.main_window.set_permanent_message(message)
-        
-        # Disconnection - temporary message
-        message = "Disconnected successfully!"
-        self.main_window.set_temporary_message(message)
-
-        # Closing connection procedure
+        self.show_disconnection_message()
         self.manager.assign_disconnection_telegram()
-        # Change enable state of buttons
-        # self.main_window.serial_box_interface_to_disconnected()
             
     def cable_disconnection_action(self):
-        # Test - check if the error is due to a disconnection
+        # Test - check if the error is due to a cable disconnection
         if self.manager.error() == QSerialPort.ResourceError:
-            # Cable disconnection - temporary message
-            message = " Cable disconnected!"
-            self.main_window.set_temporary_message(message)
-            
-            # Cable disconnection - permanent message
-            message = "Not connected 🔴"
-            self.main_window.set_permanent_message(message)
-            
-            # Closing connection procedure
-            self.manager.close()
-            self.manager.setPortName("") 
+            self.show_cable_disconnection_message()
+            self.manager.close_serial_connection()
     
     def unknown_board_action(self):
-            # Cable disconnection - temporary message
-            message = " The device is not a GITSIM board!"
-            self.main_window.set_temporary_message(message)
-            
-            # Cable disconnection - permanent message
-            message = "Not connected 🔴"
-            self.main_window.set_permanent_message(message)
-            
-            # Change enable state of buttons
-            # self.main_window.serial_box_interface_to_disconnected()
+            self.manager.close_serial_connection()
+            self.show_unknown_board_message()
         
     def send_costants_via_serial(self):
         # Fetch the user values from the spinboxes
@@ -159,3 +121,49 @@ class SerialBox:
         self.encoder.diameter = self.diameter_spinbox.value()
         self.encoder.ppr_e1 = self.ppr1_spinbox.value()
         self.encoder.ppr_e2 = self.ppr2_spinbox.value()
+        
+    def show_connection_success_message(self):
+        # Connection success - permanent message
+        message = f"Connected to {self.manager.portName()} 🟢"
+        self.main_window.set_permanent_message(message)
+        
+        # Connection success - temporary message
+        message = "Connected successfully!"
+        self.main_window.set_temporary_message(message)
+       
+    def show_connection_failed_message(self):
+        # Failure to connect - temporary message
+        message = f"Unable to connect to {self.manager.portName()}"
+        self.main_window.set_temporary_message(message)
+        
+    def show_disconnection_message(self):
+        # Disconnection - permanent message
+        message = "Not connected 🔴"
+        self.main_window.set_permanent_message(message)
+        
+        # Disconnection - temporary message
+        message = "Disconnected successfully!"
+        self.main_window.set_temporary_message(message)
+    
+    def show_no_ports_available_message(self):
+        # Temporary message
+        message = "No ports to connect to!"
+        self.main_window.set_temporary_message(message)
+        
+    def show_cable_disconnection_message(self):
+            # Cable disconnection - temporary message
+            message = " Cable disconnected!"
+            self.main_window.set_temporary_message(message)
+            
+            # Cable disconnection - permanent message
+            message = "Not connected 🔴"
+            self.main_window.set_permanent_message(message)
+            
+    def show_unknown_board_message(self):
+            # Cable disconnection - temporary message
+            message = " The device is not a GITSIM board!"
+            self.main_window.set_temporary_message(message)
+            
+            # Cable disconnection - permanent message
+            message = "Not connected 🔴"
+            self.main_window.set_permanent_message(message)

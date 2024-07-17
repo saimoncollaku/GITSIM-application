@@ -51,7 +51,6 @@ class MainWindow(QMainWindow):
         self.setup_tab_changes()
         self.single_value_to_disabled()
         
-
     def set_temporary_message(self, message:str, duration:int=3000):
         self.ui.temporary_message_label.setText(message)
         self.ui.temporary_message_label.setStyleSheet("background-color: #ece635;")
@@ -61,7 +60,7 @@ class MainWindow(QMainWindow):
         self.ui.temporary_message_label.clear()
         self.ui.temporary_message_label.setStyleSheet("")
         self.timer.stop()
-        
+
     def setup_tab_changes(self):
         # Set slots to change the pages - Page 0
         self.ui.connection_button_1.clicked.connect(self.set_connection_tab)
@@ -78,8 +77,7 @@ class MainWindow(QMainWindow):
         # Set slots to change the pages - Page 4
         self.ui.error2_button_1.clicked.connect(self.set_error2_tab)
         self.ui.error2_button_2.clicked.connect(self.set_error2_tab)
-        
-        
+           
     def set_permanent_message(self, message:str):
         self.ui.permanent_message_label.setText(message)
     
