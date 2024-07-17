@@ -1,9 +1,8 @@
 
 # Public libraries
-from PySide6.QtWidgets import QMainWindow, QPushButton
-from PySide6.QtCore import QTimer
-from PySide6.QtGui import QMovie
-from PySide6.QtGui import QFontDatabase
+from PySide6.QtWidgets import QMainWindow, QPushButton, QApplication
+from PySide6.QtCore import QTimer, Signal
+from PySide6.QtGui import QMovie, QFontDatabase
 
 # Private libraries
 from ui.window_ui import Ui_MainWindow
@@ -29,6 +28,8 @@ def update_button_icon(button: QPushButton):
     button.setIcon(button.movie.currentPixmap())
 
 class MainWindow(QMainWindow):
+    about_to_quit = Signal(); 
+    
     def __init__(self):
         super(MainWindow, self).__init__()
         
@@ -42,6 +43,7 @@ class MainWindow(QMainWindow):
         
         # Initialize components
         self.timer = QTimer(self)
+        self.app = QApplication.instance()
         self.ui.icon_only_widget.hide()
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.menu_button_1.setChecked(True)
@@ -51,6 +53,14 @@ class MainWindow(QMainWindow):
         self.setup_tab_changes()
         self.single_value_to_disabled()
         
+    def close_app(self):
+        self.close()
+        self.app.quit()
+        
+    def closeEvent(self, event):
+        event.ignore()
+        self.about_to_quit.emit()  
+    
     def set_temporary_message(self, message:str, duration:int=3000):
         self.ui.temporary_message_label.setText(message)
         self.ui.temporary_message_label.setStyleSheet("background-color: #ece635;")

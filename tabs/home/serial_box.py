@@ -1,7 +1,7 @@
 # Public libraries
 from PySide6 import QtCore
 from PySide6.QtSerialPort import QSerialPortInfo, QSerialPort
-import struct
+from PySide6.QtCore import QTimer 
 
 # Private libraries
 from shared.mainwindow import MainWindow
@@ -25,21 +25,34 @@ class SerialBox:
         self.ppr1_spinbox = self.main_window.ui.ppr1_spinbox
         self.ppr2_spinbox = self.main_window.ui.ppr2_spinbox
         self.diameter_spinbox = self.main_window.ui.diameter_spinbox
-        self.com_update_timer = QtCore.QTimer()
+        self.com_update_timer = QTimer()
+        self.quit_timer = QTimer()
         
         # Inizialization
+        self.quit_timer.setSingleShot(True)
         self.com_update_timer.start(100)
         self.manager.setBaudRate(115200)
         self.main_window.set_permanent_message(f"Not connected 🔴")
         
-        # Assign slots to the signals
+        # Internal slots
         self.com_update_timer.timeout.connect(self.update_available_COMs)
         self.conn_button.clicked.connect(self.connect_to_COM)
         self.disc_button.clicked.connect(self.disconnect_to_COM)
         self.manager.errorOccurred.connect(self.cable_disconnection_action)
         self.manager.unknown_board_detected.connect(self.unknown_board_action)
+        self.main_window.about_to_quit.connect(self.closing_gui_procedure)
+        
+        # External slots
         self.manager.aboutToClose.connect(
             self.main_window.serial_box_interface_to_disconnected)
+        self.quit_timer.timeout.connect(self.main_window.close_app)
+    
+    def closing_gui_procedure(self):
+        if self.manager.isOpen():
+            self.manager.assign_disconnection_telegram()
+            self.quit_timer.start(500)
+        
+        self.main_window.close()
         
     def update_available_COMs(self):  
         
