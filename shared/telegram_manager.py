@@ -109,16 +109,18 @@ class TelegramManager(QSerialPort):
         identifier = int(3)
         self.value_telegram = struct.pack('<ffB', speed1, speed2, identifier)
                 
-    def assign_acceleration_e1_telegram(self, acc1: float):
+    def assign_acc_e1_telegram(self, acc1: float):
         identifier = int(4)
         self.value_telegram = struct.pack('<ffB', acc1, 0, identifier)
         
-    def assign_acceleration_e2_telegram(self, acc2: float):
+    def assign_acc_e2_telegram(self, acc2: float):
         identifier = int(5)
         self.value_telegram = struct.pack('<ffB', 0, acc2, identifier)
     
-    def assign_acceleration_both_telegram(self, acc1: float, acc2: float):
+    def assign_acc_both_telegram(self, acc1: float, acc2: float):
         identifier = int(6)
+        print(acc1)
+        print(acc2)
         self.value_telegram = struct.pack('<ffB', acc1, acc2, identifier)
         
     def assign_disconnection_telegram(self):

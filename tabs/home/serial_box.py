@@ -74,7 +74,6 @@ class SerialBox:
                 self.manager.setPort(info)
                 if self.manager.open(QSerialPort.ReadWrite):
                     self.show_connection_success_message()
-                    self.show_connection_failed_message()
                     
                     self.main_window.serial_box_interface_to_connected()
                     self.main_window.single_value_to_enabled()
