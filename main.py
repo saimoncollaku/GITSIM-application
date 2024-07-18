@@ -11,6 +11,7 @@ from shared.encoder_data import EncoderData
 from tabs.home.serial_box import SerialBox
 from tabs.measurement.encoder_measure import EncoderMeasurementBox
 from tabs.measurement.set_single_value import SetSingleValue
+from tabs.emulation.curve_emulation import CurveEmulation
     
 if __name__ == "__main__":
     
@@ -26,11 +27,16 @@ if __name__ == "__main__":
     app.setStyleSheet(style_str)
     
     # Single resources modules
-    serial_tab = SerialBox(window, telegram_manager, encoder_data)
+    serial_connection_tab = SerialBox(window, 
+                                      telegram_manager, 
+                                      encoder_data)
     encoder_measure_box = EncoderMeasurementBox(window, 
                                                 telegram_manager,
                                                 encoder_data)
     set_single_value_box = SetSingleValue(window, 
+                                          telegram_manager, 
+                                          encoder_data)
+    curve_emulation_tab = CurveEmulation(window, 
                                           telegram_manager, 
                                           encoder_data)
     

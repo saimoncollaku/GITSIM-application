@@ -12,7 +12,7 @@ class SetSingleValue():
         self.manager = manager
         self.encoder = encoder
         
-        # Blabla
+        # Setup exclusive resources
         self.change_encoder1 = self.main_window.ui.single_encoder1_radio
         self.change_encoder2 = self.main_window.ui.single_encoder2_radio
         self.change_both = self.main_window.ui.single_both_radio
