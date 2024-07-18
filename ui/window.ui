@@ -32,7 +32,7 @@
    <string>GITSIM</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="resource.qrc">
     <normaloff>:/icon/icon/GITSIM.png</normaloff>:/icon/icon/GITSIM.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -100,7 +100,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/menu-4-32.ico</normaloff>:/icon/icon/menu-4-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -136,7 +136,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/home-4-32.ico</normaloff>:/icon/icon/home-4-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -162,7 +162,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/dashboard-32.ico</normaloff>:/icon/icon/dashboard-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -188,7 +188,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/graph-32.ico</normaloff>:/icon/icon/graph-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -214,7 +214,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/multiply-2-32.ico</normaloff>:/icon/icon/multiply-2-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -240,7 +240,7 @@
           <string/>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/elevator-32.ico</normaloff>:/icon/icon/elevator-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -305,7 +305,7 @@
           <string>Minimize</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/menu-4-32.ico</normaloff>:/icon/icon/menu-4-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -347,7 +347,7 @@
           <string>Home</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/home-4-32.ico</normaloff>:/icon/icon/home-4-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -379,7 +379,7 @@
           <string>Measurement</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/dashboard-32.ico</normaloff>:/icon/icon/dashboard-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -411,7 +411,7 @@
           <string>Curve emulation</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/graph-32.ico</normaloff>:/icon/icon/graph-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -443,7 +443,7 @@
           <string>Error 1</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/multiply-2-32.ico</normaloff>:/icon/icon/multiply-2-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -475,7 +475,7 @@
           <string>Error 2</string>
          </property>
          <property name="icon">
-          <iconset>
+          <iconset resource="resource.qrc">
            <normaloff>:/icon/icon/elevator-32.ico</normaloff>:/icon/icon/elevator-32.ico</iconset>
          </property>
          <property name="iconSize">
@@ -592,8 +592,14 @@
          <property name="cursor">
           <cursorShape>ArrowCursor</cursorShape>
          </property>
-         <property name="currentIndex">
+         <property name="lineWidth">
           <number>1</number>
+         </property>
+         <property name="midLineWidth">
+          <number>0</number>
+         </property>
+         <property name="currentIndex">
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page">
           <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -1851,7 +1857,268 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="page_3"/>
+         <widget class="QWidget" name="page_3">
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <item>
+            <widget class="QLabel" name="label_17">
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">		background-color:#bb2e29;
+		color: #fff;</string>
+             </property>
+             <property name="text">
+              <string>Curve emulation</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="PlotWidget" name="widget" native="true"/>
+           </item>
+           <item>
+            <widget class="Line" name="line_3">
+             <property name="styleSheet">
+              <string notr="true">color: #0066a4;</string>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Plain</enum>
+             </property>
+             <property name="lineWidth">
+              <number>2</number>
+             </property>
+             <property name="midLineWidth">
+              <number>1</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_4">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_8">
+               <item>
+                <widget class="QPushButton" name="pushButton">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="resource.qrc">
+                   <normaloff>:/icon/icon/icons8-play-button-48.png</normaloff>:/icon/icon/icons8-play-button-48.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>40</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_2">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="resource.qrc">
+                   <normaloff>:/icon/icon/icons8-stop-button-50.png</normaloff>:/icon/icon/icons8-stop-button-50.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>40</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="Line" name="line_4">
+               <property name="orientation">
+                <enum>Qt::Orientation::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_12">
+               <item>
+                <widget class="QPushButton" name="pushButton_4">
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Choose emulation file</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="resource.qrc">
+                   <normaloff>:/icon/icon/hand.png</normaloff>:/icon/icon/hand.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_3">
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Choose log folder</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="resource.qrc">
+                   <normaloff>:/icon/icon/icons8-folder-48.png</normaloff>:/icon/icon/icons8-folder-48.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>20</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_19">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Choose log file name:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="lineEdit">
+                 <property name="placeholderText">
+                  <string>* &quot; / \ &lt; &gt; : | ? not permitted</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="Line" name="line_6">
+               <property name="orientation">
+                <enum>Qt::Orientation::Vertical</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayout_13">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_10">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
+                 </property>
+                 <item>
+                  <widget class="QRadioButton" name="radioButton">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>Speed</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioButton_2">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="text">
+                    <string>Acceleration</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_11">
+                 <item>
+                  <widget class="QLabel" name="label_16">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <pointsize>11</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Initial speed [m/s]: </string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QDoubleSpinBox" name="doubleSpinBox">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Cascadia Code</family>
+                     <pointsize>10</pointsize>
+                    </font>
+                   </property>
+                   <property name="buttonSymbols">
+                    <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
          <widget class="QWidget" name="page_4"/>
          <widget class="QWidget" name="page_5"/>
         </widget>
@@ -1867,6 +2134,12 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <class>GaugeMeter</class>
    <extends>QWidget</extends>
    <header>ui.gaugemeter</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QWidget</extends>
+   <header>pyqtgraph</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
