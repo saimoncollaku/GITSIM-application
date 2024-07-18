@@ -1,6 +1,9 @@
 # Public libraries
 from PySide6.QtWidgets import QFileDialog
-from pyqtgraph import PlotWidget
+from pyqtgraph import LegendItem, InfiniteLine
+from PySide6.QtCore import QTimer
+
+import pyqtgraph
 import pandas as pd
 import os
 import numpy as np
@@ -29,12 +32,17 @@ class CurveEmulation():
         # Variables for file reading 
         self.data_frame = None
         self.curve_data = None
+        self.curve1 = None
+        self.curve2 = None
+        # Timer for moving vertical line
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.update_vertical_line)
         self.setup_plot_widget()
         
         # Setup signal connections
         self.choose_file_button.clicked.connect(self.load_emulation_file)
         self.acc_axis_radio.pressed.connect(self.set_acc_axis)
-        self.speed_axis_radio.pressed.connect(self.set_speed_axis)   
+        self.speed_axis_radio.pressed.connect(self.set_speed_axis) 
         
     def load_emulation_file(self):
         
@@ -45,33 +53,33 @@ class CurveEmulation():
             # Try to get access to the file
             file_extension = os.path.splitext(file_path)[1].lower()
             
-            try:
-                if not self.check_file_extension(file_path, file_extension):
-                    print(f"Unsupported file type")
-                    return
-                
-                if not self.check_number_of_columns():
-                    print(f"File should have exactly 2 columns.")
-                    return
-                
-                if not self.check_values_are_numeric():
-                    print("All values in the file should be numeric.")
-                    return
-                
-                # Convert to numpy array of float64
-                self.data = self.data_frame.astype(float).to_numpy()
-                self.plot_data_collected()
-                
-                file_name = os.path.basename(file_path)
-                # Do something with the data
-                print(f"Loaded file: {file_name}")
-                print(f"Number of rows: {self.data.shape[0]}")
-                print(f"First row: {self.data[0] if self.data.size else 'Empty file'}")
+            # try:
+            if not self.check_file_extension(file_path, file_extension):
+                print(f"Unsupported file type")
                 return
             
-            except Exception:
-                print(f"Error reading file")
-                return            
+            if not self.check_number_of_columns():
+                print(f"File should have exactly 2 columns.")
+                return
+            
+            if not self.check_values_are_numeric():
+                print("All values in the file should be numeric.")
+                return
+            
+            # Convert to numpy array of float64
+            self.data = self.data_frame.astype(float).to_numpy()
+            self.plot_data_collected()
+            print("111")
+            file_name = os.path.basename(file_path)
+            # Do something with the data
+            print(f"Loaded file: {file_name}")
+            print(f"Number of rows: {self.data.shape[0]}")
+            print(f"First row: {self.data[0] if self.data.size else 'Empty file'}")
+            return
+            
+            # except Exception:
+            #     print(f"Error reading file")
+            #     return            
 
     def check_values_are_numeric(self) -> bool:
         # Attempt to convert all columns to numeric
@@ -127,19 +135,93 @@ class CurveEmulation():
         self.plot_widget.setBackground("w")
         self.plot_widget.getViewBox().setBackgroundColor(None)
         self.plot_widget.getPlotItem().getViewBox().setBorder(pen=None)
-        self.plot_widget.setLabel('left', 'Speed [m/s]')
-        self.plot_widget.setLabel('bottom', 'Time [s]')
+        self.plot_widget.setLabel('left', 'Speed [m/s]', color='k', size='12pt')
+        self.plot_widget.setLabel('bottom', 'Time [s]', color='k', size='12pt')
+        
+        # Change the color of the labels to black
+        self.plot_widget.getAxis('left').setPen('k')  # 'k' stands for black
+        self.plot_widget.getAxis('left').setTextPen('k')
+        self.plot_widget.getAxis('bottom').setPen('k')
+        self.plot_widget.getAxis('bottom').setTextPen('k')
+
+        # Create the legend item and set its offset to be below the x-axis
+        self.legend = LegendItem((80, 60), offset=(-10, 10))
+        self.legend.setParentItem(self.plot_widget.getPlotItem())
+        
+        self.curve1 = self.plot_widget.plot([], [], pen={'color': 'b', 'width': 3}, name="Encoder 1")
+        self.curve2 = self.plot_widget.plot([], [], pen={'color': 'r', 'width': 3}, name="Encoder 2")
+        self.legend.addItem(self.curve1, '<span style="color: black;">Encoder 1</span>')
+        self.legend.addItem(self.curve2, '<span style="color: black;">Encoder 2</span>')
+        
+        self.legend.setBrush((200, 200, 200, 150))  # Grey background with some transparency
+        self.legend.setLabelTextColor('k')
+        
+        # Add a vertical line
+        self.vertical_line = InfiniteLine(angle=90, movable=False, pen='g')
+        self.plot_widget.addItem(self.vertical_line)
+        self.vertical_line_position = 0
+    
         
     def plot_data_collected(self):
+        # Calculate x-axis range
         x = np.arange(0, len(self.data) * 0.05, 0.05)
-        curve1 = self.plot_widget.plot(x, self.data[:, 0], pen='b', name='Curve 1')
-        curve2 = self.plot_widget.plot(x, self.data[:, 1], pen='r', name='Curve 2')
-        self.plot_widget.addLegend(["Encoder 1", "Encoder 2"])
-        self.plot_widget.setYRange(min(self.data.min(), 0), max(self.data.max(), 0))   
-        self.plot_widget.setXRange(0, x[-1]) 
+        
+        # Remove existing curves
+        self.plot_widget.removeItem(self.curve1)
+        self.plot_widget.removeItem(self.curve2)
+        
+        # Setting the curves specs
+        pen1 = {'color': 'b', 'width': 3}
+        pen2 = {'color': 'r', 'width': 3}
+        self.curve1 = self.plot_widget.plot(x, self.data[:, 0], 
+                                       pen=pen1, name="Encoder 1")
+        self.curve2 = self.plot_widget.plot(x, self.data[:, 1], 
+                                       pen=pen2, name="Encoder 1")
+        max_y = max(self.data.max(), 0)
+        min_y = min(self.data.min(), 0)
+        self.plot_widget.setYRange(max_y, min_y)   
+        self.plot_widget.setXRange(0, x[-1], padding=0) 
+        
+        # Reset and start the vertical line movement
+        self.vertical_line_position = 0
+        self.vertical_line.setPos(self.vertical_line_position)
+        self.timer.start(100)  # update every 100ms
+
+        
+    def update_vertical_line(self):
+        self.vertical_line_position += 0.05  # move 0.05 units per update (0.5 units/second)
+        
+        if self.vertical_line_position >= (len(self.data) - 1) * 0.05:
+            self.timer.stop()
+            return
+        
+        self.vertical_line.setPos(self.vertical_line_position)
+        print(self.vertical_line_position)
+        
+        
         
     def set_acc_axis(self):
-        self.plot_widget.setLabel('left', 'Acceleration [m/s²]')   
+        self.plot_widget.setLabel('left', 'Acceleration [m/s²]', color='k', size='12pt')  
         
     def set_speed_axis(self):
-        self.plot_widget.setLabel('left', 'Speed [m/s]')  
+        self.plot_widget.setLabel('left', 'Speed [m/s]', color='k', size='12pt') 
+        
+    def constrainLegend(self):
+        viewBox = self.plot_widget.getViewBox()
+        sceneBounds = viewBox.sceneBoundingRect()
+        legendBounds = self.legend.boundingRect()
+        pos = self.legend.pos()
+
+        # Constrain x-position
+        if pos.x() < 0:
+            pos.setX(0)
+        elif pos.x() + legendBounds.width() > sceneBounds.width():
+            pos.setX(sceneBounds.width() - legendBounds.width())
+
+        # Constrain y-position
+        if pos.y() < 0:
+            pos.setY(0)
+        elif pos.y() + legendBounds.height() > sceneBounds.height():
+            pos.setY(sceneBounds.height() - legendBounds.height())
+
+        self.legend.setPos(pos)
