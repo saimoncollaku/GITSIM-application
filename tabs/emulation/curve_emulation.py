@@ -1,9 +1,9 @@
 # Public libraries
 from PySide6.QtWidgets import QFileDialog
-from pyqtgraph import LegendItem, InfiniteLine
-from PySide6.QtCore import QTimer
+from pyqtgraph import LegendItem, InfiniteLine, ViewBox
+from PySide6.QtCore import Qt, QEvent, QRectF, QTimer
+from PySide6.QtCore import Qt, QPointF
 
-import pyqtgraph
 import pandas as pd
 import os
 import numpy as np
@@ -12,6 +12,7 @@ import numpy as np
 from shared.mainwindow import MainWindow
 from shared.telegram_manager import TelegramManager
 from shared.encoder_data import EncoderData
+
 
 class CurveEmulation():
     def __init__(self, main_window: MainWindow, 
@@ -160,7 +161,6 @@ class CurveEmulation():
         self.vertical_line = InfiniteLine(angle=90, movable=False, pen='g')
         self.plot_widget.addItem(self.vertical_line)
         self.vertical_line_position = 0
-    
         
     def plot_data_collected(self):
         # Calculate x-axis range
@@ -186,7 +186,6 @@ class CurveEmulation():
         self.vertical_line_position = 0
         self.vertical_line.setPos(self.vertical_line_position)
         self.timer.start(100)  # update every 100ms
-
         
     def update_vertical_line(self):
         self.vertical_line_position += 0.05  # move 0.05 units per update (0.5 units/second)
@@ -205,23 +204,4 @@ class CurveEmulation():
         
     def set_speed_axis(self):
         self.plot_widget.setLabel('left', 'Speed [m/s]', color='k', size='12pt') 
-        
-    def constrainLegend(self):
-        viewBox = self.plot_widget.getViewBox()
-        sceneBounds = viewBox.sceneBoundingRect()
-        legendBounds = self.legend.boundingRect()
-        pos = self.legend.pos()
-
-        # Constrain x-position
-        if pos.x() < 0:
-            pos.setX(0)
-        elif pos.x() + legendBounds.width() > sceneBounds.width():
-            pos.setX(sceneBounds.width() - legendBounds.width())
-
-        # Constrain y-position
-        if pos.y() < 0:
-            pos.setY(0)
-        elif pos.y() + legendBounds.height() > sceneBounds.height():
-            pos.setY(sceneBounds.height() - legendBounds.height())
-
-        self.legend.setPos(pos)
+    

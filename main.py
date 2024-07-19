@@ -9,6 +9,7 @@ from shared.encoder_data import EncoderData
 # 
 # Private imports (tabs directory)
 from tabs.home.serial_box import SerialBox
+
 from tabs.measurement.encoder_measure import EncoderMeasurementBox
 from tabs.measurement.set_single_value import SetSingleValue
 from tabs.emulation.curve_emulation import CurveEmulation
