@@ -29,12 +29,17 @@ class CurveEmulation():
         self.plot_widget = self.main_window.ui.plot_widget
         self.speed_axis_radio = self.main_window.ui.radioButton
         self.acc_axis_radio = self.main_window.ui.radioButton_2
+        self.start_curve_button = self.main_window.ui.pushButton
+        self.stop_curve_button = self.main_window.ui.pushButton_2
+        self.initial_speed_spinbox = self.main_window.ui.doubleSpinBox
         
         # Variables for file reading 
         self.data_frame = None
         self.curve_data = None
         self.curve1 = None
         self.curve2 = None
+        self.current_index = 0
+        
         # Timer for moving vertical line
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_vertical_line)
@@ -43,7 +48,9 @@ class CurveEmulation():
         # Setup signal connections
         self.choose_file_button.clicked.connect(self.load_emulation_file)
         self.acc_axis_radio.pressed.connect(self.set_acc_axis)
-        self.speed_axis_radio.pressed.connect(self.set_speed_axis) 
+        self.speed_axis_radio.pressed.connect(self.set_speed_axis)
+        # self.start_curve_button.connect(self.start_curve_emulation)
+        # self.stop_curve_button.connect(self.stop_curve_emulation)
         
     def load_emulation_file(self):
         
@@ -76,6 +83,7 @@ class CurveEmulation():
             print(f"Loaded file: {file_name}")
             print(f"Number of rows: {self.data.shape[0]}")
             print(f"First row: {self.data[0] if self.data.size else 'Empty file'}")
+            print(self.curve_data)
             return
             
             # except Exception:
@@ -195,13 +203,80 @@ class CurveEmulation():
             return
         
         self.vertical_line.setPos(self.vertical_line_position)
-        print(self.vertical_line_position)
-        
-        
+        print(self.vertical_line_position)    
         
     def set_acc_axis(self):
         self.plot_widget.setLabel('left', 'Acceleration [m/s²]', color='k', size='12pt')  
         
     def set_speed_axis(self):
         self.plot_widget.setLabel('left', 'Speed [m/s]', color='k', size='12pt') 
+  
+    def start_curve_emulation(self):
+        self.encoder.variables_updated.connect(self.curve_emulation_action)
+        
+    def curve_emulation_action(self):
+        if self.speed_axis_radio.isChecked():
+            self.send_speed_curve_data()
+        elif self.acc_axis_radio.isChecked():
+            pass
+        else:
+            msg_pt1 = "The app tried to disconnect to emulate an"
+            msg_pt2 = "unknown type of curve!"
+            msg = f"{msg_pt1} {msg_pt2}"
+            raise Exception(msg)
+
+    def send_speed_curve_data(self):
+        if self.current_index == 0:
+            self.send_first_speed_curve_data()
+        elif self.current_index == self.data.shape[0]:
+            self.send_last_speed_curve_data()
+        else:
+            self.send_generic_speed_curve_data()
+        
+    def send_first_speed_curve_data(self):
+        speed1 = self.curve_data[0, 0]
+        speed2 = self.curve_data[0, 1]
+        self.manager.assign_speed_both_telegram(speed1, speed2)
+        self.current_index += 1
+        
+    def send_generic_speed_curve_data(self):
+        delta_t = 0.05
+        # Calculate acceleration for Encoder 1
+        speed1 = self.curve_data[self.current_index, 0] 
+        speed1_prec = self.curve_data[self.current_index - 1, 0] 
+        acc1 = (speed1 - speed1_prec) / delta_t
+        # Calculate acceleration for Encoder 1
+        speed2 = self.curve_data[self.current_index, 1] 
+        speed2_prec = self.curve_data[self.current_index - 1, 1] 
+        acc2 = (speed2 - speed2_prec) / delta_t
+        self.current_index += 1
+        self.manager.assign_acc_both_telegram(acc1, acc2)
+        
+    def send_last_speed_curve_data(self):
+        self.manager.assign_speed_both_telegram(0,0)
+        self.current_index = 0
+        self.encoder.variables_updated.disconnect(self.curve_emulation_action)
+        
+    def send_acc_curve_data(self):
+        if self.current_index == 0:
+            self.send_first_acc_curve_data()
+        elif self.current_index == self.data.shape[0]:
+            self.send_last_acc_curve_data()
+        else:
+            self.send_generic_acc_curve_data()
+            
+    def send_first_acc_curve_data(self):
+        speed1 = self.initial_speed_spinbox.value
+        speed2 = self.initial_speed_spinbox.value
+        self.manager.assign_speed_both_telegram(speed1, speed2)
+        
+    def send_generic_acc_curve_data(self):
+        acc1 = self.curve_data[self.current_index, 0] 
+        acc2 = self.curve_data[self.current_index, 1] 
+        self.manager.assign_acc_both_telegram(acc1, acc2)
+        self.current_index += 1
     
+    def send_last_acc_curve_data(self):
+        acc1 = self.curve_data[self.current_index, 0] 
+        acc2 = self.curve_data[self.current_index, 1] 
+        self.manager.assign_acc_both_telegram(acc1, acc2)
