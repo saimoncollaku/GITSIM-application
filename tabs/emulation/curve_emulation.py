@@ -1,8 +1,7 @@
 # Public libraries
 from PySide6.QtWidgets import QFileDialog
-from pyqtgraph import LegendItem, InfiniteLine, ViewBox
-from PySide6.QtCore import Qt, QEvent, QRectF, QTimer
-from PySide6.QtCore import Qt, QPointF
+from pyqtgraph import LegendItem, InfiniteLine
+from PySide6.QtCore import QTimer
 
 import pandas as pd
 import os
@@ -32,6 +31,8 @@ class CurveEmulation():
         self.start_curve_button = self.main_window.ui.pushButton
         self.stop_curve_button = self.main_window.ui.pushButton_2
         self.initial_speed_spinbox = self.main_window.ui.doubleSpinBox
+        self.choose_folder_button = self.main_window.ui.pushButton_3
+        self.log_name_edit = self.main_window.ui.lineEdit
         
         # Variables for file reading 
         self.data_frame = None
@@ -39,6 +40,8 @@ class CurveEmulation():
         self.curve1 = None
         self.curve2 = None
         self.current_index = 0
+        self.log_folder_path = os.path.dirname(os.path.abspath(__file__))
+        self.log_data = np.empty((0,5))
         
         # Timer for moving vertical line
         self.timer = QTimer()
@@ -49,6 +52,7 @@ class CurveEmulation():
         self.choose_file_button.clicked.connect(self.load_emulation_file)
         self.acc_axis_radio.pressed.connect(self.set_acc_axis)
         self.speed_axis_radio.pressed.connect(self.set_speed_axis)
+        self.choose_folder_button.pressed.connect(self.select_log_folder)
         # self.start_curve_button.connect(self.start_curve_emulation)
         # self.stop_curve_button.connect(self.stop_curve_emulation)
         
@@ -61,34 +65,34 @@ class CurveEmulation():
             # Try to get access to the file
             file_extension = os.path.splitext(file_path)[1].lower()
             
-            # try:
-            if not self.check_file_extension(file_path, file_extension):
-                print(f"Unsupported file type")
+            try:
+                if not self.check_file_extension(file_path, file_extension):
+                    print(f"Unsupported file type")
+                    return
+                
+                if not self.check_number_of_columns():
+                    print(f"File should have exactly 2 columns.")
+                    return
+                
+                if not self.check_values_are_numeric():
+                    print("All values in the file should be numeric.")
+                    return
+                
+                # Convert to numpy array of float64
+                self.data = self.data_frame.astype(float).to_numpy()
+                self.plot_data_collected()
+                print("111")
+                file_name = os.path.basename(file_path)
+                # Do something with the data
+                print(f"Loaded file: {file_name}")
+                print(f"Number of rows: {self.data.shape[0]}")
+                print(f"First row: {self.data[0] if self.data.size else 'Empty file'}")
+                print(self.curve_data)
                 return
             
-            if not self.check_number_of_columns():
-                print(f"File should have exactly 2 columns.")
-                return
-            
-            if not self.check_values_are_numeric():
-                print("All values in the file should be numeric.")
-                return
-            
-            # Convert to numpy array of float64
-            self.data = self.data_frame.astype(float).to_numpy()
-            self.plot_data_collected()
-            print("111")
-            file_name = os.path.basename(file_path)
-            # Do something with the data
-            print(f"Loaded file: {file_name}")
-            print(f"Number of rows: {self.data.shape[0]}")
-            print(f"First row: {self.data[0] if self.data.size else 'Empty file'}")
-            print(self.curve_data)
-            return
-            
-            # except Exception:
-            #     print(f"Error reading file")
-            #     return            
+            except Exception:
+                print(f"Error reading file")
+                return            
 
     def check_values_are_numeric(self) -> bool:
         # Attempt to convert all columns to numeric
@@ -215,6 +219,9 @@ class CurveEmulation():
         self.encoder.variables_updated.connect(self.curve_emulation_action)
         
     def curve_emulation_action(self):
+        
+        
+        
         if self.speed_axis_radio.isChecked():
             self.send_speed_curve_data()
         elif self.acc_axis_radio.isChecked():
@@ -224,6 +231,16 @@ class CurveEmulation():
             msg_pt2 = "unknown type of curve!"
             msg = f"{msg_pt1} {msg_pt2}"
             raise Exception(msg)
+
+    def save_encoder_data(self):
+        c1 = self.encoder.counter_e1
+        c2 = self.encoder.counter_e2
+        s1 = self.encoder.speed_e1
+        s2 = self.encoder.speed_e2
+        
+        new_row = np.array([[0, c1, c2, s1, s2]])
+        self.data_log = np.vstack((self.data_log, new_row))
+        
 
     def send_speed_curve_data(self):
         if self.current_index == 0:
@@ -280,3 +297,25 @@ class CurveEmulation():
         acc1 = self.curve_data[self.current_index, 0] 
         acc2 = self.curve_data[self.current_index, 1] 
         self.manager.assign_acc_both_telegram(acc1, acc2)
+        
+    def select_log_folder(self):
+        folder_path = QFileDialog.getExistingDirectory(None, "Select Folder")
+        
+        if folder_path:
+            # Construct full file path
+            file_name = "your_file.xls"
+            
+            df = pd.DataFrame(np.random.rand(10, 4), columns=['Speed', 'B', 'C', 'D'])
+
+            file_name = "your_file.xlsx"
+            full_path = os.path.join(folder_path, file_name)
+
+            # Save the DataFrame as an XLSX file
+            df.to_excel(full_path, index=False)
+
+            print(f"File saved to: {full_path}")
+        else:
+            print("Folder selection canceled")
+            
+    def create_and_save_log_file(self):
+        df = pd.DataFrame(np.random.rand(10, 4), columns=['Speed', 'B', 'C', 'D'])
