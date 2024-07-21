@@ -55,7 +55,7 @@ class CurveEmulation():
         self.acc_axis_radio.pressed.connect(self.set_acc_axis)
         self.speed_axis_radio.pressed.connect(self.set_speed_axis)
         self.choose_folder_button.pressed.connect(self.select_log_folder)
-        self.manager.aboutToClose.connect(self.main_window.curve_emulation_to_disabled)
+        self.manager.aboutToClose.connect(self.disconnection_action)
         self.start_curve_button.pressed.connect(self.start_curve_emulation)
         self.stop_curve_button.pressed.connect(self.stop_curve_emulation)
         
@@ -82,15 +82,15 @@ class CurveEmulation():
                     return
                 
                 # Convert to numpy array of float64
-                self.data = self.data_frame.astype(float).to_numpy()
+                self.curve_data = self.data_frame.astype(float).to_numpy()
                 self.plot_data_collected()
                 print("111")
                 file_name = os.path.basename(file_path)
                 
                 # Do something with the data
                 print(f"Loaded file: {file_name}")
-                print(f"Number of rows: {self.data.shape[0]}")
-                print(f"First row: {self.data[0] if self.data.size else 'Empty file'}")
+                print(f"Number of rows: {self.curve_data.shape[0]}")
+                print(f"First row: {self.curve_data[0] if self.curve_data.size else 'Empty file'}")
                 print(self.curve_data)
                 
                 self.main_window.curve_emulation_to_can_emulate()
@@ -183,7 +183,7 @@ class CurveEmulation():
         
     def plot_data_collected(self):
         # Calculate x-axis range
-        x = np.arange(0, len(self.data) * 0.05, 0.05)
+        x = np.arange(0, len(self.curve_data) * 0.05, 0.05)
         
         # Remove existing curves
         self.plot_widget.removeItem(self.curve1)
@@ -192,12 +192,12 @@ class CurveEmulation():
         # Setting the curves specs
         pen1 = {'color': 'b', 'width': 3}
         pen2 = {'color': 'r', 'width': 3}
-        self.curve1 = self.plot_widget.plot(x, self.data[:, 0], 
+        self.curve1 = self.plot_widget.plot(x, self.curve_data[:, 0], 
                                        pen=pen1, name="Encoder 1")
-        self.curve2 = self.plot_widget.plot(x, self.data[:, 1], 
+        self.curve2 = self.plot_widget.plot(x, self.curve_data[:, 1], 
                                        pen=pen2, name="Encoder 1")
-        max_y = max(self.data.max(), 0)
-        min_y = min(self.data.min(), 0)
+        max_y = max(self.curve_data.max(), 0)
+        min_y = min(self.curve_data.min(), 0)
         self.plot_widget.setYRange(max_y, min_y)   
         self.plot_widget.setXRange(0, x[-1], padding=0) 
         
@@ -209,7 +209,7 @@ class CurveEmulation():
     def update_vertical_line(self):
         self.vertical_line_position += 0.05
         
-        if self.vertical_line_position >= (len(self.data) - 1) * 0.05:
+        if self.vertical_line_position >= (len(self.curve_data) - 1) * 0.05:
             self.timer.stop()
             return
         
@@ -224,20 +224,23 @@ class CurveEmulation():
         self.plot_widget.setLabel('left', 'Speed [m/s]', color='k', size='12pt')
         self.initial_speed_spinbox.setEnabled(False)
   
+    def disconnection_action(self):
+        self.main_window.curve_emulation_to_disabled()
+        self.log_data = np.empty((0,5))
+        self.plot_widget.removeItem(self.curve1)
+        self.plot_widget.removeItem(self.curve2)
+  
     def start_curve_emulation(self):
         # Change interface appearance
         self.main_window.curve_emulation_to_emulating()
         
-        # self.encoder.variables_updated.connect(self.curve_emulation_action)
+        self.encoder.variables_updated.connect(self.curve_emulation_action)
         
     def stop_curve_emulation(self):
         self.start_curve_button.setChecked(False)
-        self.main_window.curve_emulation_to_can_emulate()    
-        
+        self.main_window.curve_emulation_to_can_emulate()     
         
     def curve_emulation_action(self):
-        
-        
         
         if self.speed_axis_radio.isChecked():
             self.send_speed_curve_data()
@@ -256,7 +259,7 @@ class CurveEmulation():
     def send_speed_curve_data(self):
         if self.current_index == 0:
             self.send_first_speed_curve_data()
-        elif self.current_index == self.data.shape[0]:
+        elif self.current_index == self.curve_data.shape[0]:
             self.send_last_speed_curve_data()
         else:
             self.send_generic_speed_curve_data()
@@ -284,11 +287,12 @@ class CurveEmulation():
         self.manager.assign_speed_both_telegram(0,0)
         self.current_index = 0
         self.encoder.variables_updated.disconnect(self.curve_emulation_action)
+        self.stop_curve_emulation()
         
     def send_acc_curve_data(self):
         if self.current_index == 0:
             self.send_first_acc_curve_data()
-        elif self.current_index == self.data.shape[0]:
+        elif self.current_index == self.curve_data.shape[0]:
             self.send_last_acc_curve_data()
         else:
             self.send_generic_acc_curve_data()
