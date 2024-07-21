@@ -1906,7 +1906,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_8">
                <item>
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="start_emulation_button">
                  <property name="text">
                   <string/>
                  </property>
@@ -1926,7 +1926,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_2">
+                <widget class="QPushButton" name="stop_emulation_button">
                  <property name="text">
                   <string/>
                  </property>
@@ -1954,7 +1954,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_12">
                <item>
-                <widget class="QPushButton" name="pushButton_4">
+                <widget class="QPushButton" name="choose_emu_file_button">
                  <property name="font">
                   <font>
                    <pointsize>11</pointsize>
@@ -1976,7 +1976,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_3">
+                <widget class="QPushButton" name="log_folder_button">
                  <property name="font">
                   <font>
                    <pointsize>11</pointsize>
@@ -2019,7 +2019,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit">
+                <widget class="QLineEdit" name="log_name_edit">
                  <property name="placeholderText">
                   <string>* &quot; / \ &lt; &gt; : | ? not permitted</string>
                  </property>
@@ -2037,12 +2037,33 @@ li.checked::marker { content: &quot;\2612&quot;; }
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_13">
                <item>
+                <widget class="QLabel" name="label_20">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>11</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Choose emulation mode:</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <layout class="QHBoxLayout" name="horizontalLayout_10">
                  <property name="sizeConstraint">
                   <enum>QLayout::SizeConstraint::SetMaximumSize</enum>
                  </property>
                  <item>
-                  <widget class="QRadioButton" name="radioButton">
+                  <widget class="QRadioButton" name="speed_emulation_radio">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                      <horstretch>0</horstretch>
@@ -2058,7 +2079,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </widget>
                  </item>
                  <item>
-                  <widget class="QRadioButton" name="radioButton_2">
+                  <widget class="QRadioButton" name="acc_emulation_radio">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                      <horstretch>0</horstretch>
@@ -2093,7 +2114,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   </widget>
                  </item>
                  <item>
-                  <widget class="QDoubleSpinBox" name="doubleSpinBox">
+                  <widget class="QDoubleSpinBox" name="init_speed_spinbox">
                    <property name="sizePolicy">
                     <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                      <horstretch>0</horstretch>

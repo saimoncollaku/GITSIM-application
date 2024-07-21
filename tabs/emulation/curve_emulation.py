@@ -24,15 +24,16 @@ class CurveEmulation():
         self.encoder = encoder
         
         # Setup exclusive resources
-        self.choose_file_button = self.main_window.ui.pushButton_4
+        self.choose_file_button = self.main_window.ui.choose_emu_file_button
         self.plot_widget = self.main_window.ui.plot_widget
-        self.speed_axis_radio = self.main_window.ui.radioButton
-        self.acc_axis_radio = self.main_window.ui.radioButton_2
-        self.start_curve_button = self.main_window.ui.pushButton
-        self.stop_curve_button = self.main_window.ui.pushButton_2
-        self.initial_speed_spinbox = self.main_window.ui.doubleSpinBox
-        self.choose_folder_button = self.main_window.ui.pushButton_3
-        self.log_name_edit = self.main_window.ui.lineEdit
+        self.speed_axis_radio = self.main_window.ui.speed_emulation_radio
+        self.acc_axis_radio = self.main_window.ui.acc_emulation_radio
+        self.start_curve_button = self.main_window.ui.start_emulation_button
+        self.stop_curve_button = self.main_window.ui.stop_emulation_button
+        self.initial_speed_spinbox = self.main_window.ui.init_speed_spinbox
+        self.choose_folder_button = self.main_window.ui.log_folder_button
+        self.log_name_edit = self.main_window.ui.log_name_edit
+        
         
         # Variables for file reading 
         self.data_frame = None
@@ -42,6 +43,7 @@ class CurveEmulation():
         self.current_index = 0
         self.log_folder_path = os.path.dirname(os.path.abspath(__file__))
         self.log_data = np.empty((0,5))
+        self.log_name = "Log_test.xlsx"
         
         # Timer for moving vertical line
         self.timer = QTimer()
@@ -53,8 +55,9 @@ class CurveEmulation():
         self.acc_axis_radio.pressed.connect(self.set_acc_axis)
         self.speed_axis_radio.pressed.connect(self.set_speed_axis)
         self.choose_folder_button.pressed.connect(self.select_log_folder)
-        # self.start_curve_button.connect(self.start_curve_emulation)
-        # self.stop_curve_button.connect(self.stop_curve_emulation)
+        self.manager.aboutToClose.connect(self.main_window.curve_emulation_to_disabled)
+        self.start_curve_button.pressed.connect(self.start_curve_emulation)
+        self.stop_curve_button.pressed.connect(self.stop_curve_emulation)
         
     def load_emulation_file(self):
         
@@ -83,15 +86,19 @@ class CurveEmulation():
                 self.plot_data_collected()
                 print("111")
                 file_name = os.path.basename(file_path)
+                
                 # Do something with the data
                 print(f"Loaded file: {file_name}")
                 print(f"Number of rows: {self.data.shape[0]}")
                 print(f"First row: {self.data[0] if self.data.size else 'Empty file'}")
                 print(self.curve_data)
+                
+                self.main_window.curve_emulation_to_can_emulate()
                 return
             
             except Exception:
                 print(f"Error reading file")
+                self.main_window.curve_emulation_to_enabled()
                 return            
 
     def check_values_are_numeric(self) -> bool:
@@ -200,7 +207,7 @@ class CurveEmulation():
         self.timer.start(100)  # update every 100ms
         
     def update_vertical_line(self):
-        self.vertical_line_position += 0.05  # move 0.05 units per update (0.5 units/second)
+        self.vertical_line_position += 0.05
         
         if self.vertical_line_position >= (len(self.data) - 1) * 0.05:
             self.timer.stop()
@@ -210,13 +217,23 @@ class CurveEmulation():
         print(self.vertical_line_position)    
         
     def set_acc_axis(self):
-        self.plot_widget.setLabel('left', 'Acceleration [m/s²]', color='k', size='12pt')  
+        self.plot_widget.setLabel('left', 'Acceleration [m/s²]', color='k', size='12pt') 
+        self.initial_speed_spinbox.setEnabled(True) 
         
     def set_speed_axis(self):
-        self.plot_widget.setLabel('left', 'Speed [m/s]', color='k', size='12pt') 
+        self.plot_widget.setLabel('left', 'Speed [m/s]', color='k', size='12pt')
+        self.initial_speed_spinbox.setEnabled(False)
   
     def start_curve_emulation(self):
-        self.encoder.variables_updated.connect(self.curve_emulation_action)
+        # Change interface appearance
+        self.main_window.curve_emulation_to_emulating()
+        
+        # self.encoder.variables_updated.connect(self.curve_emulation_action)
+        
+    def stop_curve_emulation(self):
+        self.start_curve_button.setChecked(False)
+        self.main_window.curve_emulation_to_can_emulate()    
+        
         
     def curve_emulation_action(self):
         
@@ -231,17 +248,11 @@ class CurveEmulation():
             msg_pt2 = "unknown type of curve!"
             msg = f"{msg_pt1} {msg_pt2}"
             raise Exception(msg)
-
-    def save_encoder_data(self):
-        c1 = self.encoder.counter_e1
-        c2 = self.encoder.counter_e2
-        s1 = self.encoder.speed_e1
-        s2 = self.encoder.speed_e2
+    
+    # ******************************************************************
+    # * APP/BOARD INTERACTION METHODS
+    # ******************************************************************
         
-        new_row = np.array([[0, c1, c2, s1, s2]])
-        self.data_log = np.vstack((self.data_log, new_row))
-        
-
     def send_speed_curve_data(self):
         if self.current_index == 0:
             self.send_first_speed_curve_data()
@@ -294,10 +305,15 @@ class CurveEmulation():
         self.current_index += 1
     
     def send_last_acc_curve_data(self):
+        
         acc1 = self.curve_data[self.current_index, 0] 
         acc2 = self.curve_data[self.current_index, 1] 
         self.manager.assign_acc_both_telegram(acc1, acc2)
-        
+    
+    # ******************************************************************
+    # * LOG DATA METHODS
+    # ******************************************************************
+    
     def select_log_folder(self):
         folder_path = QFileDialog.getExistingDirectory(None, "Select Folder")
         
@@ -318,4 +334,15 @@ class CurveEmulation():
             print("Folder selection canceled")
             
     def create_and_save_log_file(self):
-        df = pd.DataFrame(np.random.rand(10, 4), columns=['Speed', 'B', 'C', 'D'])
+        labels = ["Time", 'Speed_E1', 'Speed_E2', 'Count_E1', 'Count_E2']
+        df = pd.DataFrame(self.data_log, columns=labels)
+        
+    def save_encoder_data(self):
+        c1 = self.encoder.counter_e1
+        c2 = self.encoder.counter_e2
+        s1 = self.encoder.speed_e1
+        s2 = self.encoder.speed_e2
+        
+        new_row = np.array([[0, c1, c2, s1, s2]])
+        self.data_log = np.vstack((self.data_log, new_row))    
+        

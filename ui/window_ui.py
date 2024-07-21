@@ -943,24 +943,24 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.verticalLayout_8 = QVBoxLayout()
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-        self.pushButton = QPushButton(self.page_3)
-        self.pushButton.setObjectName(u"pushButton")
+        self.start_emulation_button = QPushButton(self.page_3)
+        self.start_emulation_button.setObjectName(u"start_emulation_button")
         icon7 = QIcon()
         icon7.addFile(u":/icon/icon/icons8-play-button-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon7)
-        self.pushButton.setIconSize(QSize(40, 40))
-        self.pushButton.setCheckable(True)
+        self.start_emulation_button.setIcon(icon7)
+        self.start_emulation_button.setIconSize(QSize(40, 40))
+        self.start_emulation_button.setCheckable(True)
 
-        self.verticalLayout_8.addWidget(self.pushButton)
+        self.verticalLayout_8.addWidget(self.start_emulation_button)
 
-        self.pushButton_2 = QPushButton(self.page_3)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.stop_emulation_button = QPushButton(self.page_3)
+        self.stop_emulation_button.setObjectName(u"stop_emulation_button")
         icon8 = QIcon()
         icon8.addFile(u":/icon/icon/icons8-stop-button-50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_2.setIcon(icon8)
-        self.pushButton_2.setIconSize(QSize(40, 40))
+        self.stop_emulation_button.setIcon(icon8)
+        self.stop_emulation_button.setIconSize(QSize(40, 40))
 
-        self.verticalLayout_8.addWidget(self.pushButton_2)
+        self.verticalLayout_8.addWidget(self.stop_emulation_button)
 
 
         self.horizontalLayout_4.addLayout(self.verticalLayout_8)
@@ -974,25 +974,25 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12 = QVBoxLayout()
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
-        self.pushButton_4 = QPushButton(self.page_3)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setFont(font10)
+        self.choose_emu_file_button = QPushButton(self.page_3)
+        self.choose_emu_file_button.setObjectName(u"choose_emu_file_button")
+        self.choose_emu_file_button.setFont(font10)
         icon9 = QIcon()
         icon9.addFile(u":/icon/icon/hand.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_4.setIcon(icon9)
-        self.pushButton_4.setIconSize(QSize(20, 20))
+        self.choose_emu_file_button.setIcon(icon9)
+        self.choose_emu_file_button.setIconSize(QSize(20, 20))
 
-        self.verticalLayout_12.addWidget(self.pushButton_4)
+        self.verticalLayout_12.addWidget(self.choose_emu_file_button)
 
-        self.pushButton_3 = QPushButton(self.page_3)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setFont(font10)
+        self.log_folder_button = QPushButton(self.page_3)
+        self.log_folder_button.setObjectName(u"log_folder_button")
+        self.log_folder_button.setFont(font10)
         icon10 = QIcon()
         icon10.addFile(u":/icon/icon/icons8-folder-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_3.setIcon(icon10)
-        self.pushButton_3.setIconSize(QSize(20, 20))
+        self.log_folder_button.setIcon(icon10)
+        self.log_folder_button.setIconSize(QSize(20, 20))
 
-        self.verticalLayout_12.addWidget(self.pushButton_3)
+        self.verticalLayout_12.addWidget(self.log_folder_button)
 
         self.label_19 = QLabel(self.page_3)
         self.label_19.setObjectName(u"label_19")
@@ -1003,10 +1003,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addWidget(self.label_19)
 
-        self.lineEdit = QLineEdit(self.page_3)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.log_name_edit = QLineEdit(self.page_3)
+        self.log_name_edit.setObjectName(u"log_name_edit")
 
-        self.verticalLayout_12.addWidget(self.lineEdit)
+        self.verticalLayout_12.addWidget(self.log_name_edit)
 
 
         self.horizontalLayout_4.addLayout(self.verticalLayout_12)
@@ -1020,23 +1020,32 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_13 = QVBoxLayout()
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
+        self.label_20 = QLabel(self.page_3)
+        self.label_20.setObjectName(u"label_20")
+        sizePolicy8.setHeightForWidth(self.label_20.sizePolicy().hasHeightForWidth())
+        self.label_20.setSizePolicy(sizePolicy8)
+        self.label_20.setFont(font10)
+        self.label_20.setAlignment(Qt.AlignmentFlag.AlignBottom|Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft)
+
+        self.verticalLayout_13.addWidget(self.label_20)
+
         self.horizontalLayout_10 = QHBoxLayout()
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.horizontalLayout_10.setSizeConstraint(QLayout.SizeConstraint.SetMaximumSize)
-        self.radioButton = QRadioButton(self.page_3)
-        self.radioButton.setObjectName(u"radioButton")
-        sizePolicy7.setHeightForWidth(self.radioButton.sizePolicy().hasHeightForWidth())
-        self.radioButton.setSizePolicy(sizePolicy7)
-        self.radioButton.setChecked(True)
+        self.speed_emulation_radio = QRadioButton(self.page_3)
+        self.speed_emulation_radio.setObjectName(u"speed_emulation_radio")
+        sizePolicy7.setHeightForWidth(self.speed_emulation_radio.sizePolicy().hasHeightForWidth())
+        self.speed_emulation_radio.setSizePolicy(sizePolicy7)
+        self.speed_emulation_radio.setChecked(True)
 
-        self.horizontalLayout_10.addWidget(self.radioButton)
+        self.horizontalLayout_10.addWidget(self.speed_emulation_radio)
 
-        self.radioButton_2 = QRadioButton(self.page_3)
-        self.radioButton_2.setObjectName(u"radioButton_2")
-        sizePolicy7.setHeightForWidth(self.radioButton_2.sizePolicy().hasHeightForWidth())
-        self.radioButton_2.setSizePolicy(sizePolicy7)
+        self.acc_emulation_radio = QRadioButton(self.page_3)
+        self.acc_emulation_radio.setObjectName(u"acc_emulation_radio")
+        sizePolicy7.setHeightForWidth(self.acc_emulation_radio.sizePolicy().hasHeightForWidth())
+        self.acc_emulation_radio.setSizePolicy(sizePolicy7)
 
-        self.horizontalLayout_10.addWidget(self.radioButton_2)
+        self.horizontalLayout_10.addWidget(self.acc_emulation_radio)
 
 
         self.verticalLayout_13.addLayout(self.horizontalLayout_10)
@@ -1054,17 +1063,17 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_11.addWidget(self.label_16)
 
-        self.doubleSpinBox = QDoubleSpinBox(self.page_3)
-        self.doubleSpinBox.setObjectName(u"doubleSpinBox")
+        self.init_speed_spinbox = QDoubleSpinBox(self.page_3)
+        self.init_speed_spinbox.setObjectName(u"init_speed_spinbox")
         sizePolicy12 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
         sizePolicy12.setHorizontalStretch(0)
         sizePolicy12.setVerticalStretch(0)
-        sizePolicy12.setHeightForWidth(self.doubleSpinBox.sizePolicy().hasHeightForWidth())
-        self.doubleSpinBox.setSizePolicy(sizePolicy12)
-        self.doubleSpinBox.setFont(font14)
-        self.doubleSpinBox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        sizePolicy12.setHeightForWidth(self.init_speed_spinbox.sizePolicy().hasHeightForWidth())
+        self.init_speed_spinbox.setSizePolicy(sizePolicy12)
+        self.init_speed_spinbox.setFont(font14)
+        self.init_speed_spinbox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
 
-        self.horizontalLayout_11.addWidget(self.doubleSpinBox)
+        self.horizontalLayout_11.addWidget(self.init_speed_spinbox)
 
 
         self.verticalLayout_13.addLayout(self.horizontalLayout_11)
@@ -1211,14 +1220,15 @@ class Ui_MainWindow(object):
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p>Acceleration [m/s<span style=\" vertical-align:super;\">2</span>]: </p></body></html>", None))
         self.set_acc_button.setText(QCoreApplication.translate("MainWindow", u"Set", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"Curve emulation", None))
-        self.pushButton.setText("")
-        self.pushButton_2.setText("")
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Choose emulation file", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"Choose log folder", None))
+        self.start_emulation_button.setText("")
+        self.stop_emulation_button.setText("")
+        self.choose_emu_file_button.setText(QCoreApplication.translate("MainWindow", u"Choose emulation file", None))
+        self.log_folder_button.setText(QCoreApplication.translate("MainWindow", u"Choose log folder", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"Choose log file name:", None))
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"* \" / \\ < > : | ? not permitted", None))
-        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Speed", None))
-        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"Acceleration", None))
+        self.log_name_edit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"* \" / \\ < > : | ? not permitted", None))
+        self.label_20.setText(QCoreApplication.translate("MainWindow", u"Choose emulation mode:", None))
+        self.speed_emulation_radio.setText(QCoreApplication.translate("MainWindow", u"Speed", None))
+        self.acc_emulation_radio.setText(QCoreApplication.translate("MainWindow", u"Acceleration", None))
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"Initial speed [m/s]: ", None))
     # retranslateUi
 

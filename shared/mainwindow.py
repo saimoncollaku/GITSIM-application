@@ -52,6 +52,7 @@ class MainWindow(QMainWindow):
         self.set_temporary_message("Welcome to GITSIM!")
         self.setup_tab_changes()
         self.single_value_to_disabled()
+        self.curve_emulation_to_disabled()
         
     def close_app(self):
         self.close()
@@ -144,3 +145,47 @@ class MainWindow(QMainWindow):
         self.ui.single_both_radio.setEnabled(True)
         self.ui.single_encoder1_radio.setEnabled(True)
         self.ui.single_encoder2_radio.setEnabled(True)
+        
+    def curve_emulation_to_enabled(self):
+        self.ui.speed_emulation_radio.setEnabled(False)
+        self.ui.acc_emulation_radio.setEnabled(False)
+        
+        self.ui.start_emulation_button.setEnabled(False)
+        self.ui.stop_emulation_button.setEnabled(False)
+        self.ui.choose_emu_file_button.setEnabled(True)
+        self.ui.log_folder_button.setEnabled(False)
+        self.ui.log_name_edit.setEnabled(False)
+        self.ui.init_speed_spinbox.setEnabled(False)
+        
+    def curve_emulation_to_can_emulate(self):
+        self.ui.speed_emulation_radio.setEnabled(True)
+        self.ui.acc_emulation_radio.setEnabled(True)        
+        self.ui.start_emulation_button.setEnabled(True)
+        self.ui.stop_emulation_button.setEnabled(False)
+        self.ui.choose_emu_file_button.setEnabled(True)
+        self.ui.log_folder_button.setEnabled(True)
+        self.ui.log_name_edit.setEnabled(True)
+        if self.ui.speed_emulation_radio.isChecked():
+            self.ui.init_speed_spinbox.setEnabled(False)
+        else:
+            self.ui.init_speed_spinbox.setEnabled(True)
+        
+    def curve_emulation_to_disabled(self):
+        self.ui.speed_emulation_radio.setEnabled(False)
+        self.ui.acc_emulation_radio.setEnabled(False)
+        self.ui.init_speed_spinbox.setEnabled(False)
+        self.ui.start_emulation_button.setEnabled(False)
+        self.ui.stop_emulation_button.setEnabled(False)
+        self.ui.choose_emu_file_button.setEnabled(False)
+        self.ui.log_folder_button.setEnabled(False)
+        self.ui.log_name_edit.setEnabled(False)
+        
+    def curve_emulation_to_emulating(self):
+        self.ui.speed_emulation_radio.setEnabled(False)
+        self.ui.acc_emulation_radio.setEnabled(False)
+        self.ui.init_speed_spinbox.setEnabled(False)
+        self.ui.start_emulation_button.setEnabled(False)
+        self.ui.stop_emulation_button.setEnabled(True)
+        self.ui.choose_emu_file_button.setEnabled(False)
+        self.ui.log_folder_button.setEnabled(False)
+        self.ui.log_name_edit.setEnabled(False)

@@ -90,6 +90,7 @@ class SerialBox:
                     
                     self.main_window.serial_box_interface_to_connected()
                     self.main_window.single_value_to_enabled()
+                    self.main_window.curve_emulation_to_enabled()
                     self.update_encoder_object_costants()
                     self.send_costants_via_serial()
                     self.encoder.reset_variables()
@@ -133,6 +134,10 @@ class SerialBox:
         self.encoder.diameter = self.diameter_spinbox.value()
         self.encoder.ppr_e1 = self.ppr1_spinbox.value()
         self.encoder.ppr_e2 = self.ppr2_spinbox.value()
+      
+    # ******************************************************************
+    # * MESSAGES DEFINITIONS
+    # ******************************************************************
         
     def show_connection_success_message(self):
         # Connection success - permanent message
