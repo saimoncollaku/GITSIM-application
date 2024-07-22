@@ -42,7 +42,8 @@ class CurveEmulation():
         self.current_index = 0
         self.log_folder_path = os.path.dirname(os.path.abspath(__file__))
         self.log_data = np.empty((0,5))
-        self.log_name = "Log_test.xlsx"
+        self.log_file = None
+        self.log_path = None
         self.setup_plot_widget()
         
         # Setup signal connections
@@ -52,7 +53,7 @@ class CurveEmulation():
         self.choose_folder_button.pressed.connect(self.select_log_folder)
         self.manager.aboutToClose.connect(self.disconnection_action)
         self.start_curve_button.pressed.connect(self.start_curve_emulation)
-        self.stop_curve_button.pressed.connect(self.stop_curve_emulation)
+        self.stop_curve_button.pressed.connect(self.stop_button_action)
         
     # ******************************************************************
     # * EMULATION FILE METHODS
@@ -233,18 +234,11 @@ class CurveEmulation():
     # ******************************************************************
         
     def start_curve_emulation(self):
-        # Change interface appearance
         self.main_window.curve_emulation_to_emulating()
-        
         self.encoder.variables_updated.connect(self.curve_emulation_action)
         
-    def stop_curve_emulation(self):
-        self.start_curve_button.setChecked(False)
-        self.manager.assign_reset_kine_telegram()
-        self.reset_vertical_line()
-        self.current_index = 0
-        self.encoder.variables_updated.disconnect(self.curve_emulation_action)
-        self.main_window.curve_emulation_to_can_emulate()    
+    def stop_button_action(self):
+        self.stop_curve_button.setEnabled(False)
          
     def curve_emulation_action(self):
         
@@ -260,59 +254,78 @@ class CurveEmulation():
         
     def send_speed_curve_data(self):
         if self.current_index == 0:
-            self.send_first_speed_curve_data()
-        elif self.current_index == self.curve_data.shape[0]:
-            self.send_last_speed_curve_data()
-        else:
-            self.send_generic_speed_curve_data()
+            self.send_first_telegram_speed_curve()
+            return
         
-    def send_first_speed_curve_data(self):
+        if self.current_index == self.curve_data.shape[0] + 3:
+            self.second_wrap_up_speed_curve()
+            print("stooop")
+            return
+            
+        if self.current_index == self.curve_data.shape[0] + 2:
+            self.first_wrap_up_speed_curve()
+            print("stooop")
+            return
+        
+        if self.current_index == self.curve_data.shape[0] + 1:
+            self.send_last_telegram_speed_curve()
+            return
+            
+        if self.stop_curve_button.isChecked():
+            self.send_last_telegram_speed_curve()
+            return
+
+        self.send_generic_speed_curve_data()
+        
+    def send_first_telegram_speed_curve(self):
         speed1 = self.curve_data[0, 0]
         speed2 = self.curve_data[0, 1]
         self.manager.assign_speed_both_telegram(speed1, speed2)
         self.current_index += 1
         
     def send_generic_speed_curve_data(self):
+        # Present speed
+        speed1 = self.curve_data[self.current_index - 1, 0] 
+        speed2 = self.curve_data[self.current_index - 1, 1] 
+        
+        # Previous speed
+        if self.current_index == 1:
+            speed1_prec = 0
+            speed2_prec = 0
+        else:
+            speed1_prec = self.curve_data[self.current_index - 2, 0]
+            speed2_prec = self.curve_data[self.current_index - 2, 1]
+        
+        # Present acceleration
         delta_t = 0.05
-        # Calculate acceleration for Encoder 1
-        speed1 = self.curve_data[self.current_index, 0] 
-        speed1_prec = self.curve_data[self.current_index - 1, 0] 
         acc1 = (speed1 - speed1_prec) / delta_t
-        # Calculate acceleration for Encoder 1
-        speed2 = self.curve_data[self.current_index, 1] 
-        speed2_prec = self.curve_data[self.current_index - 1, 1] 
         acc2 = (speed2 - speed2_prec) / delta_t
+        
         self.current_index += 1
         self.manager.assign_acc_both_telegram(acc1, acc2)
         self.update_vertical_line()
+        self.save_encoder_data()
         
-    def send_last_speed_curve_data(self):
-        self.stop_curve_emulation()
-        
-    def send_acc_curve_data(self):
-        if self.current_index == 0:
-            self.send_first_acc_curve_data()
-        elif self.current_index == self.curve_data.shape[0]:
-            self.send_last_acc_curve_data()
-        else:
-            self.send_generic_acc_curve_data()
-            
-    def send_first_acc_curve_data(self):
-        speed1 = self.initial_speed_spinbox.value
-        speed2 = self.initial_speed_spinbox.value
-        self.manager.assign_speed_both_telegram(speed1, speed2)
-        
-    def send_generic_acc_curve_data(self):
-        acc1 = self.curve_data[self.current_index, 0] 
-        acc2 = self.curve_data[self.current_index, 1] 
-        self.manager.assign_acc_both_telegram(acc1, acc2)
-        self.current_index += 1
+    def send_last_telegram_speed_curve(self):
+        self.current_index = self.curve_data.shape[0] + 2
+        self.save_encoder_data()
+        self.manager.assign_reset_kine_telegram()
     
-    def send_last_acc_curve_data(self):
-        
-        acc1 = self.curve_data[self.current_index, 0] 
-        acc2 = self.curve_data[self.current_index, 1] 
-        self.manager.assign_acc_both_telegram(acc1, acc2)
+    def first_wrap_up_speed_curve(self):
+        self.current_index = self.curve_data.shape[0] + 3
+        self.save_encoder_data()
+        self.create_and_save_log_file()
+    
+    def second_wrap_up_speed_curve(self):
+        self.save_encoder_data()
+        self.create_and_save_log_file()
+        self.log_data = np.empty((0,5))
+        self.stop_curve_button.setChecked(False)
+        self.start_curve_button.setChecked(False)
+        self.reset_vertical_line()
+        self.current_index = 0
+        self.main_window.curve_emulation_to_can_emulate()
+        self.encoder.variables_updated.disconnect(self.curve_emulation_action)
     
     # ******************************************************************
     # * LOG DATA METHODS
@@ -323,23 +336,21 @@ class CurveEmulation():
         
         if folder_path:
             # Construct full file path
-            file_name = "your_file.xls"
+            # file_name = "your_file.xls"
             
-            df = pd.DataFrame(np.random.rand(10, 4), columns=['Speed', 'B', 'C', 'D'])
+            # df = pd.DataFrame(np.random.rand(10, 4), columns=['Speed', 'B', 'C', 'D'])
 
             file_name = "your_file.xlsx"
-            full_path = os.path.join(folder_path, file_name)
-
-            # Save the DataFrame as an XLSX file
-            df.to_excel(full_path, index=False)
-
-            print(f"File saved to: {full_path}")
+            self.log_path = os.path.join(folder_path, file_name)
+            
+            print(f"File saved to: {self.log_path}")
         else:
             print("Folder selection canceled")
             
     def create_and_save_log_file(self):
-        labels = ["Time", 'Speed_E1', 'Speed_E2', 'Count_E1', 'Count_E2']
-        df = pd.DataFrame(self.data_log, columns=labels)
+        labels = ["Time", 'Count_E1', 'Count_E2', 'Speed_E1', 'Speed_E2']
+        self.log_file = pd.DataFrame(self.log_data, columns=labels)
+        self.log_file.to_excel(self.log_path, index=False) 
         
     def save_encoder_data(self):
         c1 = self.encoder.counter_e1
@@ -348,5 +359,5 @@ class CurveEmulation():
         s2 = self.encoder.speed_e2
         
         new_row = np.array([[0, c1, c2, s1, s2]])
-        self.data_log = np.vstack((self.data_log, new_row))    
+        self.log_data = np.vstack((self.log_data, new_row))  
         

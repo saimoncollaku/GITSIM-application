@@ -959,6 +959,7 @@ class Ui_MainWindow(object):
         icon8.addFile(u":/icon/icon/icons8-stop-button-50.png", QSize(), QIcon.Normal, QIcon.Off)
         self.stop_emulation_button.setIcon(icon8)
         self.stop_emulation_button.setIconSize(QSize(40, 40))
+        self.stop_emulation_button.setCheckable(True)
 
         self.verticalLayout_8.addWidget(self.stop_emulation_button)
 

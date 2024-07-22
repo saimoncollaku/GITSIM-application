@@ -1940,6 +1940,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    <height>40</height>
                   </size>
                  </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
                 </widget>
                </item>
               </layout>
