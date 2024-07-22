@@ -259,12 +259,10 @@ class CurveEmulation():
         
         if self.current_index == self.curve_data.shape[0] + 3:
             self.second_wrap_up_speed_curve()
-            print("stooop")
             return
             
         if self.current_index == self.curve_data.shape[0] + 2:
             self.first_wrap_up_speed_curve()
-            print("stooop")
             return
         
         if self.current_index == self.curve_data.shape[0] + 1:

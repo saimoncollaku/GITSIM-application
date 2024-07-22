@@ -52,9 +52,9 @@ class EncoderMeasurementBox():
     def update_distance_measurement(self):
         if self.displayed_count1 != self.encoder.counter_e1:
             # Calculating the distance
-            ppr = self.encoder.ppr_e1
-            d = self.encoder.diameter
-            self.displayed_distance1 = self.encoder.counter_e1 * d / ppr
+            den = self.encoder.ppr_e1 * 4
+            num = self.encoder.diameter * 3.14159
+            self.displayed_distance1 = self.encoder.counter_e1 * num / den
             # Formatting the string in a nice way
             integer_part = f"{int(self.displayed_distance1):<2}"
             decimal_part = f"{self.displayed_distance1 % 1:.2f}"[1:]
@@ -63,9 +63,9 @@ class EncoderMeasurementBox():
             
         if self.displayed_count2 != self.encoder.counter_e2:
             # Calculating the distance
-            ppr = self.encoder.ppr_e2
-            d = self.encoder.diameter
-            self.displayed_distance2 = self.encoder.counter_e2 * d / ppr
+            den = self.encoder.ppr_e2 * 4 
+            num = self.encoder.diameter * 3.14159
+            self.displayed_distance2 = self.encoder.counter_e2 * num / den
             # Formatting the string in a nice way
             integer_part = f"{int(self.displayed_distance2):<2}"
             decimal_part = f"{self.displayed_distance2 % 1:.2f}"[1:]
