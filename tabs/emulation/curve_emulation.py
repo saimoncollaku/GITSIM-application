@@ -284,7 +284,7 @@ class CurveEmulation():
         self.manager.assign_acc_both_telegram(acc1, acc2)
         
     def send_last_speed_curve_data(self):
-        self.manager.assign_speed_both_telegram(0,0)
+        self.manager.assign_reset_kine_telegram()
         self.current_index = 0
         self.encoder.variables_updated.disconnect(self.curve_emulation_action)
         self.stop_curve_emulation()

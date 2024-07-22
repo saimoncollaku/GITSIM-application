@@ -121,6 +121,10 @@ class TelegramManager(QSerialPort):
         identifier = int(6)
         self.value_telegram = struct.pack('<ffB', acc1, acc2, identifier)
         
+    def assign_reset_kine_telegram(self):
+        identifier = int(8)
+        self.value_telegram = struct.pack('<ffB', 0, 0, identifier)
+        
     def assign_disconnection_telegram(self):
         identifier = int(7)
         self.value_telegram = struct.pack('<ffB', 0, 0, identifier)
