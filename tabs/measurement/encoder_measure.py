@@ -28,7 +28,6 @@ class EncoderMeasurementBox():
         self.displayed_count1 = 0
         self.displayed_count2 = 0
         
-        
         # Set up signals
         self.manager.telegram_received.connect(self.update_encoder_object)
         self.encoder.variables_updated.connect(self.update_measurements)

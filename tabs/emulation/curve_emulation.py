@@ -1,6 +1,8 @@
 # Public libraries
 from PySide6.QtWidgets import QFileDialog
 from pyqtgraph import LegendItem, InfiniteLine
+from PySide6.QtGui import QRegularExpressionValidator
+from PySide6.QtCore import QRegularExpression
 
 import pandas as pd
 import os
@@ -32,6 +34,11 @@ class CurveEmulation():
         self.initial_speed_spinbox = self.main_window.ui.init_speed_spinbox
         self.choose_folder_button = self.main_window.ui.log_folder_button
         self.log_name_edit = self.main_window.ui.log_name_edit
+        
+        # Set banned character on the line edit
+        rx = QRegularExpression(r"[^<>:\"/\\|?*\x00-\x1F]*")
+        validator = QRegularExpressionValidator(rx)
+        self.log_name_edit.setValidator(validator)
         
         
         # Variables for file reading 
@@ -330,25 +337,28 @@ class CurveEmulation():
     # ******************************************************************
     
     def select_log_folder(self):
-        folder_path = QFileDialog.getExistingDirectory(None, "Select Folder")
+        folder_path = QFileDialog.getExistingDirectory(None, "Select Log Folder")
         
         if folder_path:
-            # Construct full file path
-            # file_name = "your_file.xls"
-            
-            # df = pd.DataFrame(np.random.rand(10, 4), columns=['Speed', 'B', 'C', 'D'])
-
-            file_name = "your_file.xlsx"
-            self.log_path = os.path.join(folder_path, file_name)
-            
+            self.log_path = folder_path
             print(f"File saved to: {self.log_path}")
         else:
             print("Folder selection canceled")
             
     def create_and_save_log_file(self):
         labels = ["Time", 'Count_E1', 'Count_E2', 'Speed_E1', 'Speed_E2']
+        file_name = f"{self.log_name_edit.text()}.xlsx"
+        print("1")
+        if self.log_path == None:
+            app_folder = os.path.dirname(os.path.abspath(__file__))
+            full_path = os.path.join(app_folder, file_name)
+        else:
+            full_path = os.path.join(self.log_path, file_name)
+        print("2")
+        print(full_path)
         self.log_file = pd.DataFrame(self.log_data, columns=labels)
-        self.log_file.to_excel(self.log_path, index=False) 
+        print("3")
+        self.log_file.to_excel(full_path, index=False) 
         
     def save_encoder_data(self):
         c1 = self.encoder.counter_e1
