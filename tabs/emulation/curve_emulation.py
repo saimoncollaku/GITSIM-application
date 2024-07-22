@@ -1,7 +1,6 @@
 # Public libraries
 from PySide6.QtWidgets import QFileDialog
 from pyqtgraph import LegendItem, InfiniteLine
-from PySide6.QtCore import QTimer
 
 import pandas as pd
 import os
@@ -44,10 +43,6 @@ class CurveEmulation():
         self.log_folder_path = os.path.dirname(os.path.abspath(__file__))
         self.log_data = np.empty((0,5))
         self.log_name = "Log_test.xlsx"
-        
-        # Timer for moving vertical line
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.update_vertical_line)
         self.setup_plot_widget()
         
         # Setup signal connections
@@ -58,6 +53,10 @@ class CurveEmulation():
         self.manager.aboutToClose.connect(self.disconnection_action)
         self.start_curve_button.pressed.connect(self.start_curve_emulation)
         self.stop_curve_button.pressed.connect(self.stop_curve_emulation)
+        
+    # ******************************************************************
+    # * EMULATION FILE METHODS
+    # ******************************************************************  
         
     def load_emulation_file(self):
         
@@ -83,15 +82,13 @@ class CurveEmulation():
                 
                 # Convert to numpy array of float64
                 self.curve_data = self.data_frame.astype(float).to_numpy()
-                self.plot_data_collected()
-                print("111")
+                self.plot_emulation_curve()
                 file_name = os.path.basename(file_path)
                 
                 # Do something with the data
                 print(f"Loaded file: {file_name}")
                 print(f"Number of rows: {self.curve_data.shape[0]}")
                 print(f"First row: {self.curve_data[0] if self.curve_data.size else 'Empty file'}")
-                print(self.curve_data)
                 
                 self.main_window.curve_emulation_to_can_emulate()
                 return
@@ -146,6 +143,10 @@ class CurveEmulation():
         else:
             return None
  
+    # ******************************************************************
+    # * PLOT/VISUAL METHODS
+    # ******************************************************************
+ 
     def setup_plot_widget(self):
         self.plot_widget.setMouseEnabled(x=False, y=False)
         self.plot_widget.setMenuEnabled(False)
@@ -159,7 +160,7 @@ class CurveEmulation():
         self.plot_widget.setLabel('bottom', 'Time [s]', color='k', size='12pt')
         
         # Change the color of the labels to black
-        self.plot_widget.getAxis('left').setPen('k')  # 'k' stands for black
+        self.plot_widget.getAxis('left').setPen('k')
         self.plot_widget.getAxis('left').setTextPen('k')
         self.plot_widget.getAxis('bottom').setPen('k')
         self.plot_widget.getAxis('bottom').setTextPen('k')
@@ -173,7 +174,7 @@ class CurveEmulation():
         self.legend.addItem(self.curve1, '<span style="color: black;">Encoder 1</span>')
         self.legend.addItem(self.curve2, '<span style="color: black;">Encoder 2</span>')
         
-        self.legend.setBrush((200, 200, 200, 150))  # Grey background with some transparency
+        self.legend.setBrush((200, 200, 200, 150))
         self.legend.setLabelTextColor('k')
         
         # Add a vertical line
@@ -181,7 +182,7 @@ class CurveEmulation():
         self.plot_widget.addItem(self.vertical_line)
         self.vertical_line_position = 0
         
-    def plot_data_collected(self):
+    def plot_emulation_curve(self):
         # Calculate x-axis range
         x = np.arange(0, len(self.curve_data) * 0.05, 0.05)
         
@@ -204,17 +205,14 @@ class CurveEmulation():
         # Reset and start the vertical line movement
         self.vertical_line_position = 0
         self.vertical_line.setPos(self.vertical_line_position)
-        self.timer.start(100)  # update every 100ms
         
     def update_vertical_line(self):
         self.vertical_line_position += 0.05
-        
-        if self.vertical_line_position >= (len(self.curve_data) - 1) * 0.05:
-            self.timer.stop()
-            return
-        
         self.vertical_line.setPos(self.vertical_line_position)
-        print(self.vertical_line_position)    
+        
+    def reset_vertical_line(self):
+        self.vertical_line_position = 0
+        self.vertical_line.setPos(self.vertical_line_position)
         
     def set_acc_axis(self):
         self.plot_widget.setLabel('left', 'Acceleration [m/s²]', color='k', size='12pt') 
@@ -229,7 +227,11 @@ class CurveEmulation():
         self.log_data = np.empty((0,5))
         self.plot_widget.removeItem(self.curve1)
         self.plot_widget.removeItem(self.curve2)
-  
+    
+    # ******************************************************************
+    # * APP/BOARD INTERACTION METHODS
+    # ******************************************************************
+        
     def start_curve_emulation(self):
         # Change interface appearance
         self.main_window.curve_emulation_to_emulating()
@@ -238,8 +240,12 @@ class CurveEmulation():
         
     def stop_curve_emulation(self):
         self.start_curve_button.setChecked(False)
-        self.main_window.curve_emulation_to_can_emulate()     
-        
+        self.manager.assign_reset_kine_telegram()
+        self.reset_vertical_line()
+        self.current_index = 0
+        self.encoder.variables_updated.disconnect(self.curve_emulation_action)
+        self.main_window.curve_emulation_to_can_emulate()    
+         
     def curve_emulation_action(self):
         
         if self.speed_axis_radio.isChecked():
@@ -251,10 +257,6 @@ class CurveEmulation():
             msg_pt2 = "unknown type of curve!"
             msg = f"{msg_pt1} {msg_pt2}"
             raise Exception(msg)
-    
-    # ******************************************************************
-    # * APP/BOARD INTERACTION METHODS
-    # ******************************************************************
         
     def send_speed_curve_data(self):
         if self.current_index == 0:
@@ -282,11 +284,9 @@ class CurveEmulation():
         acc2 = (speed2 - speed2_prec) / delta_t
         self.current_index += 1
         self.manager.assign_acc_both_telegram(acc1, acc2)
+        self.update_vertical_line()
         
     def send_last_speed_curve_data(self):
-        self.manager.assign_reset_kine_telegram()
-        self.current_index = 0
-        self.encoder.variables_updated.disconnect(self.curve_emulation_action)
         self.stop_curve_emulation()
         
     def send_acc_curve_data(self):

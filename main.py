@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QApplication
 from shared.mainwindow import MainWindow
 from shared.telegram_manager import TelegramManager
 from shared.encoder_data import EncoderData
-# 
+
 # Private imports (tabs directory)
 from tabs.home.serial_box import SerialBox
 
