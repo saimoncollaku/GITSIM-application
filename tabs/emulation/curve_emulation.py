@@ -252,7 +252,7 @@ class CurveEmulation():
         if self.speed_axis_radio.isChecked():
             self.send_speed_curve_data()
         elif self.acc_axis_radio.isChecked():
-            pass
+            self.send_acc_curve_data()
         else:
             msg_pt1 = "The app tried to disconnect to emulate an"
             msg_pt2 = "unknown type of curve!"
@@ -278,10 +278,32 @@ class CurveEmulation():
             
         if self.stop_curve_button.isChecked():
             self.send_last_telegram_speed_curve()
-            print("swag")
             return
 
-        self.send_generic_speed_curve_data()
+        self.send_generic_telegram_speed_curve()
+        
+    def send_acc_curve_data(self):
+        if self.current_index == 0:
+            self.send_first_telegram_acc_curve()
+            return
+        
+        if self.current_index == self.curve_data.shape[0] + 3:
+            self.second_wrap_up_acc_curve()
+            return
+            
+        if self.current_index == self.curve_data.shape[0] + 2:
+            self.first_wrap_up_acc_curve()
+            return
+        
+        if self.current_index == self.curve_data.shape[0] + 1:
+            self.send_last_telegram_acc_curve()
+            return
+            
+        if self.stop_curve_button.isChecked():
+            self.send_last_telegram_acc_curve()
+            return
+
+        self.send_generic_telegram_acc_curve()
         
     def send_first_telegram_speed_curve(self):
         speed1 = self.curve_data[0, 0]
@@ -289,7 +311,7 @@ class CurveEmulation():
         self.manager.assign_speed_both_telegram(speed1, speed2)
         self.current_index += 1
         
-    def send_generic_speed_curve_data(self):
+    def send_generic_telegram_speed_curve(self):
         # Present speed
         speed1 = self.curve_data[self.current_index - 1, 0] 
         speed2 = self.curve_data[self.current_index - 1, 1] 
@@ -332,6 +354,39 @@ class CurveEmulation():
         self.main_window.curve_emulation_to_can_emulate()
         self.encoder.variables_updated.disconnect(self.curve_emulation_action)
     
+    def send_first_telegram_acc_curve(self):
+        speed = self.initial_speed_spinbox.value()
+        self.manager.assign_speed_both_telegram(speed, speed)
+        self.current_index += 1
+        
+    def send_generic_telegram_acc_curve(self):
+        acc1 = self.curve_data[self.current_index - 1, 0] 
+        acc2 = self.curve_data[self.current_index - 1, 1] 
+        self.current_index += 1
+        self.manager.assign_acc_both_telegram(acc1, acc2)
+        self.update_vertical_line()
+        self.save_encoder_data()
+    
+    def send_last_telegram_acc_curve(self):
+        self.current_index = self.curve_data.shape[0] + 2
+        self.save_encoder_data()
+        self.manager.assign_reset_kine_telegram()
+        
+    def first_wrap_up_acc_curve(self):
+        self.current_index = self.curve_data.shape[0] + 3
+        self.save_encoder_data()
+        
+    def second_wrap_up_acc_curve(self):
+        self.save_encoder_data()
+        self.create_and_save_log_file()
+        self.log_data = np.empty((0,5))
+        self.stop_curve_button.setChecked(False)
+        self.start_curve_button.setChecked(False)
+        self.reset_vertical_line()
+        self.current_index = 0
+        self.main_window.curve_emulation_to_can_emulate()
+        self.encoder.variables_updated.disconnect(self.curve_emulation_action)
+        
     # ******************************************************************
     # * LOG DATA METHODS
     # ******************************************************************
@@ -366,8 +421,7 @@ class CurveEmulation():
                 self.log_file.to_excel(full_path, index=False)
                 print(f"Log file saved with auto-generated name: {full_path}")
             except:
-                print(f"Failed to save log file with auto-generated name")
-        
+                print(f"Failed to save log file with auto-generated name")   
         
     def save_encoder_data(self):
         c1 = self.encoder.counter_e1

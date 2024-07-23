@@ -1073,6 +1073,9 @@ class Ui_MainWindow(object):
         self.init_speed_spinbox.setSizePolicy(sizePolicy12)
         self.init_speed_spinbox.setFont(font14)
         self.init_speed_spinbox.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.NoButtons)
+        self.init_speed_spinbox.setCorrectionMode(QAbstractSpinBox.CorrectionMode.CorrectToNearestValue)
+        self.init_speed_spinbox.setMinimum(-200.000000000000000)
+        self.init_speed_spinbox.setMaximum(200.000000000000000)
 
         self.horizontalLayout_11.addWidget(self.init_speed_spinbox)
 
