@@ -241,8 +241,17 @@ class CurveEmulation():
         self.initial_speed_spinbox.setEnabled(False)
   
     def disconnection_action(self):
+        if self.start_curve_button.isChecked():
+            self.encoder.variables_updated.disconnect(
+                self.curve_emulation_action)
         self.main_window.curve_emulation_to_disabled()
+        self.stop_curve_button.setChecked(False)
+        self.start_curve_button.setChecked(False)
+        self.current_index = 0
         self.log_data = np.empty((0,5))
+        self.log_frame = None
+        self.log_path = os.path.dirname(os.path.abspath(__file__))
+        self.reset_vertical_line()
         self.plot_widget.removeItem(self.curve1)
         self.plot_widget.removeItem(self.curve2)
     
@@ -253,6 +262,7 @@ class CurveEmulation():
     def start_curve_emulation(self):
         self.main_window.curve_emulation_to_emulating()
         self.encoder.variables_updated.connect(self.curve_emulation_action)
+        self.start_curve_button.setChecked(True)
         
     def stop_button_action(self):
         self.stop_curve_button.setChecked(True)
