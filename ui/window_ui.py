@@ -1118,7 +1118,7 @@ class Ui_MainWindow(object):
         self.error2_button_1.toggled.connect(self.error2_button_2.setChecked)
         self.error2_button_2.toggled.connect(self.error2_button_1.setChecked)
 
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)

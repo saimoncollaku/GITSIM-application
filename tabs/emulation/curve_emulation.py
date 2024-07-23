@@ -244,6 +244,7 @@ class CurveEmulation():
         self.encoder.variables_updated.connect(self.curve_emulation_action)
         
     def stop_button_action(self):
+        self.stop_curve_button.setChecked(True)
         self.stop_curve_button.setEnabled(False)
          
     def curve_emulation_action(self):
@@ -277,6 +278,7 @@ class CurveEmulation():
             
         if self.stop_curve_button.isChecked():
             self.send_last_telegram_speed_curve()
+            print("swag")
             return
 
         self.send_generic_speed_curve_data()
