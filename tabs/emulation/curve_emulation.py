@@ -47,10 +47,9 @@ class CurveEmulation():
         self.curve1 = None
         self.curve2 = None
         self.current_index = 0
-        self.log_folder_path = os.path.dirname(os.path.abspath(__file__))
         self.log_data = np.empty((0,5))
         self.log_file = None
-        self.log_path = None
+        self.log_path = os.path.dirname(os.path.abspath(__file__))
         self.setup_plot_widget()
         
         # Setup signal connections
@@ -319,7 +318,6 @@ class CurveEmulation():
     def first_wrap_up_speed_curve(self):
         self.current_index = self.curve_data.shape[0] + 3
         self.save_encoder_data()
-        self.create_and_save_log_file()
     
     def second_wrap_up_speed_curve(self):
         self.save_encoder_data()
@@ -348,17 +346,26 @@ class CurveEmulation():
     def create_and_save_log_file(self):
         labels = ["Time", 'Count_E1', 'Count_E2', 'Speed_E1', 'Speed_E2']
         file_name = f"{self.log_name_edit.text()}.xlsx"
-        print("1")
-        if self.log_path == None:
-            app_folder = os.path.dirname(os.path.abspath(__file__))
-            full_path = os.path.join(app_folder, file_name)
+        if not self.log_name_edit.text():
+            file_name = self.get_next_available_filename(self.log_path)
         else:
-            full_path = os.path.join(self.log_path, file_name)
-        print("2")
-        print(full_path)
+            file_name = f"{self.log_name_edit.text()}.xlsx"
+            
+        full_path = os.path.join(self.log_path, file_name)
         self.log_file = pd.DataFrame(self.log_data, columns=labels)
-        print("3")
-        self.log_file.to_excel(full_path, index=False) 
+        try:
+            self.log_file.to_excel(full_path, index=False) 
+            print(f"Log file saved successfully: {full_path}")
+        except:
+            print(f"Failed to save log file")
+            file_name = self.get_next_available_filename(self.log_path)
+            full_path = os.path.join(self.log_path, file_name)
+            try:
+                self.log_file.to_excel(full_path, index=False)
+                print(f"Log file saved with auto-generated name: {full_path}")
+            except:
+                print(f"Failed to save log file with auto-generated name")
+        
         
     def save_encoder_data(self):
         c1 = self.encoder.counter_e1
@@ -368,4 +375,15 @@ class CurveEmulation():
         
         new_row = np.array([[0, c1, c2, s1, s2]])
         self.log_data = np.vstack((self.log_data, new_row))  
+        
+    def get_next_available_filename(self, base_path):
+        base_name = "gitsim_log_"
+        counter = 1
+        while True:
+            file_name = f"{base_name}{counter}.xlsx"
+            full_path = os.path.join(base_path, file_name)
+            if not os.path.exists(full_path):
+                return file_name
+            counter += 1
+        
         
