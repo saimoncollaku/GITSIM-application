@@ -429,7 +429,12 @@ class CurveEmulation():
         s1 = self.encoder.speed_e1
         s2 = self.encoder.speed_e2
         
-        new_row = np.array([[0, c1, c2, s1, s2]])
+        if self.log_data.size == 0:
+            time = 0
+        else:
+            time = self.log_data[-1, 0] + 0.05
+
+        new_row = np.array([[time, c1, c2, s1, s2]])
         self.log_data = np.vstack((self.log_data, new_row))  
         
     def get_next_available_filename(self, base_path):
