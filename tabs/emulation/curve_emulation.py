@@ -35,23 +35,24 @@ class CurveEmulation():
         self.choose_folder_button = self.main_window.ui.log_folder_button
         self.log_name_edit = self.main_window.ui.log_name_edit
         
-        # Set banned character on the line edit
+        # Estetic setups
         rx = QRegularExpression(r"[^<>:\"/\\|?*\x00-\x1F]*")
         validator = QRegularExpressionValidator(rx)
         self.log_name_edit.setValidator(validator)
+        self.setup_plot_widget()
         
-        
-        # Variables for file reading 
-        self.data_frame = None
+        # Variables for file reading
+        self.curve_frame = None
         self.curve_data = None
         self.curve1 = None
         self.curve2 = None
+        
+        # Variables for curve emulation
         self.current_index = 0
         self.log_data = np.empty((0,5))
-        self.log_file = None
+        self.log_frame = None
         self.log_path = os.path.dirname(os.path.abspath(__file__))
-        self.setup_plot_widget()
-        
+    
         # Setup signal connections
         self.choose_file_button.clicked.connect(self.load_emulation_file)
         self.acc_axis_radio.pressed.connect(self.set_acc_axis)
@@ -88,7 +89,7 @@ class CurveEmulation():
                     return
                 
                 # Convert to numpy array of float64
-                self.curve_data = self.data_frame.astype(float).to_numpy()
+                self.curve_data = self.curve_frame.astype(float).to_numpy()
                 self.plot_emulation_curve()
                 file_name = os.path.basename(file_path)
                 
@@ -107,22 +108,22 @@ class CurveEmulation():
 
     def check_values_are_numeric(self) -> bool:
         # Attempt to convert all columns to numeric
-        numeric_df = self.data_frame.apply(pd.to_numeric, errors='coerce')
+        numeric_df = self.curve_frame.apply(pd.to_numeric, errors='coerce')
         
         # Check if any null values were introduced 
         return not numeric_df.isnull().any().any()
     
     def check_file_extension(self, path: str, extension: str) -> bool:
         if extension in ['.xlsx', '.xls']:
-            self.data_frame = pd.read_excel(path, header=None)
+            self.curve_frame = pd.read_excel(path, header=None)
             return True
         elif extension == '.csv':
-            self.data_frame = pd.read_csv(path, header=None)
+            self.curve_frame = pd.read_csv(path, header=None)
             return True
         return False
                     
     def check_number_of_columns(self) -> bool:
-        if self.data_frame.shape[1] == 2:
+        if self.curve_frame.shape[1] == 2:
             return True
         else:
             return False
@@ -155,36 +156,45 @@ class CurveEmulation():
     # ******************************************************************
  
     def setup_plot_widget(self):
+        # Disable user interactions
         self.plot_widget.setMouseEnabled(x=False, y=False)
         self.plot_widget.setMenuEnabled(False)
         self.plot_widget.hideButtons()
+        
+        # Setup for the plot style
         self.plot_widget.setLimits(xMin=None, xMax=None, yMin=None, yMax=None)
         self.plot_widget.showGrid(x=True, y=True, alpha=0.3)
         self.plot_widget.setBackground("w")
         self.plot_widget.getViewBox().setBackgroundColor(None)
         self.plot_widget.getPlotItem().getViewBox().setBorder(pen=None)
-        self.plot_widget.setLabel('left', 'Speed [m/s]', color='k', size='12pt')
-        self.plot_widget.setLabel('bottom', 'Time [s]', color='k', size='12pt')
         
-        # Change the color of the labels to black
+        # Setup for the plot axes
+        self.plot_widget.setLabel('left', 'Speed [m/s]', 
+                                  color='k', size='12pt')
+        self.plot_widget.setLabel('bottom', 'Time [s]', 
+                                  color='k', size='12pt')
         self.plot_widget.getAxis('left').setPen('k')
         self.plot_widget.getAxis('left').setTextPen('k')
         self.plot_widget.getAxis('bottom').setPen('k')
         self.plot_widget.getAxis('bottom').setTextPen('k')
-
-        # Create the legend item and set its offset to be below the x-axis
+        
+        # Setup for the curves
+        pen1 = {'color': 'b', 'width': 3}
+        pen2 = {'color': 'r', 'width': 3}
+        self.curve1 = self.plot_widget.plot([], [], pen=pen1, name="Encoder 1")
+        self.curve2 = self.plot_widget.plot([], [], pen=pen2, name="Encoder 2")
+        
+        # Setup for legend
         self.legend = LegendItem((80, 60), offset=(-10, 10))
         self.legend.setParentItem(self.plot_widget.getPlotItem())
-        
-        self.curve1 = self.plot_widget.plot([], [], pen={'color': 'b', 'width': 3}, name="Encoder 1")
-        self.curve2 = self.plot_widget.plot([], [], pen={'color': 'r', 'width': 3}, name="Encoder 2")
-        self.legend.addItem(self.curve1, '<span style="color: black;">Encoder 1</span>')
-        self.legend.addItem(self.curve2, '<span style="color: black;">Encoder 2</span>')
-        
+        legend1 = '<span style="color: black;">Encoder 1</span>'
+        legend2 = '<span style="color: black;">Encoder 2</span>'
+        self.legend.addItem(self.curve1, legend1)
+        self.legend.addItem(self.curve2, legend2)
         self.legend.setBrush((200, 200, 200, 150))
         self.legend.setLabelTextColor('k')
         
-        # Add a vertical line
+        # Setup for the vertical line
         self.vertical_line = InfiniteLine(angle=90, movable=False, pen='g')
         self.plot_widget.addItem(self.vertical_line)
         self.vertical_line_position = 0
@@ -197,7 +207,7 @@ class CurveEmulation():
         self.plot_widget.removeItem(self.curve1)
         self.plot_widget.removeItem(self.curve2)
         
-        # Setting the curves specs
+        # Plot the new curves
         pen1 = {'color': 'b', 'width': 3}
         pen2 = {'color': 'r', 'width': 3}
         self.curve1 = self.plot_widget.plot(x, self.curve_data[:, 0], 
@@ -209,9 +219,8 @@ class CurveEmulation():
         self.plot_widget.setYRange(max_y, min_y)   
         self.plot_widget.setXRange(0, x[-1], padding=0) 
         
-        # Reset and start the vertical line movement
-        self.vertical_line_position = 0
-        self.vertical_line.setPos(self.vertical_line_position)
+        # Reset the vertical line position
+        self.reset_vertical_line()
         
     def update_vertical_line(self):
         self.vertical_line_position += 0.05
@@ -222,11 +231,13 @@ class CurveEmulation():
         self.vertical_line.setPos(self.vertical_line_position)
         
     def set_acc_axis(self):
-        self.plot_widget.setLabel('left', 'Acceleration [m/s²]', color='k', size='12pt') 
+        self.plot_widget.setLabel('left', 'Acceleration [m/s²]', 
+                                  color='k', size='12pt') 
         self.initial_speed_spinbox.setEnabled(True) 
         
     def set_speed_axis(self):
-        self.plot_widget.setLabel('left', 'Speed [m/s]', color='k', size='12pt')
+        self.plot_widget.setLabel('left', 'Speed [m/s]', 
+                                  color='k', size='12pt')
         self.initial_speed_spinbox.setEnabled(False)
   
     def disconnection_action(self):
@@ -248,16 +259,21 @@ class CurveEmulation():
         self.stop_curve_button.setEnabled(False)
          
     def curve_emulation_action(self):
-        
+        # Speed curve mode
         if self.speed_axis_radio.isChecked():
             self.send_speed_curve_data()
-        elif self.acc_axis_radio.isChecked():
+            return
+        
+        # Acceleration curve mode
+        if self.acc_axis_radio.isChecked():
             self.send_acc_curve_data()
-        else:
-            msg_pt1 = "The app tried to disconnect to emulate an"
-            msg_pt2 = "unknown type of curve!"
-            msg = f"{msg_pt1} {msg_pt2}"
-            raise Exception(msg)
+            return
+        
+        # ! Error condition
+        msg_pt1 = "The app tried to disconnect to emulate an"
+        msg_pt2 = "unknown type of curve!"
+        msg = f"{msg_pt1} {msg_pt2}"
+        raise Exception(msg)
         
     def send_speed_curve_data(self):
         if self.current_index == 0:
@@ -265,19 +281,19 @@ class CurveEmulation():
             return
         
         if self.current_index == self.curve_data.shape[0] + 3:
-            self.second_wrap_up_speed_curve()
+            self.second_wrap_up()
             return
             
         if self.current_index == self.curve_data.shape[0] + 2:
-            self.first_wrap_up_speed_curve()
+            self.first_wrap_up()
             return
         
         if self.current_index == self.curve_data.shape[0] + 1:
-            self.send_last_telegram_speed_curve()
+            self.send_last_telegram()
             return
             
         if self.stop_curve_button.isChecked():
-            self.send_last_telegram_speed_curve()
+            self.send_last_telegram()
             return
 
         self.send_generic_telegram_speed_curve()
@@ -288,19 +304,19 @@ class CurveEmulation():
             return
         
         if self.current_index == self.curve_data.shape[0] + 3:
-            self.second_wrap_up_acc_curve()
+            self.second_wrap_up()
             return
             
         if self.current_index == self.curve_data.shape[0] + 2:
-            self.first_wrap_up_acc_curve()
+            self.first_wrap_up()
             return
         
         if self.current_index == self.curve_data.shape[0] + 1:
-            self.send_last_telegram_acc_curve()
+            self.send_last_telegram()
             return
             
         if self.stop_curve_button.isChecked():
-            self.send_last_telegram_acc_curve()
+            self.send_last_telegram()
             return
 
         self.send_generic_telegram_acc_curve()
@@ -332,27 +348,7 @@ class CurveEmulation():
         self.current_index += 1
         self.manager.assign_acc_both_telegram(acc1, acc2)
         self.update_vertical_line()
-        self.save_encoder_data()
-        
-    def send_last_telegram_speed_curve(self):
-        self.current_index = self.curve_data.shape[0] + 2
-        self.save_encoder_data()
-        self.manager.assign_reset_kine_telegram()
-    
-    def first_wrap_up_speed_curve(self):
-        self.current_index = self.curve_data.shape[0] + 3
-        self.save_encoder_data()
-    
-    def second_wrap_up_speed_curve(self):
-        self.save_encoder_data()
-        self.create_and_save_log_file()
-        self.log_data = np.empty((0,5))
-        self.stop_curve_button.setChecked(False)
-        self.start_curve_button.setChecked(False)
-        self.reset_vertical_line()
-        self.current_index = 0
-        self.main_window.curve_emulation_to_can_emulate()
-        self.encoder.variables_updated.disconnect(self.curve_emulation_action)
+        self.add_new_data_to_log()
     
     def send_first_telegram_acc_curve(self):
         speed = self.initial_speed_spinbox.value()
@@ -365,19 +361,14 @@ class CurveEmulation():
         self.current_index += 1
         self.manager.assign_acc_both_telegram(acc1, acc2)
         self.update_vertical_line()
-        self.save_encoder_data()
-    
-    def send_last_telegram_acc_curve(self):
-        self.current_index = self.curve_data.shape[0] + 2
-        self.save_encoder_data()
-        self.manager.assign_reset_kine_telegram()
+        self.add_new_data_to_log()
         
-    def first_wrap_up_acc_curve(self):
+    def first_wrap_up(self):
         self.current_index = self.curve_data.shape[0] + 3
-        self.save_encoder_data()
+        self.add_new_data_to_log()
         
-    def second_wrap_up_acc_curve(self):
-        self.save_encoder_data()
+    def second_wrap_up(self):
+        self.add_new_data_to_log()
         self.create_and_save_log_file()
         self.log_data = np.empty((0,5))
         self.stop_curve_button.setChecked(False)
@@ -386,7 +377,12 @@ class CurveEmulation():
         self.current_index = 0
         self.main_window.curve_emulation_to_can_emulate()
         self.encoder.variables_updated.disconnect(self.curve_emulation_action)
-        
+      
+    def send_last_telegram(self): 
+        self.current_index = self.curve_data.shape[0] + 2
+        self.add_new_data_to_log()
+        self.manager.assign_reset_kine_telegram()
+         
     # ******************************************************************
     # * LOG DATA METHODS
     # ******************************************************************
@@ -401,29 +397,40 @@ class CurveEmulation():
             print("Folder selection canceled")
             
     def create_and_save_log_file(self):
+        # Create label array
         labels = ["Time", 'Count_E1', 'Count_E2', 'Speed_E1', 'Speed_E2']
+        
+        # Fetch file name from the line edit
         file_name = f"{self.log_name_edit.text()}.xlsx"
+        
+        # Check if the line edit is empty, if true set standard name
         if not self.log_name_edit.text():
             file_name = self.get_next_available_filename(self.log_path)
         else:
             file_name = f"{self.log_name_edit.text()}.xlsx"
-            
-        full_path = os.path.join(self.log_path, file_name)
-        self.log_file = pd.DataFrame(self.log_data, columns=labels)
+        
+        # Create the pandas data frame
+        self.log_frame = pd.DataFrame(self.log_data, columns=labels)
+
+        # Try to write to file
         try:
-            self.log_file.to_excel(full_path, index=False) 
+            full_path = os.path.join(self.log_path, file_name)
+            self.log_frame.to_excel(full_path, index=False) 
             print(f"Log file saved successfully: {full_path}")
         except:
             print(f"Failed to save log file")
+            # If the original file name fails, create a dummy
+            # with standard name and use it as log file
             file_name = self.get_next_available_filename(self.log_path)
             full_path = os.path.join(self.log_path, file_name)
             try:
-                self.log_file.to_excel(full_path, index=False)
+                self.log_frame.to_excel(full_path, index=False)
                 print(f"Log file saved with auto-generated name: {full_path}")
             except:
-                print(f"Failed to save log file with auto-generated name")   
+                msg = "The app is not able to create log files!"
+                raise Exception(msg)
         
-    def save_encoder_data(self):
+    def add_new_data_to_log(self):
         c1 = self.encoder.counter_e1
         c2 = self.encoder.counter_e2
         s1 = self.encoder.speed_e1
@@ -438,13 +445,11 @@ class CurveEmulation():
         self.log_data = np.vstack((self.log_data, new_row))  
         
     def get_next_available_filename(self, base_path):
-        base_name = "gitsim_log_"
+        standard_name = "gitsim_log_"
         counter = 1
         while True:
-            file_name = f"{base_name}{counter}.xlsx"
+            file_name = f"{standard_name}{counter}.xlsx"
             full_path = os.path.join(base_path, file_name)
             if not os.path.exists(full_path):
                 return file_name
-            counter += 1
-        
-        
+            counter += 1          
