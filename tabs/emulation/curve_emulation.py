@@ -76,33 +76,27 @@ class CurveEmulation():
             file_extension = os.path.splitext(file_path)[1].lower()
             
             try:
+                # Checks
                 if not self.check_file_extension(file_path, file_extension):
-                    print(f"Unsupported file type")
+                    self.unsupported_extension_emu_file_message()
                     return
-                
                 if not self.check_number_of_columns():
-                    print(f"File should have exactly 2 columns.")
+                    self.wrong_n_columns_emu_file_message()
                     return
-                
                 if not self.check_values_are_numeric():
-                    print("All values in the file should be numeric.")
+                    self.non_numeric_emu_file_message()
                     return
                 
-                # Convert to numpy array of float64
+                # File is good, proceed with preparations
                 self.curve_data = self.curve_frame.astype(float).to_numpy()
                 self.plot_emulation_curve()
                 file_name = os.path.basename(file_path)
-                
-                # Do something with the data
-                print(f"Loaded file: {file_name}")
-                print(f"Number of rows: {self.curve_data.shape[0]}")
-                print(f"First row: {self.curve_data[0] if self.curve_data.size else 'Empty file'}")
-                
+                self.emulation_file_loaded_message(file_name)
                 self.main_window.curve_emulation_to_can_emulate()
                 return
             
             except Exception:
-                print(f"Error reading file")
+                self.load_failure_emu_file_message()
                 self.main_window.curve_emulation_to_enabled()
                 return            
 
@@ -403,47 +397,27 @@ class CurveEmulation():
     # ******************************************************************
     
     def select_log_folder(self):
-        folder_path = QFileDialog.getExistingDirectory(None, "Select Log Folder")
+        window_name = "Select Log Folder"
+        folder_path = QFileDialog.getExistingDirectory(None, window_name)
         
         if folder_path:
             self.log_path = folder_path
-            print(f"File saved to: {self.log_path}")
+            self.show_log_folder_select_message()
         else:
-            print("Folder selection canceled")
+            self.no_log_folder_selected_message()
             
     def create_and_save_log_file(self):
         # Create label array
         labels = ["Time", 'Count_E1', 'Count_E2', 'Speed_E1', 'Speed_E2']
         
-        # Fetch file name from the line edit
-        file_name = f"{self.log_name_edit.text()}.xlsx"
+        # Create the pandas data frame
+        self.log_frame = pd.DataFrame(self.log_data, columns=labels)
         
         # Check if the line edit is empty, if true set standard name
         if not self.log_name_edit.text():
-            file_name = self.get_next_available_filename(self.log_path)
+            self.create_standard_log_file()
         else:
-            file_name = f"{self.log_name_edit.text()}.xlsx"
-        
-        # Create the pandas data frame
-        self.log_frame = pd.DataFrame(self.log_data, columns=labels)
-
-        # Try to write to file
-        try:
-            full_path = os.path.join(self.log_path, file_name)
-            self.log_frame.to_excel(full_path, index=False) 
-            print(f"Log file saved successfully: {full_path}")
-        except:
-            print(f"Failed to save log file")
-            # If the original file name fails, create a dummy
-            # with standard name and use it as log file
-            file_name = self.get_next_available_filename(self.log_path)
-            full_path = os.path.join(self.log_path, file_name)
-            try:
-                self.log_frame.to_excel(full_path, index=False)
-                print(f"Log file saved with auto-generated name: {full_path}")
-            except:
-                msg = "The app is not able to create log files!"
-                raise Exception(msg)
+            self.create_custom_log_file()
         
     def add_new_data_to_log(self):
         c1 = self.encoder.counter_e1
@@ -467,4 +441,87 @@ class CurveEmulation():
             full_path = os.path.join(base_path, file_name)
             if not os.path.exists(full_path):
                 return file_name
-            counter += 1          
+            counter += 1     
+    
+    def create_standard_log_file(self):
+        file_name = self.get_next_available_filename(self.log_path)
+        try:
+            full_path = os.path.join(self.log_path, file_name)
+            self.log_frame.to_excel(full_path, index=False)
+            self.standard_log_file_created_message(file_name)
+        except:
+                msg = "The app is not able to create log files!"
+                raise Exception(msg)
+    
+    def create_custom_log_file(self):
+        file_name = f"{self.log_name_edit.text()}.xlsx"
+
+        try:
+            full_path = os.path.join(self.log_path, file_name)
+            if os.path.exists(full_path):
+                self.custom_log_file_overwritten_message(file_name)
+            else:
+                self.custom_log_file_created_message(file_name)
+            self.log_frame.to_excel(full_path, index=False)
+            return
+        except:
+            pass
+        
+        try:
+            file_name = self.get_next_available_filename(self.log_path)
+            full_path = os.path.join(self.log_path, file_name)
+            self.log_frame.to_excel(full_path, index=False)
+            self.custom_log_file_failure_message(file_name)
+            return
+        except:
+            msg = "The app is not able to create log files!"
+            raise Exception(msg)
+         
+    # ******************************************************************
+    # * MESSAGES DEFINITIONS
+    # ****************************************************************** 
+    
+    def show_log_folder_select_message(self):
+        message = f'New log path is "{self.log_path}"'
+        self.main_window.set_temporary_message(message, 8000)
+        
+    def no_log_folder_selected_message(self):
+        message = 'Log folder selection canceled '
+        message += "(old log path will be used)"
+        self.main_window.set_temporary_message(message, 5000)
+    
+    def standard_log_file_created_message(self, file_name: str):
+        message = f'Log file saved with auto-generated name: "{file_name}"'
+        self.main_window.set_temporary_message(message, 10000)
+        
+    def custom_log_file_created_message(self, file_name: str):
+        message = f'Log file saved successfully: "{file_name}"'
+        self.main_window.set_temporary_message(message, 8000)
+        
+    def custom_log_file_overwritten_message(self, file_name: str):
+        message = f'Log file overwritten successfully: "{file_name}"'
+        self.main_window.set_temporary_message(message, 8000)
+        
+    def custom_log_file_failure_message(self, file_name: str):
+        message = f'Failed to overwrite, log file has been named "{file_name}"'
+        self.main_window.set_temporary_message(message, 10000)
+        
+    def unsupported_extension_emu_file_message(self):
+        message = "Loading failed due to unsupported file type"
+        self.main_window.set_temporary_message(message, 5000)
+        
+    def wrong_n_columns_emu_file_message(self):
+        message = "Loading failed due to file not having exactly 2 columns"
+        self.main_window.set_temporary_message(message, 5000)
+        
+    def non_numeric_emu_file_message(self):
+        message = "Loading failed due to some files not being numeric"
+        self.main_window.set_temporary_message(message, 5000)
+        
+    def load_failure_emu_file_message(self):
+        message = "Loading failed due to an unknown reason"
+        self.main_window.set_temporary_message(message, 8000)
+        
+    def emulation_file_loaded_message(self, file_name: str):
+        message = f'Emulation file loaded successfully: "{file_name}"'
+        self.main_window.set_temporary_message(message, 8000)
