@@ -242,6 +242,7 @@ class CurveEmulation():
   
     def disconnection_action(self):
         if self.start_curve_button.isChecked():
+            self.manager.assign_reset_kine_telegram()
             self.encoder.variables_updated.disconnect(
                 self.curve_emulation_action)
         self.main_window.curve_emulation_to_disabled()
@@ -261,6 +262,8 @@ class CurveEmulation():
         
     def start_curve_emulation(self):
         self.main_window.curve_emulation_to_emulating()
+        self.main_window.single_value_to_disabled()
+        self.main_window.serial_box_interface_to_disabled()
         self.encoder.variables_updated.connect(self.curve_emulation_action)
         self.start_curve_button.setChecked(True)
         
@@ -386,6 +389,8 @@ class CurveEmulation():
         self.reset_vertical_line()
         self.current_index = 0
         self.main_window.curve_emulation_to_can_emulate()
+        self.main_window.single_value_to_enabled()
+        self.main_window.serial_box_interface_to_connected()
         self.encoder.variables_updated.disconnect(self.curve_emulation_action)
       
     def send_last_telegram(self): 
