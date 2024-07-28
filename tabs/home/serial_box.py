@@ -1,9 +1,8 @@
-# Public libraries
-from PySide6 import QtCore
+# Public imports
 from PySide6.QtSerialPort import QSerialPortInfo, QSerialPort
-from PySide6.QtCore import QTimer 
+from PySide6.QtCore import QTimer, Slot
 
-# Private libraries
+# Private imports
 from shared.mainwindow import MainWindow
 from shared.telegram_manager import TelegramManager
 from shared.encoder_data import EncoderData
@@ -47,13 +46,15 @@ class SerialBox:
             self.main_window.serial_box_interface_to_disconnected)
         self.quit_timer.timeout.connect(self.main_window.close_app)
     
+    @Slot()
     def closing_gui_procedure(self):
         if self.manager.isOpen():
             self.manager.assign_disconnection_telegram()
             self.quit_timer.start(500)
         
         self.main_window.close()
-        
+    
+    @Slot()  
     def update_available_COMs(self):  
         
         # Get all the current available COM ports
@@ -69,7 +70,8 @@ class SerialBox:
             # Fill the combo box with all the port names
             self.com_select_list.clear()
             self.com_select_list.insertItems(0, available_ports)
-        
+    
+    @Slot()
     def connect_to_COM(self):
         # ! Test - check if I'm already connected, the program should
         # ! never go here
@@ -98,7 +100,8 @@ class SerialBox:
                     self.show_connection_failed_message()
                     self.manager.close_serial_connection()
                 break
-                
+    
+    @Slot()            
     def disconnect_to_COM(self):
         # ! Test - check if I'm already disconnected, the program should
         # ! never go here
@@ -110,13 +113,15 @@ class SerialBox:
         
         self.show_disconnection_message()
         self.manager.assign_disconnection_telegram()
-            
+    
+    @Slot()       
     def cable_disconnection_action(self):
         # Test - check if the error is due to a cable disconnection
         if self.manager.error() == QSerialPort.ResourceError:
             self.show_cable_disconnection_message()
             self.manager.close_serial_connection()
     
+    @Slot()
     def unknown_board_action(self):
             self.manager.close_serial_connection()
             self.show_unknown_board_message()

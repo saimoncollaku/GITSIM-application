@@ -1,3 +1,4 @@
+# Public imports
 from PySide6.QtCore import Signal, QObject
 
 class EncoderData(QObject):

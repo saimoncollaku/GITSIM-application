@@ -1,4 +1,7 @@
-# Private libraries
+# Public imports
+from PySide6.QtCore import Slot
+
+# Private imports
 from shared.mainwindow import MainWindow
 from shared.telegram_manager import TelegramManager
 from shared.encoder_data import EncoderData
@@ -36,7 +39,8 @@ class SetSingleValue():
         
         msg = "The app tried to change an unknow option"
         raise Exception(msg)
-        
+    
+    @Slot()
     def call_uart_send_speed(self):
         option = self.return_encoder_to_modify()
                 
@@ -47,7 +51,8 @@ class SetSingleValue():
         elif option == "both":
             self.manager.assign_speed_both_telegram(self.speed_spinbox.value(),
                                                     self.speed_spinbox.value())
-            
+    
+    @Slot()
     def call_uart_send_acceleration(self):
         option = self.return_encoder_to_modify()
                 

@@ -2,14 +2,13 @@
 import sys
 from PySide6.QtWidgets import QApplication
 
-# Private imports (shared directory)
+# Private imports (shared)
 from shared.mainwindow import MainWindow
 from shared.telegram_manager import TelegramManager
 from shared.encoder_data import EncoderData
 
-# Private imports (tabs directory)
+# Private imports (exclusive)
 from tabs.home.serial_box import SerialBox
-
 from tabs.measurement.encoder_measure import EncoderMeasurementBox
 from tabs.measurement.set_single_value import SetSingleValue
 from tabs.emulation.curve_emulation import CurveEmulation

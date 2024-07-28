@@ -1,10 +1,9 @@
-
-# Public libraries
+# Public imports
 from PySide6.QtWidgets import QMainWindow, QPushButton, QApplication
 from PySide6.QtCore import QTimer, Signal
 from PySide6.QtGui import QMovie, QFontDatabase
 
-# Private libraries
+# Private imports
 from ui.window_ui import Ui_MainWindow
 
 def setup_gif_button(button: QPushButton, gif_path):

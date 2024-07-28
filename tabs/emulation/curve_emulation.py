@@ -1,14 +1,13 @@
-# Public libraries
+# Public imports
 from PySide6.QtWidgets import QFileDialog
 from pyqtgraph import LegendItem, InfiniteLine
 from PySide6.QtGui import QRegularExpressionValidator
-from PySide6.QtCore import QRegularExpression
-
+from PySide6.QtCore import QRegularExpression, Slot
 import pandas as pd
 import os
 import numpy as np
 
-# Private libraries
+# Private imports
 from shared.mainwindow import MainWindow
 from shared.telegram_manager import TelegramManager
 from shared.encoder_data import EncoderData
@@ -65,7 +64,8 @@ class CurveEmulation():
     # ******************************************************************
     # * EMULATION FILE METHODS
     # ******************************************************************  
-        
+    
+    @Slot()
     def load_emulation_file(self):
         
         file_path = self.open_choose_file_dialog()
@@ -223,17 +223,20 @@ class CurveEmulation():
     def reset_vertical_line(self):
         self.vertical_line_position = 0
         self.vertical_line.setPos(self.vertical_line_position)
-        
+    
+    @Slot()  
     def set_acc_axis(self):
         self.plot_widget.setLabel('left', 'Acceleration [m/s²]', 
                                   color='k', size='12pt') 
         self.initial_speed_spinbox.setEnabled(True) 
-        
+    
+    @Slot()  
     def set_speed_axis(self):
         self.plot_widget.setLabel('left', 'Speed [m/s]', 
                                   color='k', size='12pt')
         self.initial_speed_spinbox.setEnabled(False)
-  
+    
+    @Slot()
     def disconnection_action(self):
         if self.start_curve_button.isChecked():
             self.manager.assign_reset_kine_telegram()
@@ -253,18 +256,21 @@ class CurveEmulation():
     # ******************************************************************
     # * APP/BOARD INTERACTION METHODS
     # ******************************************************************
-        
+    
+    @Slot()
     def start_curve_emulation(self):
         self.main_window.curve_emulation_to_emulating()
         self.main_window.single_value_to_disabled()
         self.main_window.serial_box_interface_to_disabled()
         self.encoder.variables_updated.connect(self.curve_emulation_action)
         self.start_curve_button.setChecked(True)
-        
+    
+    @Slot()
     def stop_button_action(self):
         self.stop_curve_button.setChecked(True)
         self.stop_curve_button.setEnabled(False)
-         
+    
+    @Slot()   
     def curve_emulation_action(self):
         # Speed curve mode
         if self.speed_axis_radio.isChecked():
@@ -396,6 +402,7 @@ class CurveEmulation():
     # * LOG DATA METHODS
     # ******************************************************************
     
+    @Slot()
     def select_log_folder(self):
         window_name = "Select Log Folder"
         folder_path = QFileDialog.getExistingDirectory(None, window_name)
@@ -515,7 +522,7 @@ class CurveEmulation():
         self.main_window.set_temporary_message(message, 5000)
         
     def non_numeric_emu_file_message(self):
-        message = "Loading failed due to some files not being numeric"
+        message = "Loading failed due to some data not being numeric"
         self.main_window.set_temporary_message(message, 5000)
         
     def load_failure_emu_file_message(self):

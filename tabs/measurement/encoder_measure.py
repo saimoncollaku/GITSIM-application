@@ -1,4 +1,7 @@
-# Private libraries
+# Public imports
+from PySide6.QtCore import Slot
+
+# Private imports
 from shared.mainwindow import MainWindow
 from shared.telegram_manager import TelegramManager
 from shared.encoder_data import EncoderData
@@ -31,7 +34,8 @@ class EncoderMeasurementBox():
         # Set up signals
         self.manager.telegram_received.connect(self.update_encoder_object)
         self.encoder.variables_updated.connect(self.update_measurements)
-          
+    
+    @Slot()
     def update_encoder_object(self):
         speed1 = self.manager.last_data_received["speed1"]
         speed2 = self.manager.last_data_received["speed2"]
@@ -79,7 +83,8 @@ class EncoderMeasurementBox():
         if self.displayed_count2 != self.encoder.counter_e2:
             self.displayed_count2 = self.encoder.counter_e2
             self.counter2_label.setText(f"{self.encoder.counter_e2}")
-            
+    
+    @Slot()     
     def update_measurements(self):
         self.update_distance_measurement()
         self.update_speed_measurement()

@@ -1,3 +1,4 @@
+# Public imports
 from PySide6.QtSerialPort import QSerialPort
 from PySide6.QtCore import QEventLoop
 from PySide6.QtCore import Signal, QTimer 
