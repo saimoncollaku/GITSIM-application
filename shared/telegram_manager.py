@@ -31,12 +31,14 @@ class TelegramManager(QSerialPort):
         self.board_identifier_timer.stop()
     
     def read_response_telegram(self):
+        # Number of bytes of the expected telegram
+        board_telegram_length = 13
         
-        if self.bytesAvailable() >= 12: 
+        if self.bytesAvailable() >= board_telegram_length: 
             
             # Read and unpack
-            uart_byte_array = self.read(12)
-            uart_data = struct.unpack('<ffHH', uart_byte_array)
+            uart_byte_array = self.read(board_telegram_length)
+            uart_data = struct.unpack('<ffHHB', uart_byte_array)
             
             # Update speed
             self.last_data_received["speed1"] =  uart_data[0]
@@ -45,6 +47,8 @@ class TelegramManager(QSerialPort):
             # Update count
             self.last_data_received["count1"]  =  uart_data[2]
             self.last_data_received["count2"]  =  uart_data[3]
+            
+            self.last_data_received["identifier"] = uart_data[4]
             
             if not self.board_identifier_timer.isActive():
                 self.send_functioning_telegram()
@@ -147,6 +151,10 @@ class TelegramManager(QSerialPort):
         if self.last_data_received["speed2"] < -0.1:
             return False
         elif self.last_data_received["speed2"] > 0.1:
+            return False
+        
+        # Check identifier
+        if self.last_data_received["identifier"] != 218:
             return False
         
         return True
