@@ -1627,6 +1627,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        <pointsize>11</pointsize>
                       </font>
                      </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
                      <property name="text">
                       <string>1</string>
                      </property>
@@ -1639,6 +1642,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        <pointsize>11</pointsize>
                       </font>
                      </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
                      <property name="text">
                       <string>2</string>
                      </property>
@@ -1650,6 +1656,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       <font>
                        <pointsize>11</pointsize>
                       </font>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
                      </property>
                      <property name="text">
                       <string>Both</string>
@@ -1768,6 +1777,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        <pointsize>11</pointsize>
                       </font>
                      </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
                      <property name="text">
                       <string>Set</string>
                      </property>
@@ -1842,6 +1854,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        <pointsize>11</pointsize>
                       </font>
                      </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
                      <property name="text">
                       <string>Set</string>
                      </property>
@@ -1907,6 +1922,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <layout class="QVBoxLayout" name="verticalLayout_8">
                <item>
                 <widget class="QPushButton" name="start_emulation_button">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -1927,6 +1945,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                </item>
                <item>
                 <widget class="QPushButton" name="stop_emulation_button">
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="text">
                   <string/>
                  </property>
@@ -1963,6 +1984,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    <pointsize>11</pointsize>
                   </font>
                  </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="text">
                   <string>Choose emulation file</string>
                  </property>
@@ -1984,6 +2008,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                   <font>
                    <pointsize>11</pointsize>
                   </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="text">
                   <string>Choose log folder</string>
@@ -2073,6 +2100,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                      <verstretch>0</verstretch>
                     </sizepolicy>
                    </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
+                   </property>
                    <property name="text">
                     <string>Speed</string>
                    </property>
@@ -2088,6 +2118,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                      <horstretch>0</horstretch>
                      <verstretch>0</verstretch>
                     </sizepolicy>
+                   </property>
+                   <property name="cursor">
+                    <cursorShape>PointingHandCursor</cursorShape>
                    </property>
                    <property name="text">
                     <string>Acceleration</string>
