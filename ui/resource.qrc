@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="icon">
+    <file>../icon/help-32.ico</file>
+    <file>../icon/question-mark.ico</file>
     <file>../icon/hand.png</file>
     <file>../icon/wired-flat-45-clock-time.gif</file>
     <file>../icon/icons8-folder-48.png</file>

@@ -40,9 +40,9 @@ from PySide6.QtWidgets import (QAbstractSpinBox, QApplication, QComboBox, QDoubl
 
     QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
 
-    QSpinBox, QStackedWidget, QTextEdit, QVBoxLayout,
+    QSpinBox, QStackedWidget, QTextBrowser, QTextEdit,
 
-    QWidget)
+    QToolBox, QVBoxLayout, QWidget)
 
 
 
@@ -252,7 +252,7 @@ class Ui_MainWindow(object):
 
         icon6 = QIcon()
 
-        icon6.addFile(u":/icon/icon/elevator-32.ico", QSize(), QIcon.Normal, QIcon.Off)
+        icon6.addFile(u":/icon/icon/help-32.ico", QSize(), QIcon.Normal, QIcon.Off)
 
         self.error2_button_1.setIcon(icon6)
 
@@ -2212,6 +2212,52 @@ class Ui_MainWindow(object):
 
         self.page_5.setObjectName(u"page_5")
 
+        self.horizontalLayout_12 = QHBoxLayout(self.page_5)
+
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+
+        self.toolBox = QToolBox(self.page_5)
+
+        self.toolBox.setObjectName(u"toolBox")
+
+        self.toolBox.setFrameShape(QFrame.Shape.NoFrame)
+
+        self.page_10 = QWidget()
+
+        self.page_10.setObjectName(u"page_10")
+
+        self.page_10.setGeometry(QRect(0, 0, 545, 485))
+
+        self.horizontalLayout_13 = QHBoxLayout(self.page_10)
+
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+
+        self.textBrowser = QTextBrowser(self.page_10)
+
+        self.textBrowser.setObjectName(u"textBrowser")
+
+
+
+        self.horizontalLayout_13.addWidget(self.textBrowser)
+
+
+
+        self.toolBox.addItem(self.page_10, u"Sidebar")
+
+        self.page_11 = QWidget()
+
+        self.page_11.setObjectName(u"page_11")
+
+        self.page_11.setGeometry(QRect(0, 0, 545, 485))
+
+        self.toolBox.addItem(self.page_11, u"Page 2")
+
+
+
+        self.horizontalLayout_12.addWidget(self.toolBox)
+
+
+
         self.stackedWidget.addWidget(self.page_5)
 
 
@@ -2268,6 +2314,8 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(0)
 
+        self.toolBox.setCurrentIndex(0)
+
 
 
 
@@ -2304,7 +2352,7 @@ class Ui_MainWindow(object):
 
         self.error1_button_2.setText(QCoreApplication.translate("MainWindow", u"Error 1", None))
 
-        self.error2_button_2.setText(QCoreApplication.translate("MainWindow", u"Error 2", None))
+        self.error2_button_2.setText(QCoreApplication.translate("MainWindow", u"Guide", None))
 
         self.temporary_message_label.setText(QCoreApplication.translate("MainWindow", u"Messaggio temporaneo", None))
 
@@ -2491,6 +2539,10 @@ class Ui_MainWindow(object):
         self.acc_emulation_radio.setText(QCoreApplication.translate("MainWindow", u"Acceleration", None))
 
         self.label_16.setText(QCoreApplication.translate("MainWindow", u"Initial speed [m/s]: ", None))
+
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_10), QCoreApplication.translate("MainWindow", u"Sidebar", None))
+
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_11), QCoreApplication.translate("MainWindow", u"Page 2", None))
 
     # retranslateUi
 
